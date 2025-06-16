@@ -16,7 +16,7 @@ function App() {
       element: <AboutUs />,
     },
     { path: "/inspiration", element: <Inspiration /> },
-    { path: "/suceesstories", element: <SucessStories /> },
+    { path: "/suceestories", element: <SucessStories /> },
     { path: "/offering", element: <Offerings /> },
     { path: "/careers", element: <Careers /> },
     { path: "/contactus", element: <ContactUs /> },
