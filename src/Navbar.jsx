@@ -28,10 +28,11 @@ const Navbar = () => {
           <img
             src={kurologo}
             alt="Logo"
-            className="h-[80px] w-auto object-contain"
+            className="h-[90px] w-auto object-contain"
           />
         </div>
 
+        {/* Spacer to prevent overlap with logo */}
         <div className="w-[90px] md:w-[100px]" />
 
         {/* Desktop Links */}
@@ -55,7 +56,7 @@ const Navbar = () => {
           {/* Contact Us Button */}
           <NavLink
             to="/contactus"
-            className="ml-2 px-5 py-2 bg-black text-white rounded-full hover:bg-[#333] transition-all duration-300 text-base font-semibold flex items-center gap-1 shadow-sm"
+            className="ml-2 px-5 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-700 transition-all duration-300 text-base font-semibold flex items-center gap-1 shadow-sm"
           >
             Contact Us →
           </NavLink>
@@ -92,7 +93,7 @@ const Navbar = () => {
           <NavLink
             to="/contactus"
             onClick={() => setIsOpen(false)}
-            className="block w-full text-center px-5 py-2 bg-black text-white rounded-full hover:bg-[#333] transition duration-300 text-base font-semibold"
+            className="block w-full text-center px-5 py-2 bg-blue-500 text-white rounded-full hover:bg-[#007FFF] transition duration-300 text-base font-semibold"
           >
             Contact Us →
           </NavLink>

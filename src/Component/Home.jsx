@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
       <main
-        className="flex-grow p-6 md:p-12 bg-white"
+        className="flex-grow p-6 md:p-9 bg-white"
         style={{
           backgroundImage: `
             linear-gradient(
@@ -25,18 +25,19 @@ const Home = () => {
           backgroundSize: "5em 5em",
         }}
       >
-        <div className="flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto mb-16 gap-12">
-          {/* Text */}
-          <div className="md:w-1/2 space-y-6 text-center md:text-left">
-            <h1 className="text-4xl md:text-5xl font-bold text-black leading-tight">
+        <div className="flex flex-col md:flex-row items-center justify-between max-w-8xl mx-auto mb-16 gap-12">
+          {/* Text Section */}
+          <div className="md:w-1/2 space-y-6 ">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
               Powering the Future with{" "}
               <span className="text-[#d32f2f]">Industry 4.0</span>
             </h1>
-            <p className="text-gray-600 text-lg">
-              At <strong>Kuro</strong>, we integrate IoT, AI, big data, and
-              digital twins to build smart, resilient software.
+            <p className="text-gray-700 text-lg">
+              At <strong className="text-2xl text-[#d32f2f]">Kuro</strong>, we
+              integrate IoT, AI, big data, and digital twins to build smart,
+              resilient software.
             </p>
-            <ul className="list-disc pl-5 text-gray-600 space-y-1 mx-auto md:mx-0">
+            <ul className="list-disc pl-5 text-gray-700 space-y-1">
               <li>
                 <strong>Real-time Monitoring</strong> via IoT sensors
               </li>
@@ -47,17 +48,17 @@ const Home = () => {
                 <strong>Seamless OT + IT Integration</strong>
               </li>
             </ul>
-            <button className="mt-4 px-6 py-3 bg-black text-white rounded-xl hover:bg-gray-800 transition">
+            <button className="mt-4 px-6 py-3 bg-[#d32f2f] text-white rounded-xl hover:bg-[#b71c1c] transition shadow-lg">
               Explore Our Solutions →
             </button>
           </div>
 
-          {/* GIF Image */}
-          <div className="md:w-1/2 flex justify-end">
+          {/* Image Section */}
+          <div className="md:w-1/2">
             <img
               src={industry4}
               alt="Industry 4.0"
-              className="h-[600px] w-[700px] md:w-[450px] lg:w-[520px] object-contain drop-shadow-2xl"
+              className="w-full max-w-[750px] mx-auto  rounded-xl"
             />
           </div>
         </div>
