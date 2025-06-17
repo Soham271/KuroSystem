@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import kurologo from "./assets/kurologo.png"; 
+import kurologo from "./assets/kurologo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,19 +21,19 @@ const Navbar = () => {
 
   const navLinkWrapperStyle = ({ isActive }) => `
     relative flex items-center justify-center
-    w-[110px] h-12 md:h-[59px] 
+    w-[150px] h-12 md:h-[59px] 
     transition-all duration-300 ease-in-out
     ${isActive ? "bg-white  shadow-md border-t-4 border-l-4 border-r-4 border-red-500 border-b-5 border-b-white"  : ""}
   `;
 
   const links = [
     { to: "/", label: "Home" },
-    { to: "/aboutus", label: "About-us" },
+    { to: "/aboutus", label: "About Us" },
     { to: "/inspiration", label: "Inspiration" },
     { to: "/offering", label: "Offerings" },
-    { to: "/suceestories", label: "Success-Story" },
+    { to: "/suceesstories", label: "SuccessStories" },
     { to: "/careers", label: "Careers" },
-    { to: "/contactus", label: "Contact us" },
+    { to: "/contactus", label: "Contact Us" },
   ];
 
   return (
@@ -41,10 +41,10 @@ const Navbar = () => {
       <div className="flex items-center justify-between w-full px-4 md:px-8 h-full">
         {/* Logo */}
         <div
-          className="cursor-pointer flex-shrink-0 hover:scale-110 transition-transform duration-300"
+          className="cursor-pointer mb-[20px] hover:scale-110 transition-transform duration-300"
           onClick={handleLogoClick}
         >
-          <img src={kurologo} alt="Logo" className="h-[50px] w-auto object-contain mb-6" />
+          <img src={kurologo} alt="Logo" className="h-[50px] w-auto object-contain" />
         </div>
 
         {/* Desktop Nav Links */}
@@ -74,7 +74,7 @@ const Navbar = () => {
       {isOpen && (
         <div className="md:hidden mt-3 px-4 pb-4 flex flex-col gap-2 animate-slideIn">
           {links
-            .filter(({ to }) => to !== "/") 
+            .filter(({ to }) => to !== "/") // Optional: omit Home
             .map(({ to, label }) => (
               <div
                 key={to}
