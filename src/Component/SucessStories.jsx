@@ -5,11 +5,9 @@ import Footer from "../Footer";
 const SucessStories = () => {
   return (
     <div className="flex flex-col min-h-screen">
-      <Navbar />
       <main className="flex-grow p-8">
         <h1 className="text-3xl font-bold">Welcome to Sucess Page</h1>
       </main>
-      <Footer />
     </div>
   );
 };

@@ -9,7 +9,6 @@ const Careers = () => {
       <main className="flex-grow p-8">
         <h1 className="text-3xl font-bold">Welcome to CarresPage</h1>
       </main>
-      <Footer />
     </div>
   );
 };

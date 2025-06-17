@@ -9,7 +9,6 @@ const ContactUs = () => {
       <main className="flex-grow p-8">
         <h1 className="text-3xl font-bold">Welcome to ContactUsPage</h1>
       </main>
-      <Footer />
     </div>
   );
 };

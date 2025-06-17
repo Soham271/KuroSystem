@@ -6,89 +6,96 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogoClick = () => {
-    navigate("/");
-  };
-
-  const navLinkStyle = ({ isActive }) => `
-    relative text-base md:text-lg font-medium
-    transition-all duration-300 ease-in-out
-    flex items-center justify-center px-4 py-2 rounded-lg z-10 
-    ${isActive
-      ? "text-[#d32f2f]"
-      : "text-white hover:text-[#d32f2f] hover:bg-white/10 "}
-  `;
-
-  const navLinkWrapperStyle = ({ isActive }) => `
-    relative flex items-center justify-center
-    w-[150px] h-12 md:h-[59px] 
-    transition-all duration-300 ease-in-out
-    ${isActive ? "bg-white  shadow-md border-t-4 border-l-4 border-r-4 border-red-500 border-b-5 border-b-white"  : ""}
-  `;
-
   const links = [
     { to: "/", label: "Home" },
     { to: "/aboutus", label: "About Us" },
     { to: "/inspiration", label: "Inspiration" },
-    { to: "/offering", label: "Offerings" },
-    { to: "/suceesstories", label: "SuccessStories" },
+    { to: "/offering", label: "Offering" },
+    { to: "/successtories", label: "Suceess stories" },
     { to: "/careers", label: "Careers" },
-    { to: "/contactus", label: "Contact Us" },
   ];
 
+  const handleLogoClick = () => navigate("/");
+
   return (
-    <nav className=" bg-gradient-to-r from-[#1a3558] to-[#2a4a78]  pt-6  h-20 w-full z-50 border-b-4 border-red-500">
-      <div className="flex items-center justify-between w-full px-4 md:px-8 h-full">
-        {/* Logo */}
+    <nav className="w-full bg-white shadow-md fixed top-0 left-0 z-50">
+      <div className="max-w-[1440px] mx-auto flex items-center justify-between h-20 px-4 md:px-10 relative">
+        {/* Logo at leftmost edge */}
         <div
-          className="cursor-pointer mb-[20px] hover:scale-110 transition-transform duration-300"
           onClick={handleLogoClick}
+          className="cursor-pointer absolute left-0 md:left-4"
         >
-          <img src={kurologo} alt="Logo" className="h-[50px] w-auto object-contain" />
+          <img
+            src={kurologo}
+            alt="Logo"
+            className="h-[80px] w-auto object-contain"
+          />
         </div>
 
-        {/* Desktop Nav Links */}
-        <div className="hidden md:flex items-center gap-3">
+        <div className="w-[90px] md:w-[100px]" />
+
+        {/* Desktop Links */}
+        <div className="hidden md:flex items-center gap-6 bg-[#f5f5f5] px-6 py-2 rounded-full shadow-inner ml-12">
           {links.map(({ to, label }) => (
-            <div
+            <NavLink
               key={to}
-              className={navLinkWrapperStyle({ isActive: window.location.pathname === to })}
+              to={to}
+              className={({ isActive }) =>
+                `relative text-base font-semibold px-4 py-2 rounded-full transition-all duration-300 ${
+                  isActive
+                    ? "text-[#d32f2f] after:absolute after:bottom-1 after:left-4 after:right-4 after:h-[2px] after:bg-[#d32f2f]"
+                    : "text-gray-800 hover:text-[#d32f2f] hover:font-bold"
+                }`
+              }
             >
-              <NavLink to={to} className={navLinkStyle}>
-                {label}
-              </NavLink>
-            </div>
+              {label}
+            </NavLink>
           ))}
+
+          {/* Contact Us Button */}
+          <NavLink
+            to="/contactus"
+            className="ml-2 px-5 py-2 bg-black text-white rounded-full hover:bg-[#333] transition-all duration-300 text-base font-semibold flex items-center gap-1 shadow-sm"
+          >
+            Contact Us →
+          </NavLink>
         </div>
 
-        {/* Mobile Menu Toggle */}
+        {/* Mobile Hamburger */}
         <button
-          className="md:hidden text-white text-2xl hover:text-[#d32f2f] transition-colors duration-300"
+          className="md:hidden text-3xl text-black"
           onClick={() => setIsOpen(!isOpen)}
         >
           ☰
         </button>
       </div>
 
-      {/* Mobile Links */}
+      {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden mt-3 px-4 pb-4 flex flex-col gap-2 animate-slideIn">
-          {links
-            .filter(({ to }) => to !== "/") // Optional: omit Home
-            .map(({ to, label }) => (
-              <div
-                key={to}
-                className={navLinkWrapperStyle({ isActive: window.location.pathname === to })}
-              >
-                <NavLink
-                  to={to}
-                  onClick={() => setIsOpen(false)}
-                  className={navLinkStyle}
-                >
-                  {label}
-                </NavLink>
-              </div>
-            ))}
+        <div className="md:hidden px-6 py-4 bg-white shadow-inner space-y-3 rounded-b-lg">
+          {links.map(({ to, label }) => (
+            <NavLink
+              key={to}
+              to={to}
+              onClick={() => setIsOpen(false)}
+              className={({ isActive }) =>
+                `block text-base font-medium px-4 py-2 rounded-full transition-all duration-300 ${
+                  isActive
+                    ? "text-[#d32f2f] bg-[#fceeee]"
+                    : "text-gray-800 hover:text-[#d32f2f] hover:bg-gray-100"
+                }`
+              }
+            >
+              {label}
+            </NavLink>
+          ))}
+          <NavLink
+            to="/contactus"
+            onClick={() => setIsOpen(false)}
+            className="block w-full text-center px-5 py-2 bg-black text-white rounded-full hover:bg-[#333] transition duration-300 text-base font-semibold"
+          >
+            Contact Us →
+          </NavLink>
         </div>
       )}
     </nav>
