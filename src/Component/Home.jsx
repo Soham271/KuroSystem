@@ -67,7 +67,7 @@ const Home = () => {
         </div>
 
         {/* What is Industry 4.0 Section */}
-        <div className="flex flex-col md:flex-row items-center max-w-7xl mx-auto gap-12 bg-white  rounded-xl s">
+        <div className="flex flex-col md:flex-row items-center max-w-7xl mx-auto gap-12 bg-white p-10 rounded-xl s">
           {/* Image on Left */}
           <div className="md:w-1/2">
             <img
