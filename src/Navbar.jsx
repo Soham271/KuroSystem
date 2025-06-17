@@ -28,7 +28,7 @@ const Navbar = () => {
           <img
             src={kurologo}
             alt="Logo"
-            className="h-[90px] w-auto object-contain"
+            className="h-[50px] w-auto object-contain"
           />
         </div>
 
