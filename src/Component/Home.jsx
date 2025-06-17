@@ -16,7 +16,7 @@ const Home = () => {
           <div className="md:w-1/2 space-y-6">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
               Powering the Future with{" "}
-              <span className="text-[#d32f2f]">Industry 4.0</span>
+              <span className="text-blue-500">Industry 4.0</span>
             </h1>
             <p className="text-gray-700 text-lg">
               At <strong className="text-2xl text-[#d32f2f]">Kuro</strong>, we
@@ -35,7 +35,7 @@ const Home = () => {
               </li>
             </ul>
             <button
-              className="mt-4 px-6 py-3 bg-[#d32f2f] text-white rounded-xl hover:bg-[#b71c1c] transition shadow-lg"
+              className="mt-4 px-6 py-3  bg-blue-500 text-white rounded-xl hover:bg-blue-700 transition shadow-lg"
               onClick={() => navigate("/offering")}
             >
               Explore Our Solutions →
@@ -80,7 +80,7 @@ const Home = () => {
           {/* Description on Right */}
           <div className="md:w-1/2 space-y-4">
             <h2 className="text-3xl font-bold text-gray-800">
-              What is <span className="text-[#d32f2f]">Industry 4.0?</span>
+              What is <span className="text-blue-500">Industry 4.0 </span>?
             </h2>
             <p className="text-gray-700 text-lg leading-relaxed">
               Industry 4.0 is the fourth industrial revolution—built on
