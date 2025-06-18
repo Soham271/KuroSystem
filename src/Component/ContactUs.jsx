@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   FaPhoneAlt,
   FaEnvelope,
@@ -6,8 +6,10 @@ import {
   FaMapMarkerAlt,
   FaComment,
 } from "react-icons/fa";
+import emailjs from "@emailjs/browser";
 
 const ContactUs = () => {
+  const formRef = useRef();
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -19,38 +21,54 @@ const ContactUs = () => {
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setStatus(" Thank you! We'll be in touch soon.");
+    emailjs
+      .sendForm(
+        "service_bt7lvig",
+        "template_c5grkxm",
+        formRef.current,
+        "Jj8GC9_w-bFpwuKc1"
+      )
+      .then(
+        () => {
+          setStatus("Thank you! We'll be in touch soon.");
+          setForm({
+            name: "",
+            email: "",
+            phone: "",
+            location: "",
+            message: "",
+          });
+        },
+        () => {
+          setStatus("Something went wrong. Please try again later.");
+        }
+      );
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <main className="flex-grow container mx-auto p-6 relative">
-        <div className="flex flex-wrap md:flex-nowrap gap-6 items-start">
+    <div className="flex flex-col min-h-screen bg-gray-50">
+      <main className="flex-grow container mx-auto p-6">
+        <div className="flex flex-col md:flex-row gap-10 items-stretch">
           {/* Left: Form */}
-          <div className="md:w-1/2 w-full flex flex-col items-center justify-center gap-4 p-[50px_40px_20px_40px] bg-white rounded-[11px] font-['Inter',sans-serif]">
-            <h2 className="text-center font-black text-[30px] text-[#1089D3] mb-6">
+          <div className="md:w-1/2 w-full bg-white rounded-xl p-8 shadow-md">
+            <h2 className="text-center font-bold text-2xl text-[#1089D3] mb-6">
               Get in Touch
             </h2>
-            <form
-              onSubmit={handleSubmit}
-              className="w-full flex flex-col gap-4"
-            >
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
               {[
                 { field: "name", icon: <FaUser /> },
                 { field: "email", icon: <FaEnvelope /> },
                 { field: "phone", icon: <FaPhoneAlt /> },
                 { field: "location", icon: <FaMapMarkerAlt /> },
               ].map(({ field, icon }) => (
-                <div
-                  key={field}
-                  className="relative w-full flex flex-col gap-1"
-                >
+                <div key={field} className="relative">
                   <label className="text-xs text-[#8B8E98] font-semibold">
                     {field.charAt(0).toUpperCase() + field.slice(1)}
                   </label>
-                  <div className="absolute left-3 bottom-2 text-[#8B8E98] z-10 text-xl">
+                  <div className="absolute left-3 top-[36px] text-[#8B8E98] text-lg">
                     {icon}
                   </div>
                   <input
@@ -59,15 +77,16 @@ const ContactUs = () => {
                     value={form[field]}
                     onChange={handleChange}
                     required
-                    className="w-full h-8 pl-10 pr-3 rounded-[7px] outline-none border border-[#e5e5e5] shadow-[0_1px_0_#efefef,0_1px_0.5px_rgba(239,239,239,0.5)] transition-all duration-300 ease-[cubic-bezier(0.15,0.83,0.66,1)] focus:border-transparent focus:shadow-[0_0_0_2px_#242424] focus:bg-transparent text-sm"
+                    className="w-full h-10 pl-10 pr-3 mt-1 rounded-md border border-gray-300 focus:ring-2 focus:ring-[#1089D3] focus:outline-none text-sm"
                   />
                 </div>
               ))}
-              <div className="relative w-full flex flex-col gap-1">
+              {/* Message Field */}
+              <div className="relative">
                 <label className="text-xs text-[#8B8E98] font-semibold">
                   Message
                 </label>
-                <div className="absolute left-3 bottom-3 text-[#8B8E98] z-10 text-sm">
+                <div className="absolute left-3 top-[36px] text-[#8B8E98]">
                   <FaComment />
                 </div>
                 <textarea
@@ -75,13 +94,13 @@ const ContactUs = () => {
                   value={form.message}
                   onChange={handleChange}
                   required
-                  rows={3}
-                  className="w-full h-20 pt-2 pl-10 pr-3 rounded-[7px] outline-none border border-[#e5e5e5] shadow-[0_1px_0_#efefef,0_1px_0.5px_rgba(239,239,239,0.5)] transition-all duration-300 ease-[cubic-bezier(0.15,0.83,0.66,1)] focus:border-transparent focus:shadow-[0_0_0_2px_#242424] focus:bg-transparent resize-none text-sm"
+                  rows={4}
+                  className="w-full pl-10 pr-3 pt-2 mt-1 rounded-md border border-gray-300 focus:ring-2 focus:ring-[#1089D3] focus:outline-none text-sm resize-none"
                 />
               </div>
               <button
                 type="submit"
-                className="w-full h-10 bg-[#115DFC] rounded-[7px] outline-none text-white cursor-pointer"
+                className="w-full h-10 bg-[#115DFC] text-white rounded-md hover:bg-blue-700 transition"
               >
                 Send Message
               </button>
@@ -94,15 +113,15 @@ const ContactUs = () => {
           </div>
 
           {/* Right: Contact Info + Image */}
-          <div className="md:w-1/2 w-full flex flex-col space-y-6 absolute right-0 top-0">
-            <div className="overflow-hidden">
+          <div className="md:w-1/2 w-full flex flex-col gap-6">
+            <div className="rounded-xl overflow-hidden">
               <img
                 src="https://satyamtechnocrats.com/wp-content/uploads/2024/01/contact.jpg"
                 alt="Contact"
-                className="object-cover w-full h-56 md:h-96 "
+                className="object-cover w-full h-56 md:h-full"
               />
             </div>
-            <div className="rounded-2xl p-6">
+            <div className="bg-white rounded-xl p-6 shadow-md">
               <div className="flex items-center space-x-3 text-blue-700 mb-4">
                 <FaPhoneAlt className="text-xl" />
                 <a href="tel:+918956014041" className="font-bold text-lg">

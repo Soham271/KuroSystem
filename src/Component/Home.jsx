@@ -6,10 +6,7 @@ import depoy from "../assets/depoy.jpg";
 const Home = () => {
   return (
     <div className="flex flex-col min-h-screen ">
-      <main
-        className="flex-grow p-6 md:p-9"
-       
-      >
+      <main className="flex-grow p-6 md:p-9">
         {/* Hero Section */}
         <div className="flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto mb-16 gap-12 bg-white  rounded-xl">
           {/* Text */}
@@ -54,16 +51,19 @@ const Home = () => {
 
         {/* Feature Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto mb-20">
-          {["Digital Twin", "IoT Sensors", "AI & Analytics", "Cloud & Edge"].map(
-            (item, i) => (
-              <div
-                key={i}
-                className="p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-all text-center text-gray-800 font-semibold text-lg"
-              >
-                {item}
-              </div>
-            )
-          )}
+          {[
+            "Digital Twin",
+            "IoT Sensors",
+            "AI & Analytics",
+            "Cloud & Edge",
+          ].map((item, i) => (
+            <div
+              key={i}
+              className="p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-all text-center text-gray-800 font-semibold text-lg"
+            >
+              {item}
+            </div>
+          ))}
         </div>
 
         {/* What is Industry 4.0 Section */}
