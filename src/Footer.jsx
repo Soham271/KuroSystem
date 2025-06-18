@@ -78,7 +78,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="mailto:contact@intmach.com"
+                  href="mailto:kunal.z@kurosystems.net"
                   className="flex items-center hover:text-white"
                 >
                   <MdEmail className="mr-2" />

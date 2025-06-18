@@ -38,7 +38,7 @@ const Home = () => {
               </li>
             </ul>
             <button
-              className="mt-4 px-6 py-3 bg-blue-500 text-white text-lg font-semibold rounded-xl hover:bg-blue-700 transition shadow-lg"
+              className="mt-4 px-6 py-3 bg-black text-white text-lg font-semibold rounded-xl hover:bg-slate-700 transition shadow-lg"
               onClick={() => navigate("/offering")}
             >
               Explore Our Solutions →

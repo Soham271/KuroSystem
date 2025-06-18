@@ -44,7 +44,7 @@ const Navbar = () => {
               to={to}
               className={({ isActive }) =>
                 isActive
-                  ? `${commonBtnClasses} bg-blue-500 text-white hover:bg-blue-700`
+                  ? `${commonBtnClasses} bg-black text-white hover:bg-slate-700`
                   : `px-4 py-2 rounded-full text-base font-semibold text-gray-800 hover:text-[#d32f2f] hover:font-bold`
               }
             >

@@ -102,7 +102,7 @@ const ContactUs = () => {
 
               <button
                 type="submit"
-                className="w-full h-10 bg-[#115DFC] text-white rounded-md hover:bg-blue-700 transition font-semibold"
+                className="w-full h-10 bg-[#115DFC] text-white  hover:bg-blue-700 transition font-semibold rounded-lg"
               >
                 Send Message
               </button>
@@ -143,8 +143,8 @@ const ContactUs = () => {
               </p>
               <div className="flex items-center space-x-3 text-blue-700">
                 <FaEnvelope className="text-xl" />
-                <a href="mailto:info@example.com" className="font-bold text-lg">
-                  info@example.com
+                <a href="mailto:kunal.z@kurosystems.net" className="font-bold text-lg">
+                 Contact Via Mail
                 </a>
               </div>
             </div>
