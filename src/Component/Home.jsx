@@ -4,7 +4,7 @@ import industry4 from "../assets/Industry4.gif";
 import depoy from "../assets/depoy.jpg";
 import Card from "./Card";
 import Picture1 from "../assets/Picture1.png";
-import Picture2 from "../assets/Picture2.png";
+import Picture2 from "../assets/Picture2.jpg";
 import Picture3 from "../assets/Picture3.png";
 import Picture4 from "../assets/Picture4.png";
 
@@ -69,7 +69,7 @@ const Home = () => {
         </div>
 
         {/* What is Industry 4.0 Section */}
-        <div className="flex flex-col md:flex-row items-center max-w-7xl mx-auto gap-12 bg-white px-6 py-12 rounded-xl mb-16">
+        <div className="flex flex-col md:flex-row items-center max-w-7xl mx-auto gap-12 bg-white px-6 py-12 rounded-xl sm:mb-10 md:mb-16">
           <div className="md:w-1/2">
             <img
               src={depoy}
@@ -78,8 +78,8 @@ const Home = () => {
             />
           </div>
           <div className="md:w-1/2 space-y-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
-              What is <span className="text-blue-500">Industry 4.0?</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 text-center">
+              What is <span className="text-blue-500 ">Industry 4.0?</span>
             </h2>
             <p className="text-gray-700 text-lg leading-relaxed">
               Industry 4.0 is the fourth industrial revolution—built on
@@ -103,9 +103,9 @@ const Home = () => {
 
         {/* Card Section */}
         <div className="p-6 md:p-10 mb-5">
-          <div className="flex flex-wrap -mx-3 gap-y-6">
-            <Card img={Picture1} text="Integrated Architecture Design" />
-            <Card img={Picture2} text="Virtual Commissioning & Simulation" />
+<div className="flex flex-wrap -mx-2">
+              <Card img={Picture1} text="Integrated Architecture Design" />
+            <Card img={Picture2} text="Continuous Innovation & Improvement" />
             <Card img={Picture3} text="Agile Project Management" />
             <Card img={Picture4} text="Remote Support Team" />
           </div>
