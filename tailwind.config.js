@@ -6,6 +6,7 @@ module.exports = {
     extend: {
       animation: {
         blob: "blob-bounce 5s infinite ease-in-out",
+                "fade-in": "fadeIn 1s ease-in-out forwards",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -13,6 +14,10 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
+         fadeIn: {
+          "0%": { opacity: 0 },
+          "100%": { opacity: 1 },
+        },
         "blob-bounce": {
           "0%": { transform: "translate(-100%, -100%) translate3d(0, 0, 0)" },
           "25%": {
