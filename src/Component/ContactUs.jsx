@@ -33,7 +33,7 @@ const ContactUs = () => {
       )
       .then(
         () => {
-          setStatus("Thank you! We'll be in touch soon.");
+          setStatus("success");
           setForm({
             name: "",
             email: "",
@@ -43,17 +43,17 @@ const ContactUs = () => {
           });
         },
         () => {
-          setStatus("Something went wrong. Please try again later.");
+          setStatus("error");
         }
       );
   };
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      <main className="flex-grow container mx-auto p-6">
-        <div className="flex flex-col md:flex-row gap-10 items-stretch">
+      <main className="flex-grow pt-24 px-4 md:px-0">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-10 items-stretch px-6">
           {/* Left: Form */}
-          <div className="md:w-1/2 w-full bg-white rounded-xl p-8 shadow-md">
+          <div className="md:w-1/2 bg-white rounded-xl p-8 shadow-md">
             <h2 className="text-center font-bold text-2xl text-[#1089D3] mb-6">
               Get in Touch
             </h2>
@@ -81,6 +81,7 @@ const ContactUs = () => {
                   />
                 </div>
               ))}
+
               {/* Message Field */}
               <div className="relative">
                 <label className="text-xs text-[#8B8E98] font-semibold">
@@ -98,38 +99,47 @@ const ContactUs = () => {
                   className="w-full pl-10 pr-3 pt-2 mt-1 rounded-md border border-gray-300 focus:ring-2 focus:ring-[#1089D3] focus:outline-none text-sm resize-none"
                 />
               </div>
+
               <button
                 type="submit"
-                className="w-full h-10 bg-[#115DFC] text-white rounded-md hover:bg-blue-700 transition"
+                className="w-full h-10 bg-[#115DFC] text-white rounded-md hover:bg-blue-700 transition font-semibold"
               >
                 Send Message
               </button>
+
               {status && (
-                <p className="text-center text-green-600 font-semibold mt-2">
-                  {status}
+                <p
+                  className={`text-center font-medium mt-3 ${
+                    status === "success" ? "text-green-600" : "text-red-600"
+                  }`}
+                >
+                  {status === "success"
+                    ? "Thank you! We'll be in touch soon."
+                    : "Something went wrong. Please try again later."}
                 </p>
               )}
             </form>
           </div>
 
-          {/* Right: Contact Info + Image */}
-          <div className="md:w-1/2 w-full flex flex-col gap-6">
-            <div className="rounded-xl overflow-hidden">
+          {/* Right: Image + Contact Info */}
+          <div className="md:w-1/2 flex flex-col gap-6">
+            <div className="rounded-xl overflow-hidden shadow-md">
               <img
                 src="https://satyamtechnocrats.com/wp-content/uploads/2024/01/contact.jpg"
                 alt="Contact"
                 className="object-cover w-full h-56 md:h-full"
               />
             </div>
-            <div className="bg-white rounded-xl p-6 shadow-md">
-              <div className="flex items-center space-x-3 text-blue-700 mb-4">
+
+            <div className="bg-white rounded-xl p-6 shadow-md space-y-4">
+              <div className="flex items-center space-x-3 text-blue-700">
                 <FaPhoneAlt className="text-xl" />
                 <a href="tel:+918956014041" className="font-bold text-lg">
                   +91 8956014041
                 </a>
               </div>
-              <p className="text-gray-700 mb-4">
-                We are here to make your ideas a reality
+              <p className="text-gray-700">
+                We are here to make your ideas a reality.
               </p>
               <div className="flex items-center space-x-3 text-blue-700">
                 <FaEnvelope className="text-xl" />

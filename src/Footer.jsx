@@ -18,7 +18,7 @@ const Footer = () => {
               alt="Kuro Logo"
               className="mb-2"
             />
-            <p className="text-gray-400">We are what we do</p>
+            <p className="text-gray-400">striving for non-stop production</p>
           </div>
 
           {/* Quick Links */}
