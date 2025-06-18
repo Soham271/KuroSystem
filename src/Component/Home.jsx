@@ -13,7 +13,6 @@ const Home = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-    
       <main className="flex-grow bg-white pt-24 px-4 md:px-0">
         {/* Hero Section */}
         <div className="flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto mb-16 gap-12 px-6 bg-white rounded-xl">
@@ -56,18 +55,31 @@ const Home = () => {
 
         {/* Feature Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto mb-20 px-6">
-          {["Digital Twin", "IoT Sensors", "AI & Analytics", "Cloud & Edge"].map(
-            (item, i) => (
-              <div
-                key={i}
-                className="p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-all text-center text-gray-800 font-semibold text-lg"
-              >
-                {item}
-              </div>
-            )
-          )}
+          {[
+            "Digital Twin",
+            "IoT Sensors",
+            "AI & Analytics",
+            "Cloud & Edge",
+          ].map((item, i) => (
+            <div
+              key={i}
+              className="p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-all text-center text-gray-800 font-semibold text-lg"
+            >
+              {item}
+            </div>
+          ))}
         </div>
-
+        <div className="relative bg-white text-black py-12 px-6 md:px-16">
+          <div
+            className="absolute top-0 left-0 w-full h-9"
+            style={{
+              background:
+                "linear-gradient(to right, #1e3a8a, #3b82f6, #60a5fa)",
+              clipPath: "polygon(0 0, 100% 0, 85% 100%, 0% 100%)",
+              zIndex: 0,
+            }}
+          />
+        </div>
         {/* What is Industry 4.0 Section */}
         <div className="flex flex-col md:flex-row items-center max-w-7xl mx-auto gap-12 bg-white px-6 py-12 rounded-xl sm:mb-10 md:mb-16">
           <div className="md:w-1/2">
@@ -83,9 +95,9 @@ const Home = () => {
             </h2>
             <p className="text-gray-700 text-lg leading-relaxed">
               Industry 4.0 is the fourth industrial revolution—built on
-              cyber‑physical systems, IoT, big data, AI, and smart automation. It
-              transforms traditional manufacturing into ‘smart factories’ with
-              real-time data exchange and autonomous decision-making.
+              cyber‑physical systems, IoT, big data, AI, and smart automation.
+              It transforms traditional manufacturing into ‘smart factories’
+              with real-time data exchange and autonomous decision-making.
             </p>
           </div>
         </div>
@@ -103,15 +115,14 @@ const Home = () => {
 
         {/* Card Section */}
         <div className="p-6 md:p-10 mb-5">
-<div className="flex flex-wrap -mx-2">
-              <Card img={Picture1} text="Integrated Architecture Design" />
+          <div className="flex flex-wrap -mx-2">
+            <Card img={Picture1} text="Integrated Architecture Design" />
             <Card img={Picture2} text="Continuous Innovation & Improvement" />
             <Card img={Picture3} text="Agile Project Management" />
             <Card img={Picture4} text="Remote Support Team" />
           </div>
         </div>
       </main>
-      
     </div>
   );
 };
