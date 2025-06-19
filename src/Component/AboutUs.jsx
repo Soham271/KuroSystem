@@ -29,8 +29,8 @@ const AboutUs = () => {
   const navigate = useNavigate();
 
   const { ref: clientsRef, inView: clientsInView } = useInView({
-    triggerOnce: true,
     threshold: 0.2,
+    triggerOnce: true,
   });
 
   const containerVariants = {
@@ -44,12 +44,16 @@ const AboutUs = () => {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
+    hidden: { opacity: 0, y: 30 },
+    visible: (i) => ({
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5, ease: "easeOut" },
-    },
+      transition: {
+        duration: 0.5,
+        delay: i * 0.1,
+        ease: "easeOut",
+      },
+    }),
   };
 
   const clientLogos = [
@@ -144,17 +148,22 @@ const AboutUs = () => {
         ))}
 
         <Accolades />
+
+        {/* Clients Section */}
         <div className="clients-section pt-3" ref={clientsRef}>
           <motion.h2
             className="text-4xl md:text-5xl font-extrabold text-center text-gray-900 mb-8"
-            initial={{ opacity: 0, x: -100 }}
-            animate={
-              clientsInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }
-            }
+            initial="hidden"
+            animate={clientsInView ? "visible" : "hidden"}
+            variants={{
+              hidden: { opacity: 0, x: -100 },
+              visible: { opacity: 1, x: 0 },
+            }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             OUR CLIENTS
           </motion.h2>
+
           <motion.div
             className="max-w-7xl mx-auto px-0 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 items-center"
             variants={containerVariants}
@@ -164,9 +173,11 @@ const AboutUs = () => {
             {clientLogos.map((logo, idx) => (
               <motion.div
                 key={idx}
-                className="client-card flex items-center justify-center p-4 rounded-lg overflow-hidden opacity-0 animate-fadeIn"
-                style={{ animationDelay: `${idx * 100}ms` }}
+                className="client-card flex items-center justify-center p-4 rounded-lg overflow-hidden"
+                custom={idx}
                 variants={itemVariants}
+                initial="hidden"
+                animate={clientsInView ? "visible" : "hidden"}
               >
                 <img
                   src={logo}
@@ -179,13 +190,12 @@ const AboutUs = () => {
         </div>
       </div>
 
+      {/* Styles */}
       <style jsx>{`
-        /* Enable smooth scrolling for the entire page */
         html {
           scroll-behavior: smooth;
         }
 
-        /* Clients section styling */
         .clients-section {
           background: linear-gradient(to right, #f3f4f6, #e5e7eb);
           position: relative;
@@ -194,7 +204,6 @@ const AboutUs = () => {
           padding-bottom: 0;
         }
 
-        /* Client card styling */
         .client-card {
           background: transparent;
           transition: all 0.3s ease-in-out;
@@ -209,22 +218,6 @@ const AboutUs = () => {
 
         .client-card img {
           filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
-        }
-
-        /* Fade-in animation from first version */
-        .animate-fadeIn {
-          animation: fadeIn 0.5s ease-in-out forwards;
-        }
-
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: scale(0.95);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
         }
       `}</style>
     </section>
