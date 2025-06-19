@@ -1,7 +1,13 @@
 import React from "react";
-import a from "../assets/aerial-view-business-team_53876-124515.avif";
 import { useNavigate } from "react-router-dom";
+import { useInView } from "react-intersection-observer";
+import { motion } from "framer-motion";
 import Accolades from "./Accolades";
+
+// Background image
+import a from "../assets/aerial-view-business-team_53876-124515.avif";
+
+// Client logos
 import ABB from "../assets/Client/ABB logo.png";
 import Atlas from "../assets/Client/Atlas Logo.png";
 import Bajaj from "../assets/Client/Bajaj Logo.png";
@@ -20,14 +26,11 @@ import Regal from "../assets/Client/Regal Logo.png";
 import Siemens from "../assets/Client/Siemens logo.png";
 import Supermax from "../assets/Client/Supermax logo.png";
 import TDK from "../assets/Client/TDK Logo.png";
-import thyssenkrup from "../assets/Client/thyssenkrup.png";
+import ThyssenKrupp from "../assets/Client/thyssenkrup.png";
 import UnitedSpirits from "../assets/Client/United Spirits Logo.png";
-import { useInView } from "react-intersection-observer";
-import { motion } from "framer-motion";
 
 const AboutUs = () => {
   const navigate = useNavigate();
-
   const { ref: clientsRef, inView: clientsInView } = useInView({
     threshold: 0.2,
     triggerOnce: true,
@@ -35,12 +38,7 @@ const AboutUs = () => {
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
   };
 
   const itemVariants = {
@@ -48,11 +46,7 @@ const AboutUs = () => {
     visible: (i) => ({
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.5,
-        delay: i * 0.1,
-        ease: "easeOut",
-      },
+      transition: { duration: 0.5, delay: i * 0.1, ease: "easeOut" },
     }),
   };
 
@@ -75,7 +69,7 @@ const AboutUs = () => {
     Bridgestone,
     TDK,
     Supermax,
-    thyssenkrup,
+    ThyssenKrupp,
     UnitedSpirits,
   ];
 
@@ -94,21 +88,11 @@ const AboutUs = () => {
       title: "KURO's Journey",
       content: `
 <ul class="list-decimal pl-5 space-y-3">
-  <li>
-    <strong>Robotics Solution Provider:</strong> KURO began its journey as a robotics-focused technology company, delivering customized automation solutions to niche industrial needs.
-  </li>
-  <li>
-    <strong>Discovering Traceability Needs:</strong> While developing an application for a client, the team encountered a significant challenge—traceability in complex manufacturing processes.
-  </li>
-  <li>
-    <strong>Turnkey Automotive Breakthrough:</strong> KURO successfully built and deployed a comprehensive turnkey solution for an automobile company, addressing end-to-end traceability and operational insights.
-  </li>
-  <li>
-    <strong>Spotting the Scaling Opportunity:</strong> This experience revealed a broader market need for scalable and intelligent factory solutions beyond one-off deployments.
-  </li>
-  <li>
-    <strong>Standardizing for Industry 4.0:</strong> Leveraging its learnings, KURO created a standardized, modular platform tailored for Industry 4.0 adoption—enabling digital transformation across sectors.
-  </li>
+  <li><strong>Robotics Solution Provider:</strong> KURO began its journey as a robotics-focused tech firm delivering customized automation solutions.</li>
+  <li><strong>Discovering Traceability Needs:</strong> A project revealed a gap in traceability in complex manufacturing.</li>
+  <li><strong>Turnkey Automotive Breakthrough:</strong> KURO built a full solution for end-to-end traceability in automotive deployment.</li>
+  <li><strong>Spotting the Scaling Opportunity:</strong> Identified market demand for scalable intelligent factory platforms.</li>
+  <li><strong>Standardizing for Industry 4.0:</strong> Developed a modular Industry 4.0 platform for digital transformation.</li>
 </ul>
 `,
     },
@@ -116,15 +100,22 @@ const AboutUs = () => {
 
   return (
     <section className="w-full m-0 p-0">
+      {/* Hero Section */}
       <div
         className="relative bg-cover bg-center min-h-[80vh] w-full flex items-center justify-end px-6 md:px-16"
-        style={{ backgroundImage: `url(${a})` }}
+        style={{
+          backgroundImage: `url(${a})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
       >
         <div className="absolute inset-0 bg-black/40" />
         <div className="relative z-10 text-white max-w-2xl text-right space-y-6">
           <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
             Empowering Your Business with{" "}
-            <span className="text-blue-400">KURO</span>
+            <span className="text-blue-400 transition duration-300 ease-in-out">
+              KURO
+            </span>
           </h1>
           <p className="text-lg md:text-xl leading-relaxed text-white/90">
             At KURO, we specialize in intelligent, scalable IT solutions that
@@ -148,6 +139,7 @@ const AboutUs = () => {
         </div>
       </div>
 
+      {/* Content Sections */}
       <div className="bg-white text-black py-16 px-6 md:px-16 space-y-16">
         {sections.map((section, idx) => (
           <div
@@ -158,7 +150,7 @@ const AboutUs = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="text-3xl md:text-4xl text-black mb-4 font-normal border-b-2 border-red-500 inline-block pb-1"
+              className="text-3xl md:text-4xl text-black mb-4 border-b-2 border-red-500 inline-block pb-1"
             >
               {section.title}
             </motion.h2>
@@ -171,6 +163,7 @@ const AboutUs = () => {
 
         <Accolades />
 
+        {/* Clients Grid */}
         <div className="clients-section pt-3" ref={clientsRef}>
           <motion.h2
             className="text-4xl md:text-5xl font-extrabold text-center text-gray-900 mb-8"
@@ -186,7 +179,7 @@ const AboutUs = () => {
           </motion.h2>
 
           <motion.div
-            className="max-w-7xl mx-auto px-0 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 items-center"
+            className="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 items-center"
             variants={containerVariants}
             initial="hidden"
             animate={clientsInView ? "visible" : "hidden"}
@@ -194,16 +187,14 @@ const AboutUs = () => {
             {clientLogos.map((logo, idx) => (
               <motion.div
                 key={idx}
-                className="client-card flex items-center justify-center p-4 rounded-lg overflow-hidden"
+                className="client-card flex items-center justify-center p-4 rounded-lg transition-transform duration-300 ease-in-out"
                 custom={idx}
                 variants={itemVariants}
-                initial="hidden"
-                animate={clientsInView ? "visible" : "hidden"}
               >
                 <img
                   src={logo}
                   alt={`client-${idx}`}
-                  className="max-h-32 sm:max-h-40 md:max-h-48 w-auto object-contain transition-transform duration-300 ease-in-out"
+                  className="max-h-32 sm:max-h-40 md:max-h-48 object-contain"
                 />
               </motion.div>
             ))}
@@ -212,32 +203,13 @@ const AboutUs = () => {
       </div>
 
       <style jsx>{`
-        html {
-          scroll-behavior: smooth;
-        }
-
         .clients-section {
           background: linear-gradient(to right, #f3f4f6, #e5e7eb);
-          position: relative;
           overflow: hidden;
-          margin-bottom: 0;
-          padding-bottom: 0;
         }
-
-        .client-card {
-          background: transparent;
-          transition: all 0.3s ease-in-out;
-          border-radius: 12px;
-          border: none;
-        }
-
         .client-card:hover {
           transform: translateY(-8px) scale(1.05);
           box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-        }
-
-        .client-card img {
-          filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
         }
       `}</style>
     </section>

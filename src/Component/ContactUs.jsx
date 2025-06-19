@@ -50,6 +50,7 @@ const ContactUs = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
+      
       <main className="flex-grow pt-24 px-4 md:px-0">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-10 items-stretch px-6">
           {/* Left: Form */}
