@@ -33,7 +33,6 @@ const AboutUs = () => {
     threshold: 0.2,
   });
 
-  // Animation variants for fade-in and slide-up
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
