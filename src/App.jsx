@@ -9,8 +9,6 @@ import ContactUs from "./Component/ContactUs";
 import ErrorPage from "./Component/ErrorPage";
 import SuccessStories from "./Component/SucessStories";
 
-
-
 function App() {
   const router = createBrowserRouter([
     {
@@ -29,14 +27,7 @@ function App() {
     { path: "*", element: <ErrorPage /> },
   ]);
 
- return (
-  <>
-  { <RouterProvider router={router}/> }
-
-  </>
- )
- 
-
+  return <>{<RouterProvider router={router} />}</>;
 }
 
 export default App;
