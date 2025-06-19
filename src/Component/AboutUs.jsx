@@ -79,9 +79,43 @@ const AboutUs = () => {
     UnitedSpirits,
   ];
 
+  const sections = [
+    {
+      title: "History of Industry 4.0",
+      content:
+        "Back in 2011, at the Hannover Messe in Germany—a major innovation trade fair—the German government introduced the term ‘Industry 4.0.’ As part of its High‑Tech Strategy 2020, this initiative aimed to advance manufacturing through smart, connected, and flexible systems.",
+    },
+    {
+      title: "What is Industry 4.0?",
+      content:
+        "The Fourth Industrial Revolution—Industry 4.0—brings together IoT, AI, robotics, and cloud computing to create intelligent, connected, and highly flexible factories, building on previous eras of steam power, electricity, and automation.",
+    },
+    {
+      title: "KURO's Journey",
+      content: `
+<ul class="list-decimal pl-5 space-y-3">
+  <li>
+    <strong>Robotics Solution Provider:</strong> KURO began its journey as a robotics-focused technology company, delivering customized automation solutions to niche industrial needs.
+  </li>
+  <li>
+    <strong>Discovering Traceability Needs:</strong> While developing an application for a client, the team encountered a significant challenge—traceability in complex manufacturing processes.
+  </li>
+  <li>
+    <strong>Turnkey Automotive Breakthrough:</strong> KURO successfully built and deployed a comprehensive turnkey solution for an automobile company, addressing end-to-end traceability and operational insights.
+  </li>
+  <li>
+    <strong>Spotting the Scaling Opportunity:</strong> This experience revealed a broader market need for scalable and intelligent factory solutions beyond one-off deployments.
+  </li>
+  <li>
+    <strong>Standardizing for Industry 4.0:</strong> Leveraging its learnings, KURO created a standardized, modular platform tailored for Industry 4.0 adoption—enabling digital transformation across sectors.
+  </li>
+</ul>
+`,
+    },
+  ];
+
   return (
     <section className="w-full m-0 p-0">
-      {/* Hero Banner */}
       <div
         className="relative bg-cover bg-center min-h-[80vh] w-full flex items-center justify-end px-6 md:px-16"
         style={{ backgroundImage: `url(${a})` }}
@@ -114,34 +148,22 @@ const AboutUs = () => {
         </div>
       </div>
 
-      {/* Content Sections */}
       <div className="bg-white text-black py-16 px-6 md:px-16 space-y-16">
-        {[
-          {
-            title: "History of Industry 4.0",
-            content:
-              "Back in 2011, at the Hannover Messe in Germany—a major innovation trade fair—the German government introduced the term ‘Industry 4.0.’ As part of its High‑Tech Strategy 2020, this initiative aimed to advance manufacturing through smart, connected, and flexible systems.",
-          },
-          {
-            title: "What is it?",
-            content:
-              "The Fourth Industrial Revolution—Industry 4.0—brings together IoT, AI, robotics, and cloud computing to create intelligent, connected, and highly flexible factories, building on previous eras of steam power, electricity, and automation.",
-          },
-          {
-            title: "KURO's Journey",
-            content:
-              "• **The Vision Takes Root**: KURO started in 2015, founded by a small team driven by a passion to revolutionize industries with intelligent IT solutions.<br/>• **Early Steps**: The founders spent early years experimenting and building innovative tools that would become the foundation of KURO’s core offerings.<br/>• **A Growing Promise**: As KURO grew, so did its global vision—attracting like-minded innovators and staying true to the mission of ongoing production and progress.",
-          },
-        ].map((section, idx) => (
+        {sections.map((section, idx) => (
           <div
             key={idx}
-            className="mx-auto max-w-3xl bg-slate-50 rounded-2xl p-8 shadow-lg prose prose-slate"
+            className="mx-auto max-w-3xl bg-slate-50 rounded-2xl p-8 shadow-lg"
           >
-            <h2 className="text-3xl md:text-4xl font-semibold mb-4">
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="text-3xl md:text-4xl text-black mb-4 font-normal border-b-2 border-red-500 inline-block pb-1"
+            >
               {section.title}
-            </h2>
+            </motion.h2>
             <div
-              className="text-lg md:text-xl leading-relaxed text-slate-800"
+              className="text-lg md:text-xl leading-relaxed text-gray-700 prose"
               dangerouslySetInnerHTML={{ __html: section.content }}
             />
           </div>
@@ -149,7 +171,6 @@ const AboutUs = () => {
 
         <Accolades />
 
-        {/* Clients Section */}
         <div className="clients-section pt-3" ref={clientsRef}>
           <motion.h2
             className="text-4xl md:text-5xl font-extrabold text-center text-gray-900 mb-8"
@@ -190,7 +211,6 @@ const AboutUs = () => {
         </div>
       </div>
 
-      {/* Styles */}
       <style jsx>{`
         html {
           scroll-behavior: smooth;

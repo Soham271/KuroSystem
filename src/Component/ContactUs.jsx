@@ -7,6 +7,8 @@ import {
   FaComment,
 } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ContactUs = () => {
   const formRef = useRef();
@@ -17,7 +19,6 @@ const ContactUs = () => {
     location: "",
     message: "",
   });
-  const [status, setStatus] = useState("");
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -33,7 +34,7 @@ const ContactUs = () => {
       )
       .then(
         () => {
-          setStatus("success");
+          toast.success(" Thank you! We'll be in touch soon.");
           setForm({
             name: "",
             email: "",
@@ -43,13 +44,14 @@ const ContactUs = () => {
           });
         },
         () => {
-          setStatus("error");
+          toast.error(" Something went wrong. Please try again.");
         }
       );
   };
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
+      <ToastContainer position="top-right" autoClose={4000} />
       <main className="flex-grow pt-24 px-4 md:px-0">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-10 items-stretch px-6">
           {/* Left: Form */}
@@ -102,22 +104,10 @@ const ContactUs = () => {
 
               <button
                 type="submit"
-                className="w-full h-10 bg-[#115DFC] text-white  hover:bg-blue-700 transition font-semibold rounded-lg"
+                className="w-full h-10 bg-[#115DFC] text-white hover:bg-blue-700 transition font-semibold rounded-lg"
               >
                 Send Message
               </button>
-
-              {status && (
-                <p
-                  className={`text-center font-medium mt-3 ${
-                    status === "success" ? "text-green-600" : "text-red-600"
-                  }`}
-                >
-                  {status === "success"
-                    ? "Thank you! We'll be in touch soon."
-                    : "Something went wrong. Please try again later."}
-                </p>
-              )}
             </form>
           </div>
 
@@ -143,8 +133,11 @@ const ContactUs = () => {
               </p>
               <div className="flex items-center space-x-3 text-blue-700">
                 <FaEnvelope className="text-xl" />
-                <a href="mailto:kunal.z@kurosystems.net" className="font-bold text-lg">
-                 Contact Via Mail
+                <a
+                  href="mailto:kunal.z@kurosystems.net"
+                  className="font-bold text-lg"
+                >
+                  Contact Via Mail
                 </a>
               </div>
             </div>
