@@ -7,8 +7,6 @@ import {
   FaComment,
 } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const ContactUs = () => {
   const formRef = useRef();
@@ -19,6 +17,7 @@ const ContactUs = () => {
     location: "",
     message: "",
   });
+  const [status, setStatus] = useState("");
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -34,7 +33,7 @@ const ContactUs = () => {
       )
       .then(
         () => {
-          toast.success(" Thank you! We'll be in touch soon.");
+          setStatus("success");
           setForm({
             name: "",
             email: "",
@@ -44,14 +43,13 @@ const ContactUs = () => {
           });
         },
         () => {
-          toast.error(" Something went wrong. Please try again.");
+          setStatus("error");
         }
       );
   };
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      <ToastContainer position="top-right" autoClose={4000} />
       <main className="flex-grow pt-24 px-4 md:px-0">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-10 items-stretch px-6">
           {/* Left: Form */}
@@ -104,22 +102,49 @@ const ContactUs = () => {
 
               <button
                 type="submit"
-                className="w-full h-10 bg-[#115DFC] text-white hover:bg-blue-700 transition font-semibold rounded-lg"
+                className="w-full h-10 bg-[#115DFC] text-white  hover:bg-blue-700 transition font-semibold rounded-lg"
               >
                 Send Message
               </button>
+
+              {status && (
+                <p
+                  className={`text-center font-medium mt-3 ${
+                    status === "success" ? "text-green-600" : "text-red-600"
+                  }`}
+                >
+                  {status === "success"
+                    ? "Thank you! We'll be in touch soon."
+                    : "Something went wrong. Please try again later."}
+                </p>
+              )}
             </form>
           </div>
 
           {/* Right: Image + Contact Info */}
           <div className="md:w-1/2 flex flex-col gap-6">
-            <div className="rounded-xl overflow-hidden shadow-md">
-              <img
-                src="https://satyamtechnocrats.com/wp-content/uploads/2024/01/contact.jpg"
-                alt="Contact"
-                className="object-cover w-full h-56 md:h-full"
-              />
-            </div>
+       <div className="relative rounded-2xl overflow-hidden shadow-lg h-64 md:h-80 border-2 border-blue-100 transition-transform ">
+  {/* Map iframe */}
+  <iframe
+    title="Kuro Systems Location"
+    src="https://www.google.com/maps?q=19.992583,73.739444&z=15&output=embed"
+    width="100%"
+    height="100%"
+    style={{ border: 0 }}
+    allowFullScreen=""
+    loading="lazy"
+    referrerPolicy="no-referrer-when-downgrade"
+    className="rounded-2xl"
+  ></iframe>
+
+  {/* Stylish Floating Label */}
+  <div className="absolute top-4 right-4 bg-gradient-to-r from-white/90 to-blue-50/90 text-blue-900 font-bold text-lg px-4 py-1 rounded-full shadow-md backdrop-blur-md">
+    📍 Kuro Systems
+  </div>
+
+
+</div>
+
 
             <div className="bg-white rounded-xl p-6 shadow-md space-y-4">
               <div className="flex items-center space-x-3 text-blue-700">
@@ -133,11 +158,8 @@ const ContactUs = () => {
               </p>
               <div className="flex items-center space-x-3 text-blue-700">
                 <FaEnvelope className="text-xl" />
-                <a
-                  href="mailto:kunal.z@kurosystems.net"
-                  className="font-bold text-lg"
-                >
-                  Contact Via Mail
+                <a href="mailto:kunal.z@kurosystems.net" className="font-bold text-lg">
+                 Contact Via Mail
                 </a>
               </div>
             </div>
