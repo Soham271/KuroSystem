@@ -112,7 +112,7 @@ const Careers = () => {
 
       <div className="relative z-10 text-white pt-7 px-6 sm:px-10 md:px-16 text-left">
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">
-          Careers at <span className="text-blue-400">KURO</span>
+          Careers at <span className="text-orange-600">KURO</span>
         </h1>
         <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-xl">
           Explore unlimited potential with us. Grow your career with

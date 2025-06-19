@@ -139,7 +139,7 @@ const ContactUs = () => {
 
   {/* Stylish Floating Label */}
   <div className="absolute top-4 right-4 bg-gradient-to-r from-white/90 to-blue-50/90 text-blue-900 font-bold text-lg px-4 py-1 rounded-full shadow-md backdrop-blur-md">
-    📍 Kuro Systems
+     Kuro Systems
   </div>
 
 
