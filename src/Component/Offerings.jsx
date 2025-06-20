@@ -4,6 +4,8 @@ import {
   FaNetworkWired,
   FaStream,
   FaCloud,
+  FaCogs,
+  FaCubes,
 } from "react-icons/fa";
 import Offer from "../assets/Offering.jpg";
 import Navbar from "@/Navbar";
@@ -12,13 +14,16 @@ import CloudAndEdge from "../assets/cloudandEdge.jpg";
 import DigitalTwin from "../assets/DigitalTwin.jpg";
 import ITOT from "../assets/IT-OT-Integration-2.png";
 import Trace from "../assets/Traceability.jpg";
+// import Gantry2D from "../assets/Gantry2D.jpg";
+// import Gantry3D from "../assets/Gantry3D.jpg";
+
 const Offerings = () => {
   const [hoveredOffering, setHoveredOffering] = useState(null);
 
   const offerings = [
     {
       title: "Digital Twin",
-      icon: <FaProjectDiagram className="inline mr-2 text-blue-600 text-2xl" />,
+      icon: <FaProjectDiagram className="inline mr-2 text-blue-900 text-2xl" />,
       shortInfo: "Real-time replicas for predictive maintenance.",
       summary:
         "Our Digital Twin solutions offer real-time replicas of your physical systems, enabling predictive maintenance, simulation, and smarter decision-making.",
@@ -26,7 +31,7 @@ const Offerings = () => {
     },
     {
       title: "IT-OT Integration",
-      icon: <FaNetworkWired className="inline mr-2 text-blue-600 text-2xl" />,
+      icon: <FaNetworkWired className="inline mr-2 text-blue-900 text-2xl" />,
       shortInfo: "Bridging IT and Operational Tech seamlessly.",
       summary:
         "Seamlessly bridge the gap between Information Technology and Operational Technology for unified, smart manufacturing processes and efficient data flow.",
@@ -34,7 +39,7 @@ const Offerings = () => {
     },
     {
       title: "End-to-End traceability",
-      icon: <FaStream className="inline mr-2 text-blue-600 text-2xl" />,
+      icon: <FaStream className="inline mr-2 text-blue-900 text-2xl" />,
       shortInfo: "Full supply chain visibility and tracking.",
       summary:
         "Achieve complete traceability across your supply chain with our advanced tracking systems, ensuring transparency, compliance, and product quality.",
@@ -42,10 +47,29 @@ const Offerings = () => {
     },
     {
       title: "Cloud & Edge",
-      icon: <FaCloud className="inline mr-2 text-blue-600 text-2xl" />,
+      icon: <FaCloud className="inline mr-2 text-blue-900 text-2xl" />,
       shortInfo: "Power of cloud + speed of edge.",
       summary:
         "Harness the combined power of cloud scalability and edge computing for real-time analytics, reduced latency, and decentralized operations.",
+      image: CloudAndEdge,
+    },
+  ];
+
+  const robotics = [
+    {
+      title: "2D-Gantry",
+      icon: <FaCogs className="inline mr-2 text-blue-900 text-2xl" />,
+      shortInfo: "Precision motion in two dimensions.",
+      summary:
+        "Our 2D-Gantry systems offer accurate and reliable movement across two axes, ideal for tasks like pick-and-place, inspection, and material handling.",
+      image: CloudAndEdge,
+    },
+    {
+      title: "3D-Gantry",
+      icon: <FaCubes className="inline mr-2 text-blue-900 text-2xl" />,
+      shortInfo: "Full 3-axis motion for advanced automation.",
+      summary:
+        "3D-Gantry solutions provide comprehensive motion in three dimensions, perfect for complex assembly lines and high-precision manufacturing.",
       image: CloudAndEdge,
     },
   ];
@@ -80,9 +104,51 @@ const Offerings = () => {
     return () => document.head.removeChild(style);
   }, []);
 
+  const renderCards = (dataArray) => (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+      {dataArray.map(({ title, icon, summary, image, shortInfo }, index) => (
+        <div
+          key={index}
+          onMouseEnter={() => setHoveredOffering(title)}
+          onMouseLeave={() => setHoveredOffering(null)}
+          className={`transition-all duration-300 overflow-hidden cursor-default 
+  bg-gradient-to-tr from-[#e0f7fa]/70 via-[#73CEDA]/60 to-[#00E2FF]/90 
+  backdrop-blur-md bg-opacity-60 p-6 rounded-xl shadow-md hover:shadow-xl 
+  ${hoveredOffering === title ? "min-h-[360px]" : "min-h-[80px]"} mb-9`}
+        >
+          <h2 className="text-xl font-semibold text-[#1089D3] flex items-center mb-2">
+            {icon}
+            {title}
+          </h2>
+
+          {hoveredOffering !== title && (
+            <p className="text-gray-700">{shortInfo}</p>
+          )}
+          {hoveredOffering === title && (
+            <div className="mt-4 flex flex-col md:flex-row gap-4 animate-pulse-once">
+              <div className="md:w-1/2">
+                <p className="text-gray-800  text-lg leading-relaxed ">
+                  <br />
+                  {summary}
+                </p>
+              </div>
+              <div className="md:w-1/2">
+                <img
+                  src={image}
+                  alt={`${title} Illustration`}
+                  className="w-full h-48 object-cover rounded-xl shadow"
+                />
+              </div>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      {/* Hero Section */}
+      <Navbar />
       <div
         className="relative bg-cover bg-center min-h-[60vh] w-full flex items-center justify-start px-6 md:px-16"
         style={{ backgroundImage: `url(${Offer})` }}
@@ -102,55 +168,23 @@ const Offerings = () => {
         </div>
       </div>
 
-      {/* Offering Cards */}
       <main className="flex-grow pt-12 px-4 md:px-0">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-center font-bold text-5xl text-black mb-8">
             Industry 4.0
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            {offerings.map(
-              ({ title, icon, summary, image, shortInfo }, index) => (
-                <div
-                  key={index}
-                  onMouseEnter={() => setHoveredOffering(title)}
-                  onMouseLeave={() => setHoveredOffering(null)}
-                  className={`transition-all duration-300 overflow-hidden cursor-default 
-  bg-gradient-to-tr from-[#e0f7fa]/70 via-[#b2ebf2]/70 to-[#80deea]/70 
-  backdrop-blur-md bg-opacity-60 p-6 rounded-xl shadow-md hover:shadow-xl 
-  ${hoveredOffering === title ? "min-h-[360px]" : "min-h-[80px]"} mb-9`}
-                >
-                  <h2 className="text-xl font-semibold text-[#1089D3] flex items-center mb-2">
-                    {icon}
-                    {title}
-                  </h2>
+          {renderCards(offerings)}
+        </div>
 
-                  {hoveredOffering !== title && (
-                    <p className="text-gray-700">{shortInfo}</p>
-                  )}
-                  {hoveredOffering === title && (
-                    <div className="mt-4 flex flex-col md:flex-row gap-4 animate-pulse-once">
-                      <div className="md:w-1/2">
-                        <p className="text-gray-800  text-lg leading-relaxed ">
-                          <br />
-                          {summary}
-                        </p>
-                      </div>
-                      <div className="md:w-1/2">
-                        <img
-                          src={image}
-                          alt={`${title} Illustration`}
-                          className="w-full h-48 object-cover rounded-xl shadow"
-                        />
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )
-            )}
-          </div>
+        <div className="max-w-7xl mx-auto px-6 mt-12">
+          <h2 className="text-center font-bold text-5xl text-black mb-8">
+            Robotics
+          </h2>
+          {renderCards(robotics)}
         </div>
       </main>
+
+      <Footer />
     </div>
   );
 };
