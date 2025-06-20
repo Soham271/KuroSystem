@@ -7,6 +7,7 @@ import {
   FaComment,
 } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
+import Contact from "../assets/Contact.avif";
 
 const ContactUs = () => {
   const formRef = useRef();
@@ -50,11 +51,35 @@ const ContactUs = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      
+      <div
+        className="relative bg-cover bg-center min-h-[60vh] w-full flex items-center justify-start px-6 md:px-16"
+        style={{
+          backgroundImage: `url(${Contact})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="absolute inset-0 bg-black/40" />
+        <div className="relative z-10 text-white max-w-2xl text-left space-y-6 pl-4 md:pl-0">
+          <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
+            Get in Touch with{" "}
+            <span className="text-blue-400 [text-shadow:1px_1px_0_#1e3a8a,2px_2px_0_#1e40af,3px_3px_0_#1e3a8a,4px_4px_6px_rgba(0,0,0,0.5)] transform perspective-[500px] translate-z-[5px] hover:[text-shadow:2px_2px_0_#1e3a8a,3px_3px_0_#1e40af,4px_4px_0_#1e3a8a,5px_5px_6px_rgba(0,0,0,0.6)] hover:translate-z-[10px] transition duration-300 ease-in-out">
+              KURO
+            </span>
+          </h1>
+          <p className="text-lg md:text-xl leading-relaxed text-white/90">
+            We are here to help you connect and explore how KURO can support
+            your needs.
+          </p>
+        </div>
+      </div>
+
       <main className="flex-grow pt-24 px-4 md:px-0">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-10 items-stretch px-6">
-          {/* Left: Form */}
-          <div className="md:w-1/2 bg-white rounded-xl p-8 shadow-md">
+          <div
+            className="md:w-1/2 bg-white rounded-xl p-8 shadow-md"
+            id="contact-form"
+          >
             <h2 className="text-center font-bold text-2xl text-[#1089D3] mb-6">
               Get in Touch
             </h2>
@@ -83,7 +108,6 @@ const ContactUs = () => {
                 </div>
               ))}
 
-              {/* Message Field */}
               <div className="relative">
                 <label className="text-xs text-[#8B8E98] font-semibold">
                   Message
@@ -103,7 +127,7 @@ const ContactUs = () => {
 
               <button
                 type="submit"
-                className="w-full h-10 bg-[#115DFC] text-white  hover:bg-blue-700 transition font-semibold rounded-lg"
+                className="w-full h-10 bg-[#115DFC] text-white hover:bg-blue-700 transition font-semibold rounded-lg"
               >
                 Send Message
               </button>
@@ -124,28 +148,25 @@ const ContactUs = () => {
 
           {/* Right: Image + Contact Info */}
           <div className="md:w-1/2 flex flex-col gap-6">
-       <div className="relative rounded-2xl overflow-hidden shadow-lg h-64 md:h-80 border-2 border-blue-100 transition-transform ">
-  {/* Map iframe */}
-  <iframe
-    title="Kuro Systems Location"
-    src="https://www.google.com/maps?q=19.992583,73.739444&z=15&output=embed"
-    width="100%"
-    height="100%"
-    style={{ border: 0 }}
-    allowFullScreen=""
-    loading="lazy"
-    referrerPolicy="no-referrer-when-downgrade"
-    className="rounded-2xl"
-  ></iframe>
+            <div className="relative rounded-2xl overflow-hidden shadow-lg h-64 md:h-80 border-2 border-blue-100 transition-transform ">
+              {/* Map iframe */}
+              <iframe
+                title="Kuro Systems Location"
+                src="https://www.google.com/maps?q=19.992583,73.739444&z=15&output=embed"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="rounded-2xl"
+              ></iframe>
 
-  {/* Stylish Floating Label */}
-  <div className="absolute top-4 right-4 bg-gradient-to-r from-white/90 to-blue-50/90 text-blue-900 font-bold text-lg px-4 py-1 rounded-full shadow-md backdrop-blur-md">
-     Kuro Systems
-  </div>
-
-
-</div>
-
+              {/* Stylish Floating Label */}
+              <div className="absolute top-4 right-4 bg-gradient-to-r from-white/90 to-blue-50/90 text-blue-900 font-bold text-lg px-4 py-1 rounded-full shadow-md backdrop-blur-md">
+                Kuro Systems
+              </div>
+            </div>
 
             <div className="bg-white rounded-xl p-6 shadow-md space-y-4">
               <div className="flex items-center space-x-3 text-blue-700">
@@ -159,8 +180,11 @@ const ContactUs = () => {
               </p>
               <div className="flex items-center space-x-3 text-blue-700">
                 <FaEnvelope className="text-xl" />
-                <a href="mailto:kunal.z@kurosystems.net" className="font-bold text-lg">
-                 Contact Via Mail
+                <a
+                  href="mailto:kunal.z@kurosystems.net"
+                  className="font-bold text-lg"
+                >
+                  Contact Via Mail
                 </a>
               </div>
             </div>

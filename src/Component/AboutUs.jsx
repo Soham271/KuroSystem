@@ -4,10 +4,8 @@ import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 import Accolades from "./Accolades";
 
-// Background image
 import a from "../assets/aerial-view-business-team_53876-124515.avif";
 
-// Client logos
 import ABB from "../assets/Client/ABB logo.png";
 import Atlas from "../assets/Client/Atlas Logo.png";
 import Bajaj from "../assets/Client/Bajaj Logo.png";
@@ -139,7 +137,6 @@ const AboutUs = () => {
         </div>
       </div>
 
-      {/* Content Sections */}
       <div className="bg-white text-black py-16 px-6 md:px-16 space-y-16">
         {sections.map((section, idx) => (
           <div
@@ -163,7 +160,6 @@ const AboutUs = () => {
 
         <Accolades />
 
-        {/* Clients Grid */}
         <div className="clients-section pt-3" ref={clientsRef}>
           <motion.h2
             className="text-4xl md:text-5xl font-extrabold text-center text-gray-900 mb-8"
