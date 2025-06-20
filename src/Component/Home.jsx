@@ -57,8 +57,8 @@ const Home = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto mb-20 px-6">
           {[
             "Digital Twin",
-            "IoT Sensors",
-            "AI & Analytics",
+            "IT-OT Integration",
+            "End-to-end traceability",
             "Cloud & Edge",
           ].map((item, i) => (
             <div

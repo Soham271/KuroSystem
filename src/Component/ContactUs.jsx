@@ -63,7 +63,14 @@ const ContactUs = () => {
         <div className="relative z-10 text-white max-w-2xl text-left space-y-6 pl-4 md:pl-0">
           <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
             Get in Touch with{" "}
-            <span className="text-blue-400 [text-shadow:1px_1px_0_#1e3a8a,2px_2px_0_#1e40af,3px_3px_0_#1e3a8a,4px_4px_6px_rgba(0,0,0,0.5)] transform perspective-[500px] translate-z-[5px] hover:[text-shadow:2px_2px_0_#1e3a8a,3px_3px_0_#1e40af,4px_4px_0_#1e3a8a,5px_5px_6px_rgba(0,0,0,0.6)] hover:translate-z-[10px] transition duration-300 ease-in-out">
+           <span
+  className="
+    text-blue-400
+    transition duration-300 ease-in-out
+    hover:text-blue-600
+    focus:text-blue-600
+  "
+>
               KURO
             </span>
           </h1>
