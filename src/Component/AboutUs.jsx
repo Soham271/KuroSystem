@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
@@ -33,6 +33,7 @@ const AboutUs = () => {
     threshold: 0.2,
     triggerOnce: true,
   });
+  const headingRefs = useRef([]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -90,15 +91,131 @@ const AboutUs = () => {
   <li><strong>Discovering Traceability Needs:</strong> A project revealed a gap in traceability in complex manufacturing.</li>
   <li><strong>Turnkey Automotive Breakthrough:</strong> KURO built a full solution for end-to-end traceability in automotive deployment.</li>
   <li><strong>Spotting the Scaling Opportunity:</strong> Identified market demand for scalable intelligent factory platforms.</li>
-  <li><strong>Standardizing for Industry 4.0:</strong> Developed a modular Industry 4.0 platform for digital transformation.</li>
+  <li><strong>Standardizing for Industry 4.0:</strong> Developed a modular Industry 4.0 platform for digital transformation.</li>
 </ul>
 `,
     },
   ];
 
+  useEffect(() => {
+    const style = document.createElement("style");
+    style.innerHTML = `
+      body {
+        background-image: radial-gradient(#021027, #000000);
+      }
+      .circle-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+      }
+      .circle {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        mix-blend-mode: screen;
+        background-image: radial-gradient(
+          hsl(180, 100%, 80%),
+          hsl(180, 100%, 80%) 10%,
+          hsla(180, 100%, 80%, 0) 56%
+        );
+        animation: fade-frames 200ms infinite, scale-frames 2s infinite;
+      }
+      @keyframes fade-frames {
+        0% { opacity: 1; }
+        50% { opacity: 0.7; }
+        100% { opacity: 1; }
+      }
+      @keyframes scale-frames {
+        0% { transform: scale3d(0.4, 0.4, 1); }
+        50% { transform: scale3d(2.2, 2.2, 1); }
+        100% { transform: scale3d(0.4, 0.4, 1); }
+      }
+      .section-heading {
+        position: relative;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(0, 100, 200, 0.2));
+        backdrop-blur-md;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        padding: 1rem 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: inline-block;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        color: white;
+      }
+      .section-heading:hover {
+        transform: scale(1.05);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+      }
+      .clients-section {
+        background: linear-gradient(to right, rgba(243, 244, 246, 0.2), rgba(229, 231, 235, 0.2));
+        overflow: hidden;
+        padding: 2rem;
+        border-radius: 1rem;
+        backdrop-blur-xl;
+      }
+      .client-card:hover {
+        transform: translateY(-8px) scale(1.05);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      }
+      ${Array.from({ length: 50 }, (_, i) => {
+        const circleSize = Math.random() * 10;
+        const startPositionY = Math.random() * 10 + 100;
+        const moveDuration = 7000 + Math.random() * 4000;
+        const moveDelay = Math.random() * 11000;
+        const circleDelay = Math.random() * 4000;
+        return `
+          .circle-container:nth-child(${i + 1}) {
+            width: ${circleSize}px;
+            height: ${circleSize}px;
+            animation: move-frames-${i} ${moveDuration}ms linear ${moveDelay}ms infinite;
+          }
+          .circle-container:nth-child(${i + 1}) .circle {
+            animation-delay: ${circleDelay}ms;
+          }
+          @keyframes move-frames-${i} {
+            from {
+              transform: translate3d(${Math.random() * 100}vw, ${startPositionY}vh, 0);
+            }
+            to {
+              transform: translate3d(${Math.random() * 100}vw, ${-startPositionY - Math.random() * 30}vh, 0);
+            }
+          }
+        `;
+      }).join('')}
+    `;
+    document.head.appendChild(style);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('underline-active');
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    headingRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => {
+      headingRefs.current.forEach((ref) => {
+        if (ref) observer.unobserve(ref);
+      });
+      document.head.removeChild(style);
+    };
+  }, []);
+
   return (
     <section className="w-full m-0 p-0">
-      {/* Hero Section */}
       <div
         className="relative bg-cover bg-center min-h-[80vh] w-full flex items-center justify-end px-6 md:px-16"
         style={{
@@ -137,77 +254,66 @@ const AboutUs = () => {
         </div>
       </div>
 
-      <div className="bg-white text-black py-16 px-6 md:px-16 space-y-16">
-        {sections.map((section, idx) => (
-          <div
-            key={idx}
-            className="mx-auto max-w-3xl bg-slate-50 rounded-2xl p-8 shadow-lg"
-          >
-            <motion.h2
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="text-3xl md:text-4xl text-black mb-4 border-b-2 border-red-500 inline-block pb-1"
-            >
-              {section.title}
-            </motion.h2>
-            <div
-              className="text-lg md:text-xl leading-relaxed text-gray-700 prose"
-              dangerouslySetInnerHTML={{ __html: section.content }}
-            />
+      <div className="relative py-16 px-6 md:px-16 space-y-16">
+        {Array.from({ length: 50 }).map((_, i) => (
+          <div key={i} className="circle-container">
+            <div className="circle" />
           </div>
         ))}
-
-        <Accolades />
-
-        <div className="clients-section pt-3" ref={clientsRef}>
-          <motion.h2
-            className="text-4xl md:text-5xl font-extrabold text-center text-gray-900 mb-8"
-            initial="hidden"
-            animate={clientsInView ? "visible" : "hidden"}
-            variants={{
-              hidden: { opacity: 0, x: -100 },
-              visible: { opacity: 1, x: 0 },
-            }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            OUR CLIENTS
-          </motion.h2>
-
-          <motion.div
-            className="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 items-center"
-            variants={containerVariants}
-            initial="hidden"
-            animate={clientsInView ? "visible" : "hidden"}
-          >
-            {clientLogos.map((logo, idx) => (
-              <motion.div
-                key={idx}
-                className="client-card flex items-center justify-center p-4 rounded-lg transition-transform duration-300 ease-in-out"
-                custom={idx}
-                variants={itemVariants}
+        <div className="relative z-10">
+          {sections.map((section, idx) => (
+            <div
+              key={idx}
+              className="mx-auto max-w-3xl bg-white/20 backdrop-blur-xl border border-white/30 rounded-2xl p-8 shadow-lg mb-5"
+            >
+              <h2
+                className="text-3xl md:text-4xl text-white mb-4 section-heading"
+                ref={(el) => (headingRefs.current[idx] = el)}
               >
-                <img
-                  src={logo}
-                  alt={`client-${idx}`}
-                  className="max-h-32 sm:max-h-40 md:max-h-48 object-contain"
-                />
-              </motion.div>
-            ))}
-          </motion.div>
+                {section.title}
+              </h2>
+              <div
+                className="text-lg md:text-xl leading-relaxed text-gray-300 prose"
+                dangerouslySetInnerHTML={{ __html: section.content }}
+              />
+            </div>
+          ))}
+
+          <Accolades />
+
+          <div className="flex justify-center flex-wrap clients-section pt-3" ref={clientsRef}>
+            <h2
+              className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center text-white mb-8 section-heading"
+              ref={(el) => (headingRefs.current[sections.length] = el)}
+            >
+              OUR CLIENTS
+            </h2>
+
+            <motion.div
+              className="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6 items-center"
+              variants={containerVariants}
+              initial="hidden"
+              animate={clientsInView ? "visible" : "hidden"}
+            >
+              {clientLogos.map((logo, idx) => (
+                <motion.div
+                  key={idx}
+                  className="client-card flex items-center justify-center p-4 rounded-lg transition-transform duration-300 ease-in-out"
+                  custom={idx}
+                  variants={itemVariants}
+                >
+                  <img
+                    src={logo}
+                    alt={`client-${idx}`}
+                    className="w-full h-auto max-h-20 sm:max-h-24 md:max-h-28 lg:max-h-32 object-contain"
+                    loading="lazy"
+                  />
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
         </div>
       </div>
-
-      <style jsx>{`
-        .clients-section {
-          background: linear-gradient(to right, #f3f4f6, #e5e7eb);
-          overflow: hidden;
-        }
-        .client-card:hover {
-          transform: translateY(-8px) scale(1.05);
-          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-        }
-      `}</style>
     </section>
   );
 };
