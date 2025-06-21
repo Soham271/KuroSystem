@@ -50,7 +50,7 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50">
+    <div className="flex flex-col min-h-screen bg-gray-200">
       <div
         className="relative bg-cover bg-center min-h-[60vh] w-full flex items-center justify-start px-6 md:px-16"
         style={{
@@ -84,7 +84,7 @@ const ContactUs = () => {
       <main className="flex-grow pt-24 px-4 md:px-0">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-10 items-stretch px-6">
           <div
-            className="md:w-1/2 bg-white rounded-xl p-8 shadow-md"
+            className="md:w-1/2 bg-white rounded-xl p-8 shadow-md mb-4"
             id="contact-form"
           >
             <h2 className="text-center font-bold text-2xl text-[#1089D3] mb-6">
@@ -153,10 +153,10 @@ const ContactUs = () => {
             </form>
           </div>
 
-          {/* Right: Image + Contact Info */}
+          
           <div className="md:w-1/2 flex flex-col gap-6">
             <div className="relative rounded-2xl overflow-hidden shadow-lg h-64 md:h-80 border-2 border-blue-100 transition-transform ">
-              {/* Map iframe */}
+            
               <iframe
                 title="Kuro Systems Location"
                 src="https://www.google.com/maps?q=19.992583,73.739444&z=15&output=embed"
@@ -169,7 +169,7 @@ const ContactUs = () => {
                 className="rounded-2xl"
               ></iframe>
 
-              {/* Stylish Floating Label */}
+             
               <div className="absolute top-4 right-4 bg-gradient-to-r from-white/90 to-blue-50/90 text-blue-900 font-bold text-lg px-4 py-1 rounded-full shadow-md backdrop-blur-md">
                 Kuro Systems
               </div>

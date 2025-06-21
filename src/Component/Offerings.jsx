@@ -6,16 +6,15 @@ import {
   FaCloud,
   FaCogs,
   FaCubes,
+  FaEye,
 } from "react-icons/fa";
 import Offer from "../assets/Offering.jpg";
-import Navbar from "@/Navbar";
-import Footer from "../Footer";
 import CloudAndEdge from "../assets/cloudandEdge.jpg";
 import DigitalTwin from "../assets/DigitalTwin.jpg";
 import ITOT from "../assets/IT-OT-Integration-2.png";
 import Trace from "../assets/Traceability.jpg";
-// import Gantry2D from "../assets/Gantry2D.jpg";
-// import Gantry3D from "../assets/Gantry3D.jpg";
+import Gantry2D from "../assets/2d.jpg";
+import Gantry3D from "../assets/3d.jpg";
 
 const Offerings = () => {
   const [hoveredOffering, setHoveredOffering] = useState(null);
@@ -62,7 +61,7 @@ const Offerings = () => {
       shortInfo: "Precision motion in two dimensions.",
       summary:
         "Our 2D-Gantry systems offer accurate and reliable movement across two axes, ideal for tasks like pick-and-place, inspection, and material handling.",
-      image: CloudAndEdge,
+      image: Gantry2D,
     },
     {
       title: "3D-Gantry",
@@ -70,7 +69,18 @@ const Offerings = () => {
       shortInfo: "Full 3-axis motion for advanced automation.",
       summary:
         "3D-Gantry solutions provide comprehensive motion in three dimensions, perfect for complex assembly lines and high-precision manufacturing.",
-      image: CloudAndEdge,
+      image: Gantry3D,
+    },
+  ];
+
+  const vision = [
+    {
+      title: "Vision Inspection",
+      icon: <FaEye className="inline mr-2 text-blue-500 text-2xl" />,
+      shortInfo: "Advanced visual quality control.",
+      summary:
+        "Our vision inspection systems provide high-precision quality control, detecting defects and ensuring product consistency with advanced imaging technology.",
+      image: Gantry2D,
     },
   ];
 
@@ -84,6 +94,34 @@ const Offerings = () => {
       }
       .animate-pulse-once {
         animation: pulseOnce 0.5s ease-in-out;
+      }
+      @keyframes smoothExpand {
+        0% { transform: scale(1); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
+      }
+      .smooth-expand {
+        animation: smoothExpand 0.5s ease-in-out;
+      }
+      @keyframes lineAppear {
+        0% { transform: translateY(10px); opacity: 0; }
+        100% { transform: translateY(0); opacity: 1; }
+      }
+      .line-appear {
+        display: inline-block;
+        opacity: 0;
+        animation: lineAppear 0.3s ease-out forwards;
+      }
+      .line-appear:nth-child(1) { animation-delay: 0.1s; }
+      .line-appear:nth-child(2) { animation-delay: 0.2s; }
+      .line-appear:nth-child(3) { animation-delay: 0.3s; }
+      .line-appear:nth-child(4) { animation-delay: 0.4s; }
+      @keyframes imageFadeIn {
+        0% { opacity: 0; transform: scale(0.95); }
+        100% { opacity: 1; transform: scale(1); }
+      }
+      .image-fade-in {
+        animation: imageFadeIn 0.5s ease-in-out 0.5s forwards;
+        opacity: 0;
       }
       @font-face {
         font-family: 'Cursive';
@@ -105,38 +143,45 @@ const Offerings = () => {
   }, []);
 
   const renderCards = (dataArray) => (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {dataArray.map(({ title, icon, summary, image, shortInfo }, index) => (
         <div
           key={index}
           onMouseEnter={() => setHoveredOffering(title)}
           onMouseLeave={() => setHoveredOffering(null)}
-          className={`transition-all duration-300 overflow-hidden cursor-default 
-  bg-gradient-to-tr from-[#e0f7fa]/70 via-[#73CEDA]/60 to-[#00E2FF]/90 
-  backdrop-blur-md bg-opacity-60 p-6 rounded-xl shadow-md hover:shadow-xl 
-  ${hoveredOffering === title ? "min-h-[360px]" : "min-h-[80px]"} mb-9`}
+          className={`transition-all duration-500 overflow-hidden cursor-default 
+            bg-gradient-to-r from-gray-300/25 to-blue-900/80 
+            backdrop-blur-md p-4 rounded-xl shadow-md hover:shadow-lg 
+            ${hoveredOffering === title ? 'min-h-[200px]' : 'min-h-[80px]'} mb-6`}
+          style={{
+            transitionProperty: 'min-height, transform, opacity',
+            transitionDuration: '0.5s',
+            transitionTimingFunction: 'ease-in-out',
+          }}
         >
-          <h2 className="text-xl font-semibold text-[#1089D3] flex items-center mb-2">
+          <h2 className="text-xl font-semibold text-blue-900 flex items-center mb-2">
             {icon}
             {title}
           </h2>
-
           {hoveredOffering !== title && (
-            <p className="text-gray-700">{shortInfo}</p>
+            <p className="text-gray-700 text-sm transition-transform ease-linear">{shortInfo}</p>
           )}
           {hoveredOffering === title && (
-            <div className="mt-4 flex flex-col md:flex-row gap-4 animate-pulse-once">
-              <div className="md:w-1/2">
-                <p className="text-gray-800  text-lg leading-relaxed ">
-                  <br />
-                  {summary}
-                </p>
+            <div className="mt-2 flex flex-col md:flex-row gap-4">
+              <div className="w-full md:w-1/2">
+                {summary.split('. ').map((sentence, idx) => (
+                  sentence && (
+                    <p key={idx} className="text-gray-800 text-base leading-relaxed line-appear">
+                      {sentence}{sentence.endsWith('.') ? '' : '.'}
+                    </p>
+                  )
+                ))}
               </div>
-              <div className="md:w-1/2">
+              <div className="w-full md:w-1/2 h-32 overflow-hidden">
                 <img
                   src={image}
                   alt={`${title} Illustration`}
-                  className="w-full h-48 object-cover rounded-xl shadow"
+                  className="w-full h-full object-cover rounded-lg   image-fade-in "
                 />
               </div>
             </div>
@@ -147,44 +192,41 @@ const Offerings = () => {
   );
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50">
-      <Navbar />
+    <div className="flex flex-col min-h-screen bg-gray-100">
       <div
-        className="relative bg-cover bg-center min-h-[60vh] w-full flex items-center justify-start px-6 md:px-16"
+        className="relative bg-cover bg-center min-h-[40vh] w-full flex items-center justify-start px-6 md:px-16"
         style={{ backgroundImage: `url(${Offer})` }}
       >
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="relative z-10 text-white max-w-2xl space-y-6">
-          <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
-            Our Offerings at{" "}
-            <span className="text-blue-400 hover:text-blue-600 transition">
-              KURO
-            </span>
+        <div className="absolute inset-0 bg-black/50" />
+        <div className="relative z-10 text-white max-w-2xl space-y-4">
+          <h1 className="text-3xl md:text-4xl font-bold">
+            Our Offerings at <span className="text-blue-300">KURO</span>
           </h1>
-          <p className="text-lg md:text-xl text-white/90">
-            Explore our innovative solutions designed to elevate your business
-            efficiency and performance.
+          <p className="text-md md:text-lg">
+            Explore our innovative solutions designed to elevate your business efficiency and performance.
           </p>
         </div>
       </div>
-
-      <main className="flex-grow pt-12 px-4 md:px-0">
+      <main className="flex-grow pt-8 px-4 md:px-0">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-center font-bold text-5xl text-black mb-8">
+          <h2 className="font-extrabold text-4xl text-blue-900 mb-6 underline decoration-solid decoration-red-600 p-3 rounded">
             Industry 4.0
           </h2>
           {renderCards(offerings)}
         </div>
-
         <div className="max-w-7xl mx-auto px-6 mt-12">
-          <h2 className="text-center font-bold text-5xl text-black mb-8">
+          <h2 className="font-extrabold text-4xl text-blue-900 mb-6 underline decoration-solid decoration-red-600 p-3 rounded">
             Robotics
           </h2>
           {renderCards(robotics)}
         </div>
+        <div className="max-w-7xl mx-auto px-6 mt-12">
+          <h2 className="font-extrabold text-4xl text-blue-900 mb-6 underline decoration-solid decoration-red-600 p-3 rounded">
+            Factory Vision
+          </h2>
+          {renderCards(vision)}
+        </div>
       </main>
-
-      <Footer />
     </div>
   );
 };
