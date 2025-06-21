@@ -63,31 +63,7 @@ const Accolades = () => {
         border: 1px solid rgba(255, 255, 255, 0.3);
         border-radius: 1rem;
       }
-      ${Array.from({ length: 50 }, (_, i) => {
-        const circleSize = Math.random() * 10;
-        const startPositionY = Math.random() * 10 + 100;
-        const moveDuration = 7000 + Math.random() * 4000;
-        const moveDelay = Math.random() * 11000;
-        const circleDelay = Math.random() * 4000;
-        return `
-          .circle-container:nth-child(${i + 1}) {
-            width: ${circleSize}px;
-            height: ${circleSize}px;
-            animation: move-frames-${i} ${moveDuration}ms linear ${moveDelay}ms infinite;
-          }
-          .circle-container:nth-child(${i + 1}) .circle {
-            animation-delay: ${circleDelay}ms;
-          }
-          @keyframes move-frames-${i} {
-            from {
-              transform: translate3d(${Math.random() * 100}vw, ${startPositionY}vh, 0);
-            }
-            to {
-              transform: translate3d(${Math.random() * 100}vw, ${-startPositionY - Math.random() * 30}vh, 0);
-            }
-          }
-        `;
-      }).join('')}
+      
     `;
     document.head.appendChild(style);
 
@@ -98,11 +74,6 @@ const Accolades = () => {
 
   return (
     <section className="h-auto py-8 px-6 sm:px-10 md:px-20 relative accolades-section mb-5">
-      {Array.from({ length: 50 }).map((_, i) => (
-        <div key={i} className="circle-container">
-          <div className="circle" />
-        </div>
-      ))}
       <div className="relative z-10 flex flex-col items-center">
         <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-6 section-heading">
           Accolades
@@ -111,7 +82,7 @@ const Accolades = () => {
           <img
             src={certificate}
             alt="Certificate"
-          className="w-[160px] h-[213px] sm:w-[200px] sm:h-[266px] md:w-[240px] md:h-[320px] max-w-full rounded-lg shadow-lg border-2 border-white/30 transition-transform duration-300 ease-in-out hover:scale-[1.02] drop-shadow-lg"
+            className="w-[160px] h-[213px] sm:w-[200px] sm:h-[266px] md:w-[240px] md:h-[320px] max-w-full rounded-lg shadow-lg border-2 border-white/30 transition-transform duration-300 ease-in-out hover:scale-[1.02] drop-shadow-lg"
             loading="lazy"
           />
         </div>

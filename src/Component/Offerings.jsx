@@ -22,7 +22,9 @@ const Offerings = () => {
   const offerings = [
     {
       title: "Digital Twin",
-      icon: <FaProjectDiagram className="inline mr-2 text-blue-600/80 text-2xl" />,
+      icon: (
+        <FaProjectDiagram className="inline mr-2 text-blue-600/80 text-2xl" />
+      ),
       shortInfo: "Real-time replicas for predictive maintenance.",
       summary:
         "Our Digital Twin solutions offer real-time replicas of your physical systems, enabling predictive maintenance, simulation, and smarter decision-making.",
@@ -30,7 +32,9 @@ const Offerings = () => {
     },
     {
       title: "IT-OT Integration",
-      icon: <FaNetworkWired className="inline mr-2 text-blue-600/80 text-2xl" />,
+      icon: (
+        <FaNetworkWired className="inline mr-2 text-blue-600/80 text-2xl" />
+      ),
       shortInfo: "Bridging IT and Operational Tech seamlessly.",
       summary:
         "Seamlessly bridge the gap between Information Technology and Operational Technology for unified, smart manufacturing processes and efficient data flow.",
@@ -197,14 +201,18 @@ const Offerings = () => {
           }
           @keyframes move-frames-${i} {
             from {
-              transform: translate3d(${Math.random() * 100}vw, ${startPositionY}vh, 0);
+              transform: translate3d(${
+                Math.random() * 100
+              }vw, ${startPositionY}vh, 0);
             }
             to {
-              transform: translate3d(${Math.random() * 100}vw, ${-startPositionY - Math.random() * 30}vh, 0);
+              transform: translate3d(${Math.random() * 100}vw, ${
+          -startPositionY - Math.random() * 30
+        }vh, 0);
             }
           }
         `;
-      }).join('')}
+      }).join("")}
     `;
     document.head.appendChild(style);
     return () => document.head.removeChild(style);
@@ -222,13 +230,17 @@ const Offerings = () => {
             className={`transition-all duration-500 overflow-hidden cursor-default 
               bg-white/20 backdrop-blur-xl border border-white/30
               p-6 rounded-xl shadow-2xl hover:shadow-2xl hover:bg-white/25
-              ${hoveredOffering === uniqueId ? 'min-h-[250px]' : 'min-h-[100px]'} mb-6
+              ${
+                hoveredOffering === uniqueId ? "min-h-[250px]" : "min-h-[100px]"
+              } mb-6
               transform hover:scale-[1.02] hover:-translate-y-1`}
             style={{
-              transitionProperty: 'min-height, transform, opacity, background-color, box-shadow',
-              transitionDuration: '0.5s',
-              transitionTimingFunction: 'ease-in-out',
-              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1)',
+              transitionProperty:
+                "min-height, transform, opacity, background-color, box-shadow",
+              transitionDuration: "0.5s",
+              transitionTimingFunction: "ease-in-out",
+              boxShadow:
+                "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1)",
             }}
           >
             <h2 className="text-xl font-semibold text-white flex items-center mb-3 drop-shadow-lg">
@@ -243,13 +255,18 @@ const Offerings = () => {
             {hoveredOffering === uniqueId && (
               <div className="mt-4 flex flex-col md:flex-row gap-6">
                 <div className="w-full md:w-1/2">
-                  {summary.split('. ').map((sentence, idx) => (
-                    sentence && (
-                      <p key={idx} className="text-gray-300 text-base leading-relaxed line-appear font-medium drop-shadow-sm mb-2">
-                        {sentence}{sentence.endsWith('.') ? '' : '.'}
-                      </p>
-                    )
-                  ))}
+                  {summary.split(". ").map(
+                    (sentence, idx) =>
+                      sentence && (
+                        <p
+                          key={idx}
+                          className="text-gray-300 text-base leading-relaxed line-appear font-medium drop-shadow-sm mb-2"
+                        >
+                          {sentence}
+                          {sentence.endsWith(".") ? "" : "."}
+                        </p>
+                      )
+                  )}
                 </div>
                 <div className="w-full md:w-1/2 h-36 overflow-hidden">
                   <img
@@ -279,7 +296,8 @@ const Offerings = () => {
             Our Offerings at <span className="text-blue-300">KURO</span>
           </h1>
           <p className="text-md md:text-lg drop-shadow-md">
-            Explore our innovative solutions designed to elevate your business efficiency and performance.
+            Explore our innovative solutions designed to elevate your business
+            efficiency and performance.
           </p>
         </div>
       </div>
