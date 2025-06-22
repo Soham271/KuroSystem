@@ -101,31 +101,7 @@ const ContactUs = () => {
         color: white;
       }
     
-      ${Array.from({ length: 50 }, (_, i) => {
-        const circleSize = Math.random() * 10;
-        const startPositionY = Math.random() * 10 + 100;
-        const moveDuration = 7000 + Math.random() * 4000;
-        const moveDelay = Math.random() * 11000;
-        const circleDelay = Math.random() * 4000;
-        return `
-          .circle-container:nth-child(${i + 1}) {
-            width: ${circleSize}px;
-            height: ${circleSize}px;
-            animation: move-frames-${i} ${moveDuration}ms linear ${moveDelay}ms infinite;
-          }
-          .circle-container:nth-child(${i + 1}) .circle {
-            animation-delay: ${circleDelay}ms;
-          }
-          @keyframes move-frames-${i} {
-            from {
-              transform: translate3d(${Math.random() * 100}vw, ${startPositionY}vh, 0);
-            }
-            to {
-              transform: translate3d(${Math.random() * 100}vw, ${-startPositionY - Math.random() * 30}vh, 0);
-            }
-          }
-        `;
-      }).join('')}
+
     `;
     document.head.appendChild(style);
 
@@ -136,7 +112,6 @@ const ContactUs = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-[radial-gradient(#021027,#000000)]">
-     
       <div
         className="relative bg-cover bg-center min-h-[60vh] w-full flex items-center justify-start px-6 md:px-16"
         style={{
@@ -145,14 +120,11 @@ const ContactUs = () => {
           backgroundPosition: "center",
         }}
       >
-        
         <div className="absolute inset-0 bg-black/40" />
         <div className="relative z-10 text-white max-w-2xl text-left space-y-6 pl-4 md:pl-0">
           <h1 className="text-3xl md:text-5xl font-extrabold leading-tight">
             Get in Touch with{" "}
-            <span
-              className="text-blue-400 transition duration-300 ease-in-out hover:text-blue-600 focus:text-blue-600"
-            >
+            <span className="text-blue-400 transition duration-300 ease-in-out hover:text-blue-600 focus:text-blue-600">
               KURO
             </span>
           </h1>
@@ -164,11 +136,6 @@ const ContactUs = () => {
       </div>
 
       <main className="relative flex-grow pt-24 px-4 md:px-0">
-        {Array.from({ length: 50 }).map((_, i) => (
-          <div key={i} className="circle-container">
-            <div className="circle" />
-          </div>
-        ))}
         <div className="relative z-10 max-w-6xl mx-auto flex flex-col md:flex-row gap-10 items-stretch px-3 mb-10">
           <div
             className="md:w-1/2 bg-white/20 backdrop-blur-xl border border-white/30 rounded-2xl p-8 shadow-lg mb-4 flex justify-center flex-col"
@@ -180,9 +147,21 @@ const ContactUs = () => {
             <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
               {[
                 { field: "name", icon: <FaUser />, placeholder: "Your Name" },
-                { field: "email", icon: <FaEnvelope />, placeholder: "Your Email" },
-                { field: "phone", icon: <FaPhoneAlt />, placeholder: "Your Phone" },
-                { field: "location", icon: <FaMapMarkerAlt />, placeholder: "Your Location" },
+                {
+                  field: "email",
+                  icon: <FaEnvelope />,
+                  placeholder: "Your Email",
+                },
+                {
+                  field: "phone",
+                  icon: <FaPhoneAlt />,
+                  placeholder: "Your Phone",
+                },
+                {
+                  field: "location",
+                  icon: <FaMapMarkerAlt />,
+                  placeholder: "Your Location",
+                },
               ].map(({ field, icon, placeholder }) => (
                 <div key={field} className="relative">
                   <div className="absolute left-3 top-[12px] text-blue-400 text-lg">
@@ -257,7 +236,10 @@ const ContactUs = () => {
             <div className="bg-white/20 backdrop-blur-xl  mb-5 border border-white/30 rounded-2xl p-6 shadow-lg space-y-4">
               <div className="flex items-center  space-x-3 text-blue-400">
                 <FaPhoneAlt className="text-xl" />
-                <a href="tel:+918956014041" className="font-bold text-lg text-white">
+                <a
+                  href="tel:+918956014041"
+                  className="font-bold text-lg text-white"
+                >
                   +91 8956014041
                 </a>
               </div>
