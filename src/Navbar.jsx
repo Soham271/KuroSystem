@@ -22,8 +22,7 @@ const Navbar = () => {
     "px-5 py-2 rounded-full text-base font-semibold flex items-center justify-center shadow-sm";
 
   return (
-    <nav className="w-full bg-white shadow-md fixed top-0 left-0 z-50">
-      <div className="max-w-[1440px] mx-auto flex items-center justify-between h-20 px-4 md:px-10 relative">
+<nav className="w-full bg-[radial-gradient(#0A2B4D,_#1A1A1A)] shadow-md fixed top-0 left-0 z-50">      <div className="max-w-[1440px] mx-auto flex items-center justify-between h-20 px-4 md:px-10 relative">
         <div
           onClick={handleLogoClick}
           className="cursor-pointer absolute left-0 md:left-4"
@@ -37,25 +36,25 @@ const Navbar = () => {
         <div className="w-[90px] md:w-[100px]" />
 
         {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-4 bg-[#f5f5f5] px-6 py-2 rounded-full shadow-inner ml-12">
-          {links.map(({ to, label }) => (
-            <NavLink
-              key={to}
-              to={to}
-              className={({ isActive }) =>
-                isActive
-                  ? `${commonBtnClasses} bg-black text-white hover:bg-slate-700`
-                  : `px-4 py-2 rounded-full text-base font-semibold text-gray-800 hover:text-[#d32f2f] hover:font-bold`
-              }
-            >
-              {label}
-            </NavLink>
-          ))}
-        </div>
+     <div className="hidden md:flex items-center gap-4 bg-gray-800 px-6 py-2 rounded-full shadow-[inset_0_0_8px_rgba(255,255,255,0.3)] opacity-90 ml-12">
+  {links.map(({ to, label }) => (
+    <NavLink
+      key={to}
+      to={to}
+      className={({ isActive }) =>
+        isActive
+          ? `${commonBtnClasses} bg-[#374151] opacity-80 shadow-[inset_0_0_8px_rgba(200,200,255,1)]  text-white `
+          : `px-4 py-2 rounded-full text-base font-semibold text-gray-300 hover:text-red-400 hover:font-bold`
+      }
+    >
+      {label}
+    </NavLink>
+  ))}
+</div>
 
         {/* Mobile Hamburger */}
         <button
-          className="md:hidden text-3xl text-black"
+          className="md:hidden text-3xl text-white"
           onClick={() => setIsOpen(!isOpen)}
         >
           ☰
@@ -64,7 +63,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden px-6 py-4 bg-white shadow-inner space-y-3 rounded-b-lg">
+        <div className="md:hidden px-6 py-4 bg-gray-900 shadow-inner space-y-3 rounded-b-lg">
           {links.map(({ to, label }) => (
             <NavLink
               key={to}
@@ -73,7 +72,7 @@ const Navbar = () => {
               className={({ isActive }) =>
                 isActive
                   ? `${commonBtnClasses} block w-full bg-blue-500 text-white hover:bg-blue-700`
-                  : `block text-base font-medium w-full px-4 py-2 rounded-full  text-gray-800 hover:text-[#d32f2f] hover:bg-gray-100`
+                  : `block text-base font-medium w-full px-4 py-2 rounded-full text-gray-300 hover:text-red-400 hover:bg-gray-800`
               }
             >
               {label}
