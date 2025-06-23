@@ -6,7 +6,7 @@ module.exports = {
     extend: {
       animation: {
         blob: "blob-bounce 5s infinite ease-in-out",
-                "fade-in": "fadeIn 1s ease-in-out forwards",
+        "fade-in": "fadeIn 1s ease-in-out forwards",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -14,7 +14,11 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
-         fadeIn: {
+        shine: {
+          "0%": { backgroundPosition: "200% center" },
+          "100%": { backgroundPosition: "-200% center" },
+        },
+        fadeIn: {
           "0%": { opacity: 0 },
           "100%": { opacity: 1 },
         },
@@ -31,6 +35,9 @@ module.exports = {
           },
           "100%": { transform: "translate(-100%, -100%) translate3d(0, 0, 0)" },
         },
+      },
+      animation: {
+        shine: "shine 3s linear infinite",
       },
       colors: {
         background: "hsl(var(--background))",

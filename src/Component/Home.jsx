@@ -3,7 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-
+import {
+  FaProjectDiagram,
+  FaNetworkWired,
+  FaStream,
+  FaCloud,
+  FaCogs,
+  FaCubes,
+  FaEye,
+} from "react-icons/fa";
 import industry4 from "../assets/Industry4.gif";
 import depoy from "../assets/depoy.jpg";
 import Picture1 from "../assets/Picture1.png";
@@ -112,7 +120,6 @@ const Home = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-950 text-white">
-      {/* Background Effects */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <div
           className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-600/15 to-purple-600/15 rounded-full blur-3xl will-change-transform"
@@ -139,7 +146,7 @@ const Home = () => {
         />
       </div>
 
-      <main className="flex-grow pt-24 px-4 md:px-0">
+      <main className="flex-grow pt-12 px-4 md:px-0">
         {/* Hero Section */}
         <section
           ref={heroInViewRef}
@@ -148,17 +155,22 @@ const Home = () => {
           }`}
         >
           <div
-            className="flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto mb-16 gap-12 px-6 rounded-xl"
+            className="flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto mb-8 gap-6 px-6 rounded-xl"
             ref={heroRef}
           >
-            <div className="md:w-1/2 space-y-6">
+            <div className="md:w-1/2 space-y-4">
               <h1 className="text-4xl md:text-5xl font-bold leading-tight">
-                Powering the Future with{" "}
-                <span className="text-blue-500">Industry 4.0</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-slate-700 to-slate-600 bg-[length:200%_auto] animate-shine">
+                  Powering the Future with
+                </span>{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-white  to-blue-800  bg-[length:200%_auto] animate-shine">
+                  Industry 4.0
+                </span>
               </h1>
+
               <p className="text-gray-300 text-lg">
                 At{" "}
-                <strong className="text-2xl font-bold text-red-500">
+                <strong className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-300">
                   KURO
                 </strong>
                 , we integrate IoT, AI, big data, and digital twins to build
@@ -176,7 +188,7 @@ const Home = () => {
                 </li>
               </ul>
               <button
-                className="mt-4 px-6 py-3 text-lg font-semibold bg-gray-800 text-white rounded-xl hover:bg-blue-600 transition shadow-lg"
+                className="mt-4 px-6 py-3 text-lg font-semibold bg-blue-600 text-white rounded-xl hover:bg-gray-400 hover:text-black transition shadow-lg"
                 onClick={() => navigate("/offering")}
               >
                 Explore Our Solutions →
@@ -194,10 +206,10 @@ const Home = () => {
         </section>
 
         {/* Feature Cards (Technologies) */}
-        <section className="py-16 sm:py-24">
+        <section className="py-8 sm:py-12" ref={technologiesRef}>
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-6">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-4">
                 Core{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
                   Technologies
@@ -206,27 +218,43 @@ const Home = () => {
               <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
               {[
                 {
-                  title: "Digital Twin",
-                  icon: "🔄",
-                  gradient: "from-blue-500 to-cyan-500",
+                  title: <div className="mt-3">Digital Twin</div>,
+                  icon: (
+                    <div className="flex justify-center">
+                      <FaProjectDiagram />
+                    </div>
+                  ),
+                  gradient: "from-blue-600 to-cyan-600",
                 },
                 {
-                  title: "IT-OT Integration",
-                  icon: "🔗",
-                  gradient: "from-purple-500 to-pink-500",
+                  title: <div className="mt-3">IT-OT Integration</div>,
+                  icon: (
+                    <div className="flex justify-center">
+                      <FaNetworkWired />
+                    </div>
+                  ),
+                  gradient: "from-purple-600 to-indigo-600",
                 },
                 {
-                  title: "End-to-end Traceability",
-                  icon: "📊",
-                  gradient: "from-green-500 to-emerald-500",
+                  title: <div className="mt-3">End-End Traceability</div>,
+                  icon: (
+                    <div className="flex justify-center">
+                      <FaStream />
+                    </div>
+                  ),
+                  gradient: "from-green-600 to-emerald-600",
                 },
                 {
-                  title: "Cloud & Edge",
-                  icon: "☁️",
-                  gradient: "from-orange-500 to-red-500",
+                  title: <div className="mt-3">Cloud & Edge</div>,
+                  icon: (
+                    <div className="flex justify-center">
+                      <FaCloud />
+                    </div>
+                  ),
+                  gradient: "from-orange-600 to-red-600",
                 },
               ].map((item, i) => (
                 <div
@@ -250,16 +278,22 @@ const Home = () => {
         </section>
 
         {/* Skewed Section */}
-        <section className="relative py-16 sm:py-24 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 transform -skew-y-2" />
-          <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center transform skew-y-2">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-6">
-              Transform Your Industry
-            </h2>
-            <p className="text-blue-100 text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed">
-              Join the revolution of smart manufacturing and intelligent
-              automation
-            </p>
+        <section className="relative py-2 sm:py-24 overflow-hidden">
+          <div className="relative mb-4">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 transform skew-y-1 origin-top-left" />
+            <div className="relative bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500 py-16 px-6 md:px-16 transform -skew-y-1 origin-top-left">
+              <div className="transform skew-y-1 text-center">
+                <h2 className="text-5xl md:text-3xl font-black text-white mb-6">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400  to-white bg-[length:200%_auto] animate-shine">
+                    Transform Your Industry
+                  </span>
+                </h2>
+                <p className="text-grey-200 text-2xl text-black max-w-3xl  sm:max-w-xl mx-auto">
+                  Join the revolution of smart manufacturing and intelligent
+                  automation
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -299,8 +333,8 @@ const Home = () => {
               solutions that drive real business results.
             </p>
           </div>
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="flex flex-wrap -mx-2">
+          <div className="max-w-full mx-auto px-6">
+            <div className="flex flex-wrap -mx-2 ">
               {[
                 { img: Picture1, text: "Integrated Architecture Design" },
                 { img: Picture2, text: "Continuous Innovation & Improvement" },
@@ -315,7 +349,7 @@ const Home = () => {
 
         {/* CTA Section */}
         <section className="py-6 sm:py-24">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-full  mx-auto px-4 sm:px-6 lg:px-8">
             <div className="relative p-8 sm:p-12 lg:p-16 bg-gradient-to-r from-gray-900/80 to-gray-800/80 backdrop-blur-sm rounded-3xl border border-gray-700/50 text-center overflow-hidden shadow-2xl">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10" />
               <div className="relative z-10">
@@ -326,15 +360,18 @@ const Home = () => {
                   Join industry leaders who trust KURO to power their digital
                   transformation journey
                 </p>
-                <button className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xl font-bold rounded-2xl hover:scale-105 transition-all duration-300 hover:shadow-2xl">
+                <button
+                  className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xl font-bold rounded-2xl hover:scale-105 transition-all duration-300 hover:shadow-2xl"
+                  onClick={() => navigate("/contactus")}
+                >
                   Start Your Journey
                 </button>
               </div>
 
-              <div className="absolute top-8 left-8 w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
+              <div className="absolute top-8 left-8 w-4 h-3 bg-blue-400 rounded-full animate-pulse" />
               <div
                 className="absolute bottom-8 right-8 w-3 h-3 bg-purple-400 rounded-full animate-pulse"
-                style={{ animationDelay: "1s" }}
+                style={{ animationDelay: "s" }}
               />
             </div>
           </div>
