@@ -166,10 +166,7 @@ const Offerings = () => {
         background-clip: text;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
       }
-      .section-heading:hover {
-        transform: scale(1.05);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-      }
+     
       @font-face {
         font-family: 'Cursive';
         src: url('https://fonts.cdnfonts.com/s/17863/GreatVibes-Regular.woff') format('woff');

@@ -53,10 +53,7 @@ const Accolades = () => {
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         color: white;
       }
-      .section-heading:hover {
-        transform: scale(1.05);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-      }
+     
       .accolades-section {
         background: rgba(255, 255, 255, 0.2);
         backdrop-blur-xl;
