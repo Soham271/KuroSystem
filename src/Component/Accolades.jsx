@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import certificate from "../assets/Accolades.jpg";
+import indiaflag from "../assets/indiaflag.png";
+import germanyflag from "../assets/germanyflag.png";
 
 const Accolades = () => {
   useEffect(() => {
@@ -15,76 +17,121 @@ const Accolades = () => {
         width: 100%;
         height: 100%;
         z-index: 0;
-        animation-iteration-count: infinite;
-        animation-timing-function: linear;
+        overflow: hidden;
+        pointer-events: none;
       }
       .circle {
-        width: 100%;
-        height: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 600px;
+        height: 600px;
+        transform: translate(-50%, -50%);
         border-radius: 50%;
-        mix-blend-mode: screen;
         background-image: radial-gradient(
           hsl(180, 100%, 80%),
           hsl(180, 100%, 80%) 10%,
           hsla(180, 100%, 80%, 0) 56%
         );
-        animation: fade-frames 200ms infinite, scale-frames 2s infinite;
+        mix-blend-mode: screen;
+        animation: fade-frames 1.5s infinite, scale-frames 6s infinite;
       }
       @keyframes fade-frames {
-        0% { opacity: 1; }
+        0%, 100% { opacity: 1; }
         50% { opacity: 0.7; }
-        100% { opacity: 1; }
       }
       @keyframes scale-frames {
-        0% { transform: scale3d(0.4, 0.4, 1); }
-        50% { transform: scale3d(2.2, 2.2, 1); }
-        100% { transform: scale3d(0.4, 0.4, 1); }
+        0%, 100% { transform: translate(-50%, -50%) scale(0.6); }
+        50% { transform: translate(-50%, -50%) scale(2.2); }
       }
-      .section-heading {
-        position: relative;
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(0, 100, 200, 0.2));
-        backdrop-blur-md;
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        padding: 1rem 2rem;
-        border-radius: 1rem;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        display: inline-block;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-        color: white;
-      }
-     
-      .accolades-section {
-        background: rgba(255, 255, 255, 0.2);
-        backdrop-blur-xl;
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        border-radius: 1rem;
-      }
-      
     `;
     document.head.appendChild(style);
-
     return () => {
       document.head.removeChild(style);
     };
   }, []);
 
   return (
-    <section className="h-auto py-8 px-6 sm:px-10 md:px-20 relative accolades-section mb-5">
-      <div className="relative z-10 flex flex-col items-center">
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-6 section-heading">
-          Accolades
-        </h2>
-        <div className="flex justify-center">
-          <img
-            src={certificate}
-            alt="Certificate"
-            className="w-[160px] h-[213px] sm:w-[200px] sm:h-[266px] md:w-[240px] md:h-[320px] max-w-full rounded-lg shadow-lg border-2 border-white/30 transition-transform duration-300 ease-in-out hover:scale-[1.02] drop-shadow-lg"
-            loading="lazy"
-          />
+    <>
+      <section className="hidden lg:block relative py-12 px-6 lg:px-20 mb-8">
+        <div className="relative z-10 backdrop-blur-md bg-white/10 border border-white/20 rounded-xl shadow-lg p-8">
+          <div className="text-center mb-10">
+            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-3">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-black via-white to-slate-500 animate-shine bg-[length:200%_auto]">
+                Accolades
+              </span>
+            </h2>
+            <div className="w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
+          </div>
+
+          <div className="flex flex-col lg:flex-row items-center justify-center gap-6">
+            <img
+              src={indiaflag}
+              alt="India Flag"
+              className="w-[60px] lg:w-[80px] h-auto"
+              loading="lazy"
+            />
+            <img
+              src={certificate}
+              alt="Certificate"
+              className="w-[260px] lg:w-[300px] xl:w-[360px] rounded-lg shadow-xl border border-white/30 transition-transform duration-300 hover:scale-105"
+              loading="lazy"
+            />
+            <img
+              src={germanyflag}
+              alt="Germany Flag"
+              className="w-[60px] lg:w-[80px] h-auto"
+              loading="lazy"
+            />
+          </div>
+          <p className="text-gray-400/60 text-xl lg:text-2xl font-semibold text-center mt-6">
+            Fit for Partnership, GIZ, Germany
+          </p>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section className="lg:hidden relative py-6 px-4 sm:px-6 md:px-8 mb-6">
+        <div className="relative z-10 backdrop-blur-md bg-white/10 border border-white/20 rounded-xl shadow-lg p-4 sm:p-6 md:p-8">
+          <div className="text-center mb-6 sm:mb-8 md:mb-10">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2 sm:mb-3">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-black via-white to-slate-500 animate-shine bg-[length:200%_auto]">
+                Accolades
+              </span>
+            </h2>
+            <div className="w-24 sm:w-32 md:w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
+          </div>
+
+          <div className="flex flex-col items-center gap-4 sm:gap-6">
+            <img
+              src={certificate}
+              alt="Certificate"
+              className="w-[240px] sm:w-[280px] md:w-[300px] lg:w-[360px] rounded-lg shadow-xl border border-white/30 transition-transform duration-300 hover:scale-105"
+              loading="lazy"
+            />
+            <div className="flex flex-row items-center justify-center gap-4 sm:gap-6">
+              <img
+                src={indiaflag}
+                alt="India Flag"
+                className="w-[50px] sm:w-[70px] md:w-[80px] h-auto"
+                loading="lazy"
+              />
+              <span className="text-white text-3xl sm:text-4xl md:text-5xl">
+                🤝
+              </span>
+              <img
+                src={germanyflag}
+                alt="Germany Flag"
+                className="w-[50px] sm:w-[70px] md:w-[80px] h-auto"
+                loading="lazy"
+              />
+            </div>
+            <p className="text-white text-lg sm:text-xl md:text-2xl font-semibold text-center mt-4">
+              Fit for Partnership, GIZ, Germany
+            </p>
+          </div>
+        </div>
+      </section>
+    </>
   );
 };
 

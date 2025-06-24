@@ -34,62 +34,127 @@ const AboutUs = () => {
   const historyRef = useRef(null);
 
   // Intersection observers
-  const { ref: clientsRef, inView: clientsInView } = useInView({ threshold: 0.2, triggerOnce: true });
-  const { ref: philosophyRef, inView: philosophyInView } = useInView({ threshold: 0.2, triggerOnce: true });
+  const { ref: clientsRef, inView: clientsInView } = useInView({
+    threshold: 0.2,
+    triggerOnce: true,
+  });
+  const { ref: philosophyRef, inView: philosophyInView } = useInView({
+    threshold: 0.2,
+    triggerOnce: true,
+  });
   const headingRefs = useRef([]);
 
   // Animation variants
-  const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.2 } } };
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
+  };
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: (i) => ({ opacity: 1, y: 0, transition: { duration: 0.6, delay: i * 0.2, ease: "easeOut" } }),
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, delay: i * 0.2, ease: "easeOut" },
+    }),
   };
   const timelineVariants = {
     hidden: (i) => ({ opacity: 0, x: i % 2 === 0 ? -100 : 100 }),
-    visible: (i) => ({ opacity: 1, x: 0, transition: { duration: 0.6, delay: i * 0.3, ease: "easeOut" } }),
+    visible: (i) => ({
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.6, delay: i * 0.3, ease: "easeOut" },
+    }),
   };
 
   // Logo assets
   const clientLogos = [
-    Mahindra, Siemens, Bajaj, ABB, JBM, Atlas, Bosch,
-    Endurance, G, Hindustan, IAC, Jindal, Parle,
-    Regal, Gsk, Bridgestone, TDK, Supermax, ThyssenKrupp, UnitedSpirits,
+    Mahindra,
+    Siemens,
+    Bajaj,
+    ABB,
+    JBM,
+    Atlas,
+    Bosch,
+    Endurance,
+    G,
+    Hindustan,
+    IAC,
+    Jindal,
+    Parle,
+    Regal,
+    Gsk,
+    Bridgestone,
+    TDK,
+    Supermax,
+    ThyssenKrupp,
+    UnitedSpirits,
   ];
 
   // Sections data
   const sections = [
     {
       title: "2021 – KURO Systems Founded",
-      content: "KURO Systems was born in 2021 with a clear purpose — to empower the Indian manufacturing ecosystem, starting with a bold step into the world of refurbished robots. As a value dealer catering to the Indian MSME market, KURO began by addressing a crucial need: making reliable and cost-effective automation accessible to manufacturers who demanded performance without compromising affordability.",
+      content:
+        "KURO Systems was born in 2021 with a clear purpose — to empower the Indian manufacturing ecosystem, starting with a bold step into the world of refurbished robots. As a value dealer catering to the Indian MSME market, KURO began by addressing a crucial need: making reliable and cost-effective automation accessible to manufacturers who demanded performance without compromising affordability.",
     },
     {
       title: "Launched Traceability with Automotive Client",
-      content: "Driven by a mission to make production robust, seamless, and unstoppable, KURO soon transitioned into delivering cutting-edge End-to-End Traceability solutions, beginning with a major automobile manufacturer as its very first customer. This marked a pivotal moment — KURO was no longer just a provider, but a partner in productivity.",
+      content:
+        "Driven by a mission to make production robust, seamless, and unstoppable, KURO soon transitioned into delivering cutting-edge End-to-End Traceability solutions, beginning with a major automobile manufacturer as its very first customer. This marked a pivotal moment — KURO was no longer just a provider, but a partner in productivity.",
     },
     {
       title: "“Fit for Partnership with Germany” Certified",
-      content: "Our aspirations didn’t stop there. As we delved deeper into the realm of Industry 4.0, an opportunity arose to collaborate with pioneers of automation — Germany, the global benchmark for advanced manufacturing. Seizing this, KURO earned the prestigious “Fit for Partnership with Germany” certification, solidifying our position among the select few equipped to adopt and adapt world-class Industry 4.0 practices",
+      content:
+        "Our aspirations didn’t stop there. As we delved deeper into the realm of Industry 4.0, an opportunity arose to collaborate with pioneers of automation — Germany, the global benchmark for advanced manufacturing. Seizing this, KURO earned the prestigious “Fit for Partnership with Germany” certification, solidifying our position among the select few equipped to adopt and adapt world-class Industry 4.0 practices",
     },
-      {
+    {
       title: "Industry 4.0 Solutions for MSMEs",
-      content: "Since then, KURO has continued to innovate with purpose — building reliable, scalable, and easy-to-implement Industry 4.0 solutions not just for large-scale manufacturers, but for MSMEs as well, ensuring that automation isn’t just for the giants, but for every visionary maker out there.",
+      content:
+        "Since then, KURO has continued to innovate with purpose — building reliable, scalable, and easy-to-implement Industry 4.0 solutions not just for large-scale manufacturers, but for MSMEs as well, ensuring that automation isn’t just for the giants, but for every visionary maker out there.",
     },
   ];
 
   const inspirationSections = [
-    { title: "Our Vision", content: "Democratizing Industry 4.0 for all manufacturers across India and beyond." },
-    { title: "Our Mission", content: "Empowering manufacturers with innovative, cost-effective automation for growth and excellence." },
-    { title: "Why We Started", content: "Bridging the gap between cutting-edge tech and practical factory-floor solutions." },
+    {
+      title: "Our Vision",
+      content:
+        "Democratizing Industry 4.0 for all manufacturers across India and beyond.",
+    },
+    {
+      title: "Our Mission",
+      content:
+        "Empowering manufacturers with innovative, cost-effective automation for growth and excellence.",
+    },
+    {
+      title: "Why We Started",
+      content:
+        "Bridging the gap between cutting-edge tech and practical factory-floor solutions.",
+    },
   ];
 
   const philosophyCards = [
-    { title: "Reliability", description: "Systems that minimize downtime and build trust." },
-    { title: "Customer Satisfaction", description: "Delivering value and exceeding expectations every time." },
-    { title: "Relentless Innovation", description: "Bringing tomorrow’s tech to today's factories." },
-    { title: "Mastery", description: "Excellence in every solution through expertise and commitment." },
+    {
+      title: "Reliability",
+      description:
+        "We don’t just build systems that work  we build systems that keep working, consistently and effortlessly. Our solutions are designed to be stress free for our customers, minimizing downtime and maximizing trust.",
+    },
+    {
+      title: "Customer Satisfaction",
+      description:
+        "Every deployment is a promise  that the solution will deliver measurable value, exceed expectations, and help customers realize clear, effective returns on their investments. We stay with our clients until success is not just promised, but proven.",
+    },
+    {
+      title: "Relentless Innovation",
+      description:
+        "We constantly challenge conventions. While others catch up, KURO stays ahead  bringing tomorrow’s technology to the factory floor today. Our mission is to make cutting-edge Industry 4.0 solutions not just futuristic, but accessible and practical for all.",
+    },
+    {
+      title: "Mastery",
+      description:
+        "Excellence is not an act  it's our habit. Every member of the KURO team is committed to the pursuit of mastery, refining skills and knowledge to deliver only the very best  every time, without compromise.",
+    },
   ];
 
-  // Track scroll progress only for the History timeline
   useEffect(() => {
     const updateHistoryProgress = () => {
       const el = historyRef.current;
@@ -98,7 +163,10 @@ const AboutUs = () => {
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
       const sectionTop = top + scrollTop;
       const scrollable = height;
-      const scrolled = Math.max(0, scrollTop - sectionTop + window.innerHeight / 2);
+      const scrolled = Math.max(
+        0,
+        scrollTop - sectionTop + window.innerHeight / 2
+      );
       const percent = (scrolled / scrollable) * 100;
       setHistoryProgress(Math.min(100, Math.max(0, percent)));
     };
@@ -112,7 +180,6 @@ const AboutUs = () => {
     };
   }, []);
 
-  // Inject scoped CSS for timeline + progress bar and flip cards
   useEffect(() => {
     const style = document.createElement("style");
     style.innerHTML = `
@@ -147,7 +214,7 @@ const AboutUs = () => {
       .timeline-connector { position: absolute; z-index: 1; stroke: ; stroke-width: 2; stroke-dasharray: 5; }
       .flip-card {
         perspective: 1000px;
-        height: 200px;
+        height: 250px;
         width: 100%;
         cursor: pointer;
       }
@@ -189,7 +256,7 @@ const AboutUs = () => {
       .hover-prompt {
         position: absolute;
         bottom: 10px;
-        font-size: 0.8rem;
+        font-size: 0.6rem;
         color: rgba(255,255,255,0.7);
         opacity: 0;
         animation: fadeInOut 2s infinite;
@@ -221,16 +288,26 @@ const AboutUs = () => {
         <div className="absolute inset-0 bg-black/40" />
         <div className="relative z-10 max-w-2xl text-white text-right space-y-6">
           <h1 className="text-4xl md:text-5xl font-extrabold">
-            Empowering Your Business with <span className="text-blue-400">KURO</span>
+            Empowering Your Business with{" "}
+            <strong className="text-3xl md:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-red-200">
+              KURO
+            </strong>
           </h1>
           <p className="text-lg md:text-xl text-white/90">
-            We specialize in intelligent, scalable IT solutions that drive innovation and sustainable growth.
+            We specialize in intelligent, scalable IT solutions that drive
+            innovation and sustainable growth.
           </p>
           <div className="flex justify-end gap-4">
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md" onClick={() => navigate("/offering")}>
+            <button
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md"
+              onClick={() => navigate("/offering")}
+            >
               Learn More →
             </button>
-            <button className="border border-white text-white px-6 py-3 rounded-md hover:bg-white hover:text-blue-800" onClick={() => navigate("/contactus")}>
+            <button
+              className="border border-white text-white px-6 py-3 rounded-md hover:bg-white hover:text-blue-800"
+              onClick={() => navigate("/contactus")}
+            >
               Get In Touch →
             </button>
           </div>
@@ -238,25 +315,32 @@ const AboutUs = () => {
       </div>
 
       <div className="relative py-16 px-6 md:px-16 space-y-16">
-        {/* Our History with localized progress bar */}
         <div ref={historyRef} className="timeline relative">
           <div className="history-progress-track">
-            <div className="history-progress-fill" style={{ height: `${historyProgress}%` }} />
+            <div
+              className="history-progress-fill"
+              style={{ height: `${historyProgress}%` }}
+            />
             <div
               className="history-progress-handle"
               style={{ top: `${historyProgress}%` }}
             />
           </div>
 
-          <h2
-            className="text-3xl md:text-4xl text-white mb-8 text-center     section-heading"
-            ref={(el) => (headingRefs.current[0] = el)}
-          >
-            Our History
-          </h2>
-
+          <div className="text-center mb-12 font-bold">
+            <h2 className="text-4xl md:text-5xl text-white mb-4 text-center     section-heading">
+              Our{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                History
+              </span>
+            </h2>
+            <div className="pr-4 w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
+          </div>
           {sections.map((section, idx) => {
-            const { ref, inView } = useInView({ threshold: 0.2, triggerOnce: true });
+            const { ref, inView } = useInView({
+              threshold: 0.2,
+              triggerOnce: true,
+            });
             const isOdd = idx % 2 === 0;
             return (
               <React.Fragment key={idx}>
@@ -270,7 +354,7 @@ const AboutUs = () => {
                 >
                   <div className="bg-white/20 backdrop-blur-xl border border-white/30 rounded-2xl p-6 shadow-lg">
                     <h3
-                      className="text-2xl md:text-3xl font-serif text-blue-400 mb-4 "
+                      className="text-2xl md:text-3xl  text-blue-400 mb-4 "
                       ref={(el) => (headingRefs.current[idx + 1] = el)}
                     >
                       {section.title}
@@ -291,7 +375,10 @@ const AboutUs = () => {
                       height: "150px",
                     }}
                   >
-                    <path d={isOdd ? "M0,0 L100%,100%" : "M100%,0 L0,100%"} fill="none" />
+                    <path
+                      d={isOdd ? "M0,0 L100%,100%" : "M100%,0 L0,100%"}
+                      fill="none"
+                    />
                   </svg>
                 )}
               </React.Fragment>
@@ -301,15 +388,21 @@ const AboutUs = () => {
 
         {/* Inspiration */}
         <div className="max-w-6xl mx-auto text-center">
-          <h2
-            className="text-3xl md:text-4xl text-white mb-8 text-center section-heading"
-            ref={(el) => (headingRefs.current[sections.length + 1] = el)}
-          >
-            Our Inspiration
-          </h2>
+          <div className="text-center mb-10 font-bold">
+            <h2 className="text-4xl md:text-5xl text-white mb-4 text-center     section-heading">
+              Our{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                Inspiration
+              </span>
+            </h2>
+            <div className="w-44 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
+          </div>
           <div className="flex flex-col md:flex-row gap-4 justify-center mb-5">
             {inspirationSections.map((sec, idx) => {
-              const { ref, inView } = useInView({ threshold: 0.2, triggerOnce: true });
+              const { ref, inView } = useInView({
+                threshold: 0.2,
+                triggerOnce: true,
+              });
               return (
                 <motion.div
                   key={idx}
@@ -333,20 +426,20 @@ const AboutUs = () => {
         </div>
 
         {/* Core Philosophy */}
-        <div ref={philosophyRef} className="clients-section pt-3 mb-8 text-center">
-          <h2
-            className="text-3xl md:text-4xl text-white mb-8 section-heading"
-            ref={(el) => (headingRefs.current[sections.length + inspirationSections.length + 2] = el)}
-          >
-            Our Core Philosophy
-          </h2>
-           <p className="text-gray-300  md:text-xl max-w-3xl mx-auto mb-8">
-    With these principles at our core, <span className=" sm:text-xl md:text-2xl font-bold text-orange-800">KURO’s</span> intent is clear: to build
-    accessible, intelligent, and future-ready automation solutions that
-    power the manufacturing industry both at scale and at the grassroots.
-    We’re here to ensure <span className="sm:text-xl md:text-2xl font-bold text-blue-800">Industry 4.0</span> isn’t exclusive  but inclusive,
-    scalable, and transformative for all.
-  </p>
+        <div
+          ref={philosophyRef}
+          className="clients-section pt-3 mb-8 text-center"
+        >
+          <div className="text-center mb-10 font-bold">
+            <h2 className="text-4xl md:text-5xl text-white mb-4 text-center     section-heading">
+              Our{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                Core Philosophy
+              </span>
+            </h2>
+            <div className="w-52 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
+          </div>
+
           <motion.div
             className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6"
             variants={containerVariants}
@@ -365,32 +458,54 @@ const AboutUs = () => {
                     <h3 className="text-xl font-semibold text-blue-400 mb-3">
                       {card.title}
                     </h3>
-                    <span className="hover-prompt hidden  xl:block">Hover Me</span>
-                        <span className="hover-prompt  xl:hidden">Click Me</span>
+                    <span className="hover-prompt hidden  xl:block">
+                      Hover Me
+                    </span>
+                    <span className="hover-prompt  xl:hidden">Click Me</span>
                   </div>
                   <div className="flip-card-back">
-                    <h3 className="text-xl font-semibold text-white mb-3">
+                    <h3 className="text-xl font-semibold text-violet-200 mb-3">
                       {card.title}
                     </h3>
-                    <p className="text-sm">{card.description}</p>
+                    <p className="text-sm text-black ">{card.description}</p>
                   </div>
                 </div>
               </motion.div>
             ))}
           </motion.div>
+          <p className="text-gray-300 mt-10 md:text-xl max-w-3xl mx-auto mb-8 space-x-2 ">
+            With these principles at our core,{" "}
+            <span className=" sm:text-xl md:text-3xl font-bold text-orange-800">
+              KURO’s
+            </span>{" "}
+            intent is clear: to build accessible, intelligent, and future-ready
+            automation solutions that power the manufacturing industry both at
+            scale and at the grassroots. We’re here to ensure{" "}
+            <span className="sm:text-xl md:text-2xl font-bold text-blue-800">
+              Industry 4.0
+            </span>{" "}
+            isn’t exclusive but inclusive, scalable, and transformative for all.
+          </p>
         </div>
 
         {/* Accolades */}
         <Accolades />
 
         {/* Clients Logos */}
-        <div ref={clientsRef} className="flex justify-center flex-wrap clients-section pt-3">
-          <h2
-            className="text-3xl md:text-5xl text-white mb-8 section-heading"
-            ref={(el) => (headingRefs.current[sections.length + inspirationSections.length + 3] = el)}
-          >
-            Our Clients
-          </h2>
+        <div
+          ref={clientsRef}
+          className="flex justify-center flex-wrap clients-section pt-3"
+        >
+          <div className="mb-10 text-center font-bold w-full">
+            <h2 className="text-4xl md:text-5xl text-white text-center mb-2 section-heading">
+              Our{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                Clients
+              </span>
+            </h2>
+            <div className="w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full mt-2" />
+          </div>
+
           <motion.div
             className="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-6 gap-4 items-center"
             variants={containerVariants}

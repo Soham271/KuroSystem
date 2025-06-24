@@ -158,13 +158,13 @@ const Home = () => {
             className="flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto mb-8 gap-6 px-6 rounded-xl"
             ref={heroRef}
           >
-            <div className="md:w-1/2 space-y-4">
+            <div className="md:w-2/3 space-y-4">
               <h1 className="text-4xl md:text-5xl font-bold leading-tight">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-slate-700 to-slate-600 bg-[length:200%_auto] animate-shine">
-                  Powering the Future with
+                <span className=" font-serif text-transparent bg-clip-text bg-gradient-to-r from-black via-white to-slate-500 bg-[length:200%_auto] animate-shine mb-1">
+                  Making Production as easy
                 </span>{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-white  to-blue-800  bg-[length:200%_auto] animate-shine">
-                  Industry 4.0
+                <span className=" font-serif text-transparent bg-clip-text bg-gradient-to-r from-black via-white to-slate-500 bg-[length:200%_auto] animate-shine">
+                  as the flick of fingers
                 </span>
               </h1>
 
@@ -312,11 +312,11 @@ const Home = () => {
               <h2 className="text-3xl md:text-4xl font-bold text-center">
                 What is <span className="text-blue-500">Industry 4.0?</span>
               </h2>
-              <p className="text-gray-300 text-lg leading-relaxed">
-                Industry 4.0 is the fourth industrial revolution—built on
-                cyber‑physical systems, IoT, big data, AI, and smart automation.
-                It transforms traditional manufacturing into ‘smart factories’
-                with real-time data exchange and autonomous decision-making.
+              <p className="text-gray-200  pl-2 text-xl leading-relaxed">
+                Industry 4.0 is the fourth industrial revolution built on cyber
+                physical systems, IoT, big data, AI, and smart automation. It
+                transforms traditional manufacturing into ‘smart factories’ with
+                real-time data exchange and autonomous decision-making.
               </p>
             </div>
           </div>

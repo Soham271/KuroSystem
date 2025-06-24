@@ -1,6 +1,12 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaUser, FaEnvelope, FaPhone, FaBriefcase, FaLink } from "react-icons/fa";
+import {
+  FaUser,
+  FaEnvelope,
+  FaPhone,
+  FaBriefcase,
+  FaLink,
+} from "react-icons/fa";
 import emailjs from "@emailjs/browser";
 import a from "../assets/Careers2.avif";
 import { toast, ToastContainer } from "react-toastify";
@@ -35,7 +41,13 @@ const Careers = () => {
         "Jj8GC9_w-bFpwuKc1"
       );
       toast.success("Application submitted successfully!");
-      setFormData({ name: "", email: "", phone: "", position: "", resume_link: "" });
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        position: "",
+        resume_link: "",
+      });
     } catch (error) {
       console.error("Submission error:", error);
       toast.error("Submission failed. Please try again.");
@@ -45,11 +57,41 @@ const Careers = () => {
   };
 
   const formFields = [
-    { name: "name", label: "Full Name", type: "text", icon: FaUser, placeholder: "John Doe" },
-    { name: "email", label: "Email Address", type: "email", icon: FaEnvelope, placeholder: "john@example.com" },
-    { name: "phone", label: "Phone Number", type: "tel", icon: FaPhone, placeholder: "+1 555‑123‑4567" },
-    { name: "position", label: "Desired Position", type: "text", icon: FaBriefcase, placeholder: "Software Engineer" },
-    { name: "resume_link", label: "Resume Link", type: "url", icon: FaLink, placeholder: "https://drive.google.com/…" },
+    {
+      name: "name",
+      label: "Full Name",
+      type: "text",
+      icon: FaUser,
+      placeholder: "John Doe",
+    },
+    {
+      name: "email",
+      label: "Email Address",
+      type: "email",
+      icon: FaEnvelope,
+      placeholder: "john@example.com",
+    },
+    {
+      name: "phone",
+      label: "Phone Number",
+      type: "tel",
+      icon: FaPhone,
+      placeholder: "+1 555‑123‑4567",
+    },
+    {
+      name: "position",
+      label: "Desired Position",
+      type: "text",
+      icon: FaBriefcase,
+      placeholder: "Software Engineer",
+    },
+    {
+      name: "resume_link",
+      label: "Resume Link",
+      type: "url",
+      icon: FaLink,
+      placeholder: "https://drive.google.com/…",
+    },
   ];
 
   return (
@@ -83,12 +125,10 @@ const Careers = () => {
         >
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">
             Careers at{" "}
-          <span className="text-red-600 transition duration-300 ease-in-out hover:text-red-700">
-
+            <strong className="text-3xl md:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-red-800 to-red-600">
               KURO
-            </span>
+            </strong>
           </h1>
-        
         </div>
 
         <div className="relative z-10 px-4 sm:px-10 md:px-16 py-10 flex justify-start">
@@ -97,13 +137,18 @@ const Careers = () => {
             <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
               {formFields.map((field) => {
                 const Icon = field.icon;
-                const isActive = focusedInput === field.name || formData[field.name];
+                const isActive =
+                  focusedInput === field.name || formData[field.name];
                 return (
                   <div key={field.name}>
-                    <label className="block text-sm font-semibold text-white mb-1">{field.label}</label>
+                    <label className="block text-sm font-semibold text-white mb-1">
+                      {field.label}
+                    </label>
                     <div
                       className={`flex items-center bg-white/20 rounded-lg px-3 py-2 border transition duration-200 ${
-                        isActive ? "border-blue-500 scale-[1.01]" : "border-white/30"
+                        isActive
+                          ? "border-blue-500 scale-[1.01]"
+                          : "border-white/30"
                       }`}
                     >
                       <Icon className="text-md text-white/80 mr-2" />
@@ -111,7 +156,9 @@ const Careers = () => {
                         type={field.type}
                         name={field.name}
                         value={formData[field.name]}
-                        onChange={(e) => handleInputChange(field.name, e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange(field.name, e.target.value)
+                        }
                         onFocus={() => setFocusedInput(field.name)}
                         onBlur={() => setFocusedInput("")}
                         placeholder={field.placeholder}
@@ -126,7 +173,9 @@ const Careers = () => {
                 type="submit"
                 disabled={isSubmitting}
                 className={`w-full py-3 mt-4 rounded-lg text-white font-semibold transition duration-300 text-lg ${
-                  isSubmitting ? "bg-white/30 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
+                  isSubmitting
+                    ? "bg-white/30 cursor-not-allowed"
+                    : "bg-blue-600 hover:bg-blue-700"
                 }`}
               >
                 {isSubmitting ? (

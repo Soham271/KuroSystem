@@ -87,19 +87,7 @@ const ContactUs = () => {
         50% { transform: scale3d(2.2, 2.2, 1); }
         100% { transform: scale3d(0.4, 0.4, 1); }
       }
-      .section-heading {
-        position: relative;
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(0, 100, 200, 0.2));
-        backdrop-blur-md;
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        padding: 0.75rem 1.5rem;
-        border-radius: 1rem;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        display: inline-block;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-        color: white;
-      }
+
     
 
     `;
@@ -124,9 +112,9 @@ const ContactUs = () => {
         <div className="relative z-10 text-white max-w-2xl text-left space-y-6 pl-4 md:pl-0">
           <h1 className="text-3xl md:text-5xl font-extrabold leading-tight">
             Get in Touch with{" "}
-            <span className="text-blue-400 transition duration-300 ease-in-out hover:text-blue-600 focus:text-blue-600">
+            <strong className="text-3xl md:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-red-200">
               KURO
-            </span>
+            </strong>
           </h1>
           <p className="text-lg md:text-xl leading-relaxed text-white/90">
             We are here to help you connect and explore how KURO can support

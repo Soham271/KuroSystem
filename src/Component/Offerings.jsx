@@ -21,16 +21,6 @@ const Offerings = () => {
 
   const offerings = [
     {
-      title: "Digital Twin",
-      icon: (
-        <FaProjectDiagram className="inline mr-2 text-blue-600/80 text-2xl" />
-      ),
-      shortInfo: "Real-time replicas for predictive maintenance.",
-      summary:
-        "Our Digital Twin solutions offer real-time replicas of your physical systems, enabling predictive maintenance, simulation, and smarter decision-making.",
-      image: DigitalTwin,
-    },
-    {
       title: "IT-OT Integration",
       icon: (
         <FaNetworkWired className="inline mr-2 text-blue-600/80 text-2xl" />
@@ -47,6 +37,16 @@ const Offerings = () => {
       summary:
         "Achieve complete traceability across your supply chain with our advanced tracking systems, ensuring transparency, compliance, and product quality.",
       image: Trace,
+    },
+    {
+      title: "Digital Twin",
+      icon: (
+        <FaProjectDiagram className="inline mr-2 text-blue-600/80 text-2xl" />
+      ),
+      shortInfo: "Real-time replicas for predictive maintenance.",
+      summary:
+        "Our Digital Twin solutions offer real-time replicas of your physical systems, enabling predictive maintenance, simulation, and smarter decision-making.",
+      image: DigitalTwin,
     },
     {
       title: "Cloud & Edge",
@@ -155,7 +155,6 @@ const Offerings = () => {
       .line-appear:nth-child(3) { animation-delay: 0.3s; }
       .line-appear:nth-child(4) { animation-delay: 0.4s; }
       .section-heading {
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(0, 100, 200, 0.2));
         backdrop-blur-md;
         border: 1px solid rgba(255, 255, 255, 0.3);
         padding: 1rem 2rem;
@@ -290,7 +289,10 @@ const Offerings = () => {
         <div className="absolute inset-0 bg-black/50" />
         <div className="relative z-10 text-white max-w-2xl space-y-4">
           <h1 className="text-3xl md:text-6xl font-bold drop-shadow-lg mb-6">
-            Our Offerings at <span className="text-blue-300">KURO</span>
+            Our Offerings at{" "}
+            <strong className="text-3xl md:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-red-200">
+              KURO
+            </strong>
           </h1>
           <p className="text-md md:text-lg drop-shadow-md">
             Explore our innovative solutions designed to elevate your business
