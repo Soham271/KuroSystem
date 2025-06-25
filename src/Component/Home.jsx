@@ -19,28 +19,9 @@ import Picture1 from "../assets/Picture1.png";
 import Picture2 from "../assets/Picture2.jpg";
 import Picture3 from "../assets/Picture3.png";
 import Picture4 from "../assets/Picture4.png";
-
+import  Card from"./Card";
 gsap.registerPlugin(ScrollTrigger);
 
-const Card = ({ img, text }) => (
- <div className="group relative h-[300px] xs:h-[320px] sm:h-[340px] overflow-hidden rounded-xl bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 hover:border-blue-500/50 transition-all duration-500 mx-2 mb-3 w-full sm:w-[calc(50%-16px)] lg:w-[calc(25%-16px)]">
-
-    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-   <img
-  src={img}
-  alt={text}
-  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-  loading="lazy"
-/>
-
-    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent" />
-    <div className="absolute bottom-0 left-0 right-0 p-4 xs:p-6">
-      <h3 className="flex justify-center text-white font-bold text-base xs:text-xl leading-tight group-hover:text-blue-300 transition-colors duration-300">
-        {text}
-      </h3>
-    </div>
-  </div>
-);
 
 const Home = () => {
   const navigate = useNavigate();
@@ -408,8 +389,8 @@ const Home = () => {
           </div>
         </section>
 
-        <section className="py-8 xs:py-12">
-          <div className="text-center mb-8 xs:mb-12 px-4 xs:px-6">
+        <section className="py-4 mt-10 xs:py-8">
+          <div className="text-center mb-8 xs:mb-5 px-4 xs:px-6">
             <h2 className="text-3xl xs:text-4xl md:text-5xl font-bold leading-tight">
               Why choose <span className="text-blue-500">KURO?</span>
             </h2>
@@ -417,19 +398,15 @@ const Home = () => {
               We combine technical expertise with creative vision to deliver solutions that drive real business results.
             </p>
           </div>
-          <div className=" mt-2 max-w-9xl mx-auto px-4 xs:px-6">
-            <div className="flex flex-wrap -mx-2">
-              {[
-                { img: Picture1, text: "Integrated Architecture Design" },
-                { img: Picture2, text: "Continuous Innovation & Improvement" },
-                { img: Picture3, text: "Agile Project Management" },
-                { img: Picture4, text: "Remote Support Team" },
-              ].map((item, i) => (
-                <Card key={i} img={item.img} text={item.text} />
-              ))}
-            </div>
-          </div>
         </section>
+    <div className="p-5 md:p-8 mb-5">
+          <div className="flex flex-wrap -mx-2 ">
+            <Card img={Picture1} text="Integrated Architecture Design" />
+            <Card img={Picture2} text="Continuous Innovation & Improvement" />
+            <Card img={Picture3} text="Agile Project Management" />
+            <Card img={Picture4} text="Remote Support Team" />
+          </div>
+        </div>
 
         <section className="py-6 xs:py-12 sm:py-24">
           <div className="max-w-8xl mx-auto px-4 xs:px-6 lg:px-8">
