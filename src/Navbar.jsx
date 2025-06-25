@@ -9,7 +9,7 @@ const Navbar = () => {
   const links = [
     { to: "/", label: "Home" },
     { to: "/aboutus", label: "About Us" },
-    { to: "/inspiration", label: "Inspiration" },
+ 
     { to: "/offering", label: "Offering" },
     { to: "/successtories", label: "Success Stories" },
     { to: "/careers", label: "Careers" },

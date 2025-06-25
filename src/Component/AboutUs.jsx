@@ -203,7 +203,7 @@ const AboutUs = () => {
   width: 1000px;
 }
 
-/* 📱 Mobile Responsiveness */
+/*  Mobile Responsiveness */
 @media (max-width: 768px) {
   .timeline-item {
     width: 90%;
@@ -214,7 +214,7 @@ const AboutUs = () => {
       .timeline-connector { position: absolute; z-index: 1; stroke: ; stroke-width: 2; stroke-dasharray: 5; }
       .flip-card {
         perspective: 1000px;
-        height: 250px;
+        height: 200px;
         width: 100%;
         cursor: pointer;
       }
@@ -441,7 +441,7 @@ const AboutUs = () => {
           </div>
 
           <motion.div
-            className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6"
+            className="max-w-9xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6"
             variants={containerVariants}
             initial="hidden"
             animate={philosophyInView ? "visible" : "hidden"}
