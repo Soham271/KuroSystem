@@ -54,39 +54,44 @@ const Accolades = () => {
   return (
     <>
       <section className="hidden lg:block relative py-12 px-6 lg:px-20 mb-8">
-        <div className="relative z-10 backdrop-blur-md bg-white/10 border border-white/20 rounded-xl shadow-lg p-8">
-          <div className="text-center mb-10">
-            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-3">
+      <div className="relative z-10 backdrop-blur-md bg-white/10 border border-white/20 rounded-xl shadow-lg p-4 sm:p-6 md:p-8">
+          <div className="text-center mb-6 sm:mb-8 md:mb-10">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2 sm:mb-3">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-black via-white to-slate-500 animate-shine bg-[length:200%_auto]">
                 Accolades
               </span>
             </h2>
-            <div className="w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
+            <div className="w-24 sm:w-32 md:w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
           </div>
 
-          <div className="flex flex-col lg:flex-row items-center justify-center gap-6">
-            <img
-              src={indiaflag}
-              alt="India Flag"
-              className="w-[60px] lg:w-[80px] h-auto"
-              loading="lazy"
-            />
+          <div className="flex flex-col items-center gap-4 sm:gap-6">
             <img
               src={certificate}
               alt="Certificate"
-              className="w-[260px] lg:w-[300px] xl:w-[360px] rounded-lg shadow-xl border border-white/30 transition-transform duration-300 hover:scale-105"
+              className="w-[240px] sm:w-[280px] md:w-[300px] lg:w-[360px] rounded-lg shadow-xl border border-white/30 transition-transform duration-300 hover:scale-105"
               loading="lazy"
             />
-            <img
-              src={germanyflag}
-              alt="Germany Flag"
-              className="w-[60px] lg:w-[80px] h-auto"
-              loading="lazy"
-            />
+            <div className="flex flex-row items-center justify-center gap-4 sm:gap-6">
+              <img
+                src={indiaflag}
+                alt="India Flag"
+                className="w-[50px] sm:w-[70px] md:w-[80px] h-auto"
+                loading="lazy"
+              />
+              <span className="text-white text-3xl sm:text-4xl md:text-5xl">
+                🤝
+              </span>
+              <img
+                src={germanyflag}
+                alt="Germany Flag"
+                className="w-[50px] sm:w-[70px] md:w-[80px] h-auto"
+                loading="lazy"
+              />
+            </div>
+            <p className="text-white text-lg sm:text-xl md:text-2xl font-semibold text-center mt-4">
+              Fit for Partnership, GIZ, Germany
+            </p>
           </div>
-          <p className="text-gray-400/60 text-xl lg:text-2xl font-semibold text-center mt-6">
-            Fit for Partnership, GIZ, Germany
-          </p>
         </div>
       </section>
 
