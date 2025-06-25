@@ -35,7 +35,7 @@ const Card = ({ img, text }) => (
 
     <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent" />
     <div className="absolute bottom-0 left-0 right-0 p-4 xs:p-6">
-      <h3 className="flex justify-center text-white font-bold text-base xs:text-lg leading-tight group-hover:text-blue-300 transition-colors duration-300">
+      <h3 className="flex justify-center text-white font-bold text-base xs:text-xl leading-tight group-hover:text-blue-300 transition-colors duration-300">
         {text}
       </h3>
     </div>
