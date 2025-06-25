@@ -379,7 +379,7 @@ const Home = () => {
                     Transform Your Industry
                   </span>
                 </h2>
-                <p className="text-gray-200 text-lg xs:text-xl sm:text-2xl max-w-xl xs:max-w-2xl sm:max-w-3xl mx-auto">
+                <p className="text-gray-900 text-lg xs:text-xl sm:text-2xl max-w-xl xs:max-w-2xl sm:max-w-3xl mx-auto">
                   Join the revolution of smart manufacturing and intelligent automation
                 </p>
               </div>
