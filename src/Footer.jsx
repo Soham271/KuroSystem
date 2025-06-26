@@ -29,23 +29,37 @@ const Footer = () => {
               Quick Links
             </h3>
             <ul className="grid grid-cols-2 gap-y-1 sm:gap-y-2 text-gray-400 text-xs sm:text-sm md:text-base">
-              {[
-                "Home",
-                "About Us",
-                "Offerings",
-                "Success Stories",
-                "Careers",
-                "Contact Us",
-              ].map((label) => (
-                <li key={label}>
-                  <a
-                    href={`/${label.replace(/\s+/g, "").toLowerCase()}`}
+                    <a href={`/`}
                     className="hover:text-white transition-colors"
                   >
-                    {label}
+                  Home
                   </a>
-                </li>
-              ))}
+                        <a href={`/aboutus`}
+                    className="hover:text-white transition-colors"
+                  >
+               About Us
+                  </a>      <a href={`/offering`}
+                    className="hover:text-white transition-colors"
+                  >
+                Offering
+                  </a>      <a href={`/successtories`}
+                    className="hover:text-white transition-colors"
+                  >
+                Success Stories
+                  </a>      <a href={`/careers`}
+                    className="hover:text-white transition-colors"
+                  >
+               Careers
+                  </a>      <a href={`/contactus`}
+                    className="hover:text-white transition-colors"
+                  >
+                 Contact Us
+                  </a>
+                  
+                  
+                  
+               
+              
             </ul>
           </div>
 

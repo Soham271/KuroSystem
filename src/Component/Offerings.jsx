@@ -283,14 +283,14 @@ const Offerings = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <div
-        className="relative bg-cover bg-center min-h-[70vh] w-full flex items-center justify-start px-6 md:px-16"
+        className="relative bg-cover bg-center min-h-[50vh] w-full flex items-center justify-start px-6 md:px-16"
         style={{ backgroundImage: `url(${Offer})` }}
       >
         <div className="absolute inset-0 bg-black/50" />
         <div className="relative z-10 text-white max-w-2xl space-y-4">
-          <h1 className="text-3xl md:text-6xl font-bold drop-shadow-lg mb-6">
+          <h1 className="text-3xl md:text-4xl font-bold drop-shadow-lg mb-6">
             Our Offerings at{" "}
-            <strong className="text-3xl md:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-red-200">
+            <strong className="text-3xl md:text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-red-200">
               KURO
             </strong>
           </h1>

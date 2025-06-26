@@ -435,9 +435,11 @@ const AboutUs = () => {
 
   return (
     <section className="w-full p-0 m-0 overflow-x-hidden">
-      {/* Hero Banner */}
+      {/* Hero Banner - Mobile Responsive Heights */}
       <div
-        className="relative bg-cover bg-center min-h-[70vh] w-full flex items-center justify-center md:justify-end px-4 sm:px-6 md:px-16"
+        className="relative bg-cover bg-center 
+        min-h-[50vh] sm:min-h-[55vh] md:min-h-[60vh] lg:min-h-[70vh] 
+        w-full flex items-center justify-center md:justify-end px-4 sm:px-6 md:px-16"
         style={{ backgroundImage: `url(${a})` }}
       >
         <div className="absolute inset-0 bg-black/40" />

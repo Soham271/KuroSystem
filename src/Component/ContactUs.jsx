@@ -59,26 +59,36 @@ const ContactUs = () => {
         background: linear-gradient(135deg, #0a192f 0%, #000000 100%);
         min-height: 100vh;
       }
-      .circle-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 0;
-        pointer-events: none;
-        overflow: hidden;
-      }
-      .circle {
-        position: absolute;
-        border-radius: 50%;
-        mix-blend-mode: screen;
-        background: radial-gradient(circle at center, rgba(59, 130, 246, 0.3) 0%, rgba(126, 34, 206, 0) 70%);
-        animation: fadeScale 6s infinite ease-in-out;
-      }
-      .circle-1 { width: 300px; height: 300px; top: 10%; left: 10%; animation-delay: 0s; }
-      .circle-2 { width: 200px; height: 200px; top: 70%; right: 15%; animation-delay: 2s; }
-      .circle-3 { width: 400px; height: 400px; bottom: 5%; left: 20%; animation-delay: 4s; }
+              .circle-container {
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+          overflow: hidden;
+        }
+        
+        .circle {
+          position: absolute;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(10px);
+          animation: float 6s ease-in-out infinite;
+        }
+        
+        
+        
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        
+
+     
+        }
+
       @keyframes fadeScale {
         0% { opacity: 0.6; transform: scale(0.5); }
         50% { opacity: 0.2; transform: scale(1.2); }
@@ -127,30 +137,39 @@ const ContactUs = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <div
-        className="relative bg-cover bg-center min-h-[60vh] w-full flex items-center justify-start px-6 md:px-16 transition-opacity duration-1000"
-        style={{
-          backgroundImage: `url(${Contact})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/40" />
-        <div className="relative z-10 text-white max-w-2xl text-left space-y-6 pl-4 md:pl-0 transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}" style={{ opacity: isVisible ? 1 : 0 }}>
-          <h1 className="text-3xl md:text-5xl font-extrabold leading-tight drop-shadow-md">
-            Get in Touch with{" "}
-            <strong className="text-3xl md:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-red-400 via-red-500 to-red-200 drop-shadow-lg">
-              KURO
-            </strong>
-          </h1>
-          <p className="text-lg md:text-xl leading-relaxed text-white/90 drop-shadow">
-            We are here to help you connect and explore how KURO can support your needs.
-          </p>
-        </div>
-        <div className="circle-container">
-          <div className="circle circle-1" />
-          <div className="circle circle-2" />
-          <div className="circle circle-3" />
+      <div className="relative w-full min-h-[50vh] sm:min-h-[55vh] md:min-h-[60vh] lg:min-h-[65vh] xl:min-h-[70vh] flex items-center justify-center sm:justify-start overflow-hidden">
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+    backgroundImage: `url(${Contact})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
+
+        {/* Gradient Overlay - Responsive */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30 sm:bg-gradient-to-r sm:from-black/70 sm:via-black/40 sm:to-transparent" />
+
+        {/* Content Container - Fully Responsive */}
+        <div
+          className={`relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 transition-all duration-1000 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
+          <div className="text-white max-w-none sm:max-w-2xl lg:max-w-3xl text-center sm:text-left space-y-4 sm:space-y-6">
+            <h1 className="text-2xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-extrabold leading-tight drop-shadow-md">
+              <span className="inline  text-3xl sm:inline">Get in Touch with</span>{" "}
+              <strong className="inline sm:inline text-3xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-red-400 via-red-500 to-red-200 drop-shadow-lg">
+                KURO
+              </strong>
+            </h1>
+
+            <p className="text-lg xs:text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed text-white/90 drop-shadow max-w-lg sm:max-w-xl md:max-w-2xl mx-auto sm:mx-0">
+              We are here to help you connect and explore how KURO can support
+              your needs.
+            </p>
+          </div>
         </div>
       </div>
 
@@ -280,7 +299,6 @@ const ContactUs = () => {
       </main>
     </div>
   );
-
 };
 
 export default ContactUs;
