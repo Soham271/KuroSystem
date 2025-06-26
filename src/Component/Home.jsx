@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import homepagewhykuro from "../assets/homepagewhykuro.jpg";
+import mobilerobo from "../assets/mobilerobo.gif";
+
 import {
   FaProjectDiagram,
   FaNetworkWired,
@@ -311,7 +312,7 @@ const Home = () => {
         >
           <div className="max-w-7xl mx-auto px-4 xs:px-6 lg:px-8">
             <div className="text-center mb-8 xs:mb-12">
-              <h2 className="text-3xl xs:text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-4">
+              <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-4">
                 Core{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
                   Technologies
@@ -380,10 +381,10 @@ const Home = () => {
             </div>
 
             <div className="w-full md:w-1/2 flex flex-col items-center md:items-center text-center space-y-5">
-              <h2 className="text-3xl sm:text-3xl md:text-4xl font-bold">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">
                 What is <span className="text-blue-500">Industry 4.0?</span>
               </h2>
-              <p className="lg:relative lg:left-5 text-gray-200 text-md sm:text-lg md:text-xl leading-relaxed max-w-2xl">
+              <p className="lg:relative lg:left-5 text-gray-200 text-pretty sm:text-lg md:text-xl leading-relaxed max-w-2xl">
                 Industry 4.0 is the fourth industrial revolution built on cyber
                 physical systems, IoT, big data, AI, and smart automation. It
                 transforms traditional manufacturing into 'smart factories' with
@@ -394,23 +395,23 @@ const Home = () => {
         </section>
 
         <div
-          className="relative w-full py-4 xs:py-8 min-h-[0vh] mt-4"
+          className="relative w-full py-4 xs:py-8 min-h-[80vh] mt-4 bg-cover"
           style={{
-            backgroundImage: `url(${homepagewhykuro})`,
+            backgroundImage: `url(${mobilerobo})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
         >
-          <div className="absolute inset-0 bg-black opacity-60"></div>
+          <div className="absolute inset-0 bg-black opacity-5"></div>
 
-          <div className="absolute inset-0 bg-gradient-to-br from-black/10 to-black/30"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-black/10 to-black/10"></div>
 
           <div className="relative z-10 flex flex-col justify-end min-h-[60vh] top-14">
             <div className="text-center mb-8 xs:mb-5 px-4 xs:px-6 relative top-12">
               <h2 className="text-3xl xs:text-4xl md:text-5xl font-bold leading-tight text-white">
                 Why choose <span className="text-blue-500">KURO?</span>
               </h2>
-              <p className="mx-auto text-md xs:text-lg md:text-2xl text-gray-300 max-w-5xl xs:max-w-2xl leading-relaxed mt-8">
+              <p className="mx-auto text-base xs:text-lg md:text-2xl text-gray-300 max-w-5xl xs:max-w-2xl leading-relaxed mt-8">
                 We combine technical expertise with creative vision to deliver
                 solutions that drive real business results.
               </p>
