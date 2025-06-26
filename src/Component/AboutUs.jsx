@@ -272,7 +272,7 @@ const AboutUs = () => {
         50% { opacity: 1; }
       }
       
-      /* Desktop large screens */
+    
       @media (min-width: 1024px) {
         .flip-card {
           height: 240px;
@@ -310,6 +310,7 @@ const AboutUs = () => {
           width: calc(100% - 24px); 
           margin-left: 0 !important; 
           margin-bottom: 2.5rem;
+       
         }
         .flip-card {
           height: 180px;
@@ -329,7 +330,7 @@ const AboutUs = () => {
         }
       }
       
-      /* Mobile styles */
+      
       @media (max-width: 640px) {
         .timeline { 
           padding-left: 16px; 
@@ -376,7 +377,7 @@ const AboutUs = () => {
         }
       }
       
-      /* Very small mobile screens */
+    
       @media (max-width: 480px) {
         .timeline { 
           padding-left: 12px; 
@@ -440,10 +441,11 @@ const AboutUs = () => {
         style={{ backgroundImage: `url(${a})` }}
       >
         <div className="absolute inset-0 bg-black/40" />
-        <div className="relative z-10 max-w-2xl text-white text-center md:text-right space-y-4 md:space-y-6">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold">
+
+        <div className="relative z-10 max-w-4xl text-white text-center md:text-right space-y-4 md:space-y-6">
+          <h1 className="text-xl sm:text-[24px] md:text-4xl lg:text-5xl font-extrabold whitespace-nowrap">
             Empowering Your Business with{" "}
-            <strong className="text-xl sm:text-2xl md:text-3xl lg:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-red-200 block mt-2">
+            <strong className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-red-200 inline">
               KURO
             </strong>
           </h1>
@@ -453,13 +455,13 @@ const AboutUs = () => {
           </p>
           <div className="flex flex-col sm:flex-row justify-center md:justify-end gap-3 sm:gap-4">
             <button
-              className="bg-blue-600 hover:bg-blue-700 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-md text-sm sm:text-base"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md text-sm sm:text-base w-full sm:w-auto min-w-[120px]"
               onClick={() => navigate("/offering")}
             >
               Learn More →
             </button>
             <button
-              className="border border-white text-white px-4 sm:px-6 py-2 sm:py-3 rounded-md hover:bg-white hover:text-blue-800 text-sm sm:text-base"
+              className="border border-white text-white px-6 py-2 rounded-md hover:bg-white hover:text-blue-800 text-sm sm:text-base w-full sm:w-auto min-w-[120px]"
               onClick={() => navigate("/contactus")}
             >
               Get In Touch →
@@ -467,7 +469,6 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
-
       <div className="relative py-8 sm:py-12 md:py-16 px-4 sm:px-6 md:px-16 space-y-8 sm:space-y-12 md:space-y-16">
         <div ref={historyRef} className="timeline relative">
           <div className="history-progress-track">
@@ -585,7 +586,7 @@ const AboutUs = () => {
           className="clients-section pt-3 mb-6 sm:mb-8 text-center"
         >
           <div className="text-center mb-8 sm:mb-10 font-bold">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white mb-3 sm:mb-4 text-center section-heading">
+            <h2 className="text-2xl sm:text-2xl md:text-4xl lg:text-5xl text-white mb-3 sm:mb-4 text-center section-heading">
               Our{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
                 Core Philosophy
@@ -595,7 +596,7 @@ const AboutUs = () => {
           </div>
 
           <motion.div
-            className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
+            className="max-w-8xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
             variants={containerVariants}
             initial="hidden"
             animate={philosophyInView ? "visible" : "hidden"}
@@ -621,13 +622,15 @@ const AboutUs = () => {
                     <h3 className="text-lg sm:text-xl font-semibold text-violet-200 mb-3">
                       {card.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-black">{card.description}</p>
+                    <p className="text-xs sm:text-sm text-black">
+                      {card.description}
+                    </p>
                   </div>
                 </div>
               </motion.div>
             ))}
           </motion.div>
-          <p className="text-gray-300 mt-6 sm:mt-8 md:mt-10 text-sm sm:text-base md:text-xl max-w-3xl mx-auto mb-6 sm:mb-8 px-4">
+          <p className="  text-gray-300 mt-6 sm:mt-8 md:mt-10 text-sm sm:text-base md:text-xl max-w-8xl mx-auto mb-6 sm:mb-8 px-4 space-y-3">
             With these principles at our core,{" "}
             <span className="text-base sm:text-xl md:text-3xl font-bold text-orange-800">
               KURO's

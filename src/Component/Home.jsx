@@ -19,9 +19,8 @@ import Picture1 from "../assets/Picture1.png";
 import Picture2 from "../assets/Picture2.jpg";
 import Picture3 from "../assets/Picture3.png";
 import Picture4 from "../assets/Picture4.png";
-import  Card from"./Card";
+import Card from "./Card";
 gsap.registerPlugin(ScrollTrigger);
-
 
 const Home = () => {
   const navigate = useNavigate();
@@ -252,10 +251,10 @@ const Home = () => {
             <div className="md:w-2/3">
               <h1 className="text-4xl xs:text-3xl md:text-[40px] font-bold leading-tight mb-4">
                 <span className="font-serif text-transparent bg-clip-text bg-gradient-to-r from-black via-white to-slate-500 bg-[length:200%_auto] animate-shine">
-                  Making Production as easy 
+                  Making Production as easy
                 </span>{" "}
                 <span className="font-serif text-transparent bg-clip-text bg-gradient-to-r from-black via-white to-slate-500 bg-[length:200%_auto] animate-shine">
-                 as  the flick of fingers
+                  as the flick of fingers
                 </span>
               </h1>
               <p className="text-gray-300 mt-4 mb-6 text-lg xs:text-lg md:text-xl space-y-3">
@@ -263,13 +262,27 @@ const Home = () => {
                 <strong className="text-lg xs:text-xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-300">
                   KURO
                 </strong>
-              , we make sure that intelligent, future-ready automation technology is widely accessible, to power the manufacturing 	industry both at scale and at the grassroots.
-                
+                , we make sure that intelligent, future-ready automation
+                technology is widely accessible, to power the manufacturing
+                industry both at scale and at the grassroots.
               </p>
               <ul className="list-disc pl-5 text-lg xs:text-base md:text-xl text-gray-300 space-y-2 xs:space-y-1">
-                <li><strong className="text-gray-400">Real-Time Monitoring </strong> with our Industry 4.0 Solutions</li>
-                <li><strong className="text-gray-400">AI-powered Automation </strong> is here</li>
-                <li><strong className="text-gray-400">Smooth integration</strong> of OT systems, new or old, with IT systems.</li>
+                <li>
+                  <strong className="text-gray-400">
+                    Real-Time Monitoring{" "}
+                  </strong>{" "}
+                  with our Industry 4.0 Solutions
+                </li>
+                <li>
+                  <strong className="text-gray-400">
+                    AI-powered Automation{" "}
+                  </strong>{" "}
+                  is here
+                </li>
+                <li>
+                  <strong className="text-gray-400">Smooth integration</strong>{" "}
+                  of OT systems, new or old, with IT systems.
+                </li>
               </ul>
               <div className="mt-8 xs:mt-10">
                 <button
@@ -281,8 +294,8 @@ const Home = () => {
                 </button>
               </div>
             </div>
-<div
-  className="
+            <div
+              className="
     ml-0 md:ml-10
     md:w-[75%]
     mt-6 xs:mt-8 md:mt-0
@@ -291,20 +304,18 @@ const Home = () => {
     shadow-lg transition-all duration-300
     hover:scale-105 hover:shadow-2xl hover:shadow-blue-600/30
   "
->
-  <img
-    src={industry4}
-    alt="Industry 4.0"
-    className="
+            >
+              <img
+                src={industry4}
+                alt="Industry 4.0"
+                className="
       w-full max-w-[400px] xs:max-w-[500px] md:max-w-[600px]
       mx-auto
       rounded-xl
     "
-    loading="lazy"
-  />
-</div>
-
-
+                loading="lazy"
+              />
+            </div>
           </div>
         </section>
 
@@ -363,29 +374,34 @@ const Home = () => {
                   </span>
                 </h2>
                 <p className="text-gray-900 text-lg xs:text-xl sm:text-2xl max-w-xl xs:max-w-2xl sm:max-w-3xl mx-auto">
-                  Join the revolution of smart manufacturing and intelligent automation
+                  Join the revolution of smart manufacturing and intelligent
+                  automation
                 </p>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="py-8 xs:py-12">
-          <div className="flex flex-col md:flex-row items-center max-w-7xl mx-auto gap-8 xs:gap-12 px-4 xs:px-6">
-            <div className="md:w-1/2">
+        <section className="py-8 sm:py-12">
+          <div className="flex flex-col md:flex-row items-center max-w-7xl mx-auto gap-10 sm:gap-14 px-4 sm:px-6">
+            <div className="w-full md:w-1/2 flex justify-center">
               <img
                 src={depoy}
                 alt="Industry 4.0"
-                className="w-full max-w-[500px] xs:max-w-[600px] md:max-w-[700px] rounded-xl"
+                className="w-full max-w-[600px] sm:max-w-[600px] md:max-w-[700px] rounded-xl"
                 loading="lazy"
               />
             </div>
-            <div className="md:w-1/2 space-y-4">
-              <h2 className="text-2xl xs:text-3xl md:text-4xl font-bold text-center">
+
+            <div className="w-full md:w-1/2 flex flex-col items-center md:items-center text-center space-y-5">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">
                 What is <span className="text-blue-500">Industry 4.0?</span>
               </h2>
-              <p className="text-gray-200 pl-2 text-base xs:text-lg md:text-xl leading-relaxed">
-                Industry 4.0 is the fourth industrial revolution built on cyber physical systems, IoT, big data, AI, and smart automation. It transforms traditional manufacturing into ‘smart factories’ with real-time data exchange and autonomous decision-making.
+              <p className=" lg:relative lg:left-5 text-gray-200 text-pretty sm:text-lg md:text-xl leading-relaxed max-w-2xl">
+                Industry 4.0 is the fourth industrial revolution built on cyber
+                physical systems, IoT, big data, AI, and smart automation. It
+                transforms traditional manufacturing into ‘smart factories’ with
+                real-time data exchange and autonomous decision-making.
               </p>
             </div>
           </div>
@@ -396,12 +412,13 @@ const Home = () => {
             <h2 className="text-3xl xs:text-4xl md:text-5xl font-bold leading-tight">
               Why choose <span className="text-blue-500">KURO?</span>
             </h2>
-            <p className="mx-auto text-base xs:text-lg md:text-xl text-gray-300 max-w-xl xs:max-w-2xl leading-relaxed mt-4">
-              We combine technical expertise with creative vision to deliver solutions that drive real business results.
+            <p className="mx-auto text-base xs:text-lg md:text-2xl text-gray-500 max-w-5xl xs:max-w-2xl leading-relaxed mt-8">
+              We combine technical expertise with creative vision to deliver
+              solutions that drive real business results.
             </p>
           </div>
         </section>
-    <div className="p-5 md:p-8 mb-5">
+        <div className="p-5 md:p-8 mb-5">
           <div className="flex flex-wrap -mx-2 ">
             <Card img={Picture1} text="Integrated Architecture Design" />
             <Card img={Picture2} text="Continuous Innovation & Improvement" />
@@ -416,17 +433,18 @@ const Home = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10" />
               <div className="relative z-10">
                 <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-4 xs:mb-6">
-       Ready to Transform Your Manufacturing?
+                  Ready to Transform Your Manufacturing?
                 </h2>
                 <p className="text-gray-300 text-base xs:text-lg sm:text-xl mb-6 xs:mb-8 max-w-xl xs:max-w-2xl mx-auto leading-relaxed">
-                  Join industry leaders who trust KURO to power their digital transformation journey
+                  Join industry leaders who trust KURO to power their digital
+                  transformation journey
                 </p>
                 <button
                   className="px-6 xs:px-8 py-3 xs:py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-base xs:text-xl font-bold rounded-2xl hover:scale-105 transition-all duration-300 hover:shadow-2xl min-h-[48px]"
                   onClick={() => navigate("/contactus")}
                   aria-label="Start your journey with KURO"
                 >
-                 "Start Your Journey With Us!"
+                  "Start Your Journey With Us!"
                 </button>
               </div>
               <div className="absolute top-6 xs:top-8 left-6 xs:left-8 w-3 xs:w-4 h-2 xs:h-3 bg-blue-400 rounded-full animate-pulse" />

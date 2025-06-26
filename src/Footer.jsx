@@ -24,27 +24,31 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Quick Links */}
           <div className="text-center sm:text-left">
-            <h3 className="font-semibold mb-2 sm:mb-3 md:mb-4 text-base sm:text-lg">
+            <h3 className="font-semibold mb-2 sm:mb-3  md:relative left-20  md:mb-4 text-base sm:text-lg">
               Quick Links
             </h3>
             <ul className="grid grid-cols-2 gap-y-1 sm:gap-y-2 text-gray-400 text-xs sm:text-sm md:text-base">
-              {["Home", "About Us", "Offerings", "Success Stories", "Careers", "Contact Us"]
-                .map(label => (
-                  <li key={label}>
-                    <a
-                      href={`/${label.replace(/\s+/g, "").toLowerCase()}`}
-                      className="hover:text-white transition-colors"
-                    >
-                      {label}
-                    </a>
-                  </li>
-                ))}
+              {[
+                "Home",
+                "About Us",
+                "Offerings",
+                "Success Stories",
+                "Careers",
+                "Contact Us",
+              ].map((label) => (
+                <li key={label}>
+                  <a
+                    href={`/${label.replace(/\s+/g, "").toLowerCase()}`}
+                    className="hover:text-white transition-colors"
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Social links */}
           <div className="text-center sm:text-left">
             <h3 className="font-semibold text-base sm:text-lg mb-2 sm:mb-3 md:mb-4">
               Social
@@ -84,8 +88,8 @@ const Footer = () => {
           <p className="text-gray-400 text-xs sm:text-sm">
             &copy; 2025 KURO Systemes LLP. All rights reserved.
           </p>
-          <a 
-            href="#" 
+          <a
+            href="#"
             className="text-gray-400 hover:text-white text-xs sm:text-sm transition-colors"
           >
             Privacy Policy

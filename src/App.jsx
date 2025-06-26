@@ -17,7 +17,7 @@ function App() {
       children: [
         { path: "/", element: <Home /> },
         { path: "/aboutus", element: <AboutUs /> },
-    
+
         { path: "/successtories", element: <SuccessStories /> },
         { path: "/offering", element: <Offerings /> },
         { path: "/careers", element: <Careers /> },
