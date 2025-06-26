@@ -21,6 +21,7 @@ import Picture2 from "../assets/Picture2.jpg";
 import Picture3 from "../assets/Picture3.png";
 import Picture4 from "../assets/Picture4.png";
 import Card from "./Card";
+
 gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
@@ -87,8 +88,6 @@ const Home = () => {
       .explore-button:hover {
         transform: scale(1.05);
         box-shadow: 0 6px 22px rgba(59, 130, 246, 0.3);
-                
-
       }
       
       .slider-container {
@@ -295,25 +294,11 @@ const Home = () => {
                 </button>
               </div>
             </div>
-            <div
-              className="
-    ml-0 md:ml-10
-    md:w-[75%]
-    mt-6 xs:mt-8 md:mt-0
-    bg-white bg-clip-padding backdrop-filter backdrop-blur-xl
-    border border-white/30 rounded-xl overflow-hidden
-    shadow-lg transition-all duration-300
-    hover:scale-105 hover:shadow-2xl hover:shadow-blue-600/30
-  "
-            >
+            <div className="ml-0 md:ml-10 md:w-[75%] mt-6 xs:mt-8 md:mt-0 bg-white bg-clip-padding backdrop-filter backdrop-blur-xl border border-white/30 rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-600/30">
               <img
                 src={industry4}
                 alt="Industry 4.0"
-                className="
-      w-full max-w-[400px] xs:max-w-[500px] md:max-w-[600px]
-      mx-auto
-      rounded-xl
-    "
+                className="w-full max-w-[400px] xs:max-w-[500px] md:max-w-[600px] mx-auto rounded-xl"
                 loading="lazy"
               />
             </div>
@@ -383,7 +368,7 @@ const Home = () => {
           </div>
         </section>
 
-        <section className="py-8 sm:py-12">
+        <section className="py-8 sm:py-12 md:mb-16 lg:mb-16">
           <div className="flex flex-col md:flex-row items-center max-w-7xl mx-auto gap-10 sm:gap-14 px-4 sm:px-6">
             <div className="w-full md:w-1/2 flex justify-center">
               <img
@@ -398,10 +383,10 @@ const Home = () => {
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">
                 What is <span className="text-blue-500">Industry 4.0?</span>
               </h2>
-              <p className=" lg:relative lg:left-5 text-gray-200 text-pretty sm:text-lg md:text-xl leading-relaxed max-w-2xl">
+              <p className="lg:relative lg:left-5 text-gray-200 text-pretty sm:text-lg md:text-xl leading-relaxed max-w-2xl">
                 Industry 4.0 is the fourth industrial revolution built on cyber
                 physical systems, IoT, big data, AI, and smart automation. It
-                transforms traditional manufacturing into ‘smart factories’ with
+                transforms traditional manufacturing into 'smart factories' with
                 real-time data exchange and autonomous decision-making.
               </p>
             </div>
@@ -409,33 +394,29 @@ const Home = () => {
         </section>
 
         <div
-          className="relative w-full py-12 sm:py-16 lg:py-20 overflow-hidden"
+          className="relative w-full py-4 xs:py-8 min-h-[60vh] mt-4"
           style={{
             backgroundImage: `url(${homepagewhykuro})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/50 to-black/60"></div>
+          <div className="absolute inset-0 bg-black opacity-60"></div>
 
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-8 sm:mb-12">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-white drop-shadow-md">
-                Why choose{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 drop-shadow-lg">
-                  KURO?
-                </span>
+          <div className="absolute inset-0 bg-gradient-to-br from-black/10 to-black/30"></div>
+
+          <div className="relative z-10 flex flex-col justify-end min-h-[60vh] top-14">
+            <div className="text-center mb-8 xs:mb-5 px-4 xs:px-6 relative top-12">
+              <h2 className="text-3xl xs:text-4xl md:text-5xl font-bold leading-tight text-white">
+                Why choose <span className="text-blue-500">KURO?</span>
               </h2>
-              <p className="mx-auto text-base sm:text-lg lg:text-xl text-gray-300 max-w-3xl leading-relaxed mt-6 sm:mt-8 drop-shadow">
+              <p className="mx-auto text-base xs:text-lg md:text-2xl text-gray-300 max-w-5xl xs:max-w-2xl leading-relaxed mt-8">
                 We combine technical expertise with creative vision to deliver
-                solutions that drive real business results. Our approach ensures
-                innovation and efficiency for your business success.
+                solutions that drive real business results.
               </p>
             </div>
-
-            <div className="p-4 sm:p-6 lg:p-8">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="p-5 md:p-8">
+              <div className="flex flex-wrap -mx-2">
                 <Card img={Picture1} text="Integrated Architecture Design" />
                 <Card
                   img={Picture2}
@@ -447,6 +428,7 @@ const Home = () => {
             </div>
           </div>
         </div>
+
         <section className="py-6 xs:py-12 sm:py-24">
           <div className="max-w-8xl mx-auto px-4 xs:px-6 lg:px-8">
             <div className="relative p-6 xs:p-8 sm:p-12 lg:p-16 bg-gradient-to-r from-gray-900/80 to-gray-800/80 backdrop-blur-sm rounded-3xl border border-gray-700/50 text-center overflow-hidden shadow-2xl">
@@ -464,7 +446,7 @@ const Home = () => {
                   onClick={() => navigate("/contactus")}
                   aria-label="Start your journey with KURO"
                 >
-                  "Start Your Journey With Us!"
+                  Start Your Journey With Us!
                 </button>
               </div>
               <div className="absolute top-6 xs:top-8 left-6 xs:left-8 w-3 xs:w-4 h-2 xs:h-3 bg-blue-400 rounded-full animate-pulse" />
