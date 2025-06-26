@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import homepagewhykuro from "../assets/homepagewhykuro.jpg";
 import {
   FaProjectDiagram,
   FaNetworkWired,
@@ -407,26 +408,45 @@ const Home = () => {
           </div>
         </section>
 
-        <section className="py-4 mt-10 xs:py-8">
-          <div className="text-center mb-8 xs:mb-5 px-4 xs:px-6">
-            <h2 className="text-3xl xs:text-4xl md:text-5xl font-bold leading-tight">
-              Why choose <span className="text-blue-500">KURO?</span>
-            </h2>
-            <p className="mx-auto text-base xs:text-lg md:text-2xl text-gray-500 max-w-5xl xs:max-w-2xl leading-relaxed mt-8">
-              We combine technical expertise with creative vision to deliver
-              solutions that drive real business results.
-            </p>
-          </div>
-        </section>
-        <div className="p-5 md:p-8 mb-5">
-          <div className="flex flex-wrap -mx-2 ">
-            <Card img={Picture1} text="Integrated Architecture Design" />
-            <Card img={Picture2} text="Continuous Innovation & Improvement" />
-            <Card img={Picture3} text="Agile Project Management" />
-            <Card img={Picture4} text="Remote Support Team" />
+        <div
+          className="relative w-full py-12 sm:py-16 lg:py-20 overflow-hidden"
+          style={{
+            backgroundImage: `url(${homepagewhykuro})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/50 to-black/60"></div>
+
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-8 sm:mb-12">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-white drop-shadow-md">
+                Why choose{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 drop-shadow-lg">
+                  KURO?
+                </span>
+              </h2>
+              <p className="mx-auto text-base sm:text-lg lg:text-xl text-gray-300 max-w-3xl leading-relaxed mt-6 sm:mt-8 drop-shadow">
+                We combine technical expertise with creative vision to deliver
+                solutions that drive real business results. Our approach ensures
+                innovation and efficiency for your business success.
+              </p>
+            </div>
+
+            <div className="p-4 sm:p-6 lg:p-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <Card img={Picture1} text="Integrated Architecture Design" />
+                <Card
+                  img={Picture2}
+                  text="Continuous Innovation & Improvement"
+                />
+                <Card img={Picture3} text="Agile Project Management" />
+                <Card img={Picture4} text="Remote Support Team" />
+              </div>
+            </div>
           </div>
         </div>
-
         <section className="py-6 xs:py-12 sm:py-24">
           <div className="max-w-8xl mx-auto px-4 xs:px-6 lg:px-8">
             <div className="relative p-6 xs:p-8 sm:p-12 lg:p-16 bg-gradient-to-r from-gray-900/80 to-gray-800/80 backdrop-blur-sm rounded-3xl border border-gray-700/50 text-center overflow-hidden shadow-2xl">
