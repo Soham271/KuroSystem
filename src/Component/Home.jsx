@@ -87,6 +87,8 @@ const Home = () => {
       .explore-button:hover {
         transform: scale(1.05);
         box-shadow: 0 6px 22px rgba(59, 130, 246, 0.3);
+                
+
       }
       
       .slider-container {
@@ -236,7 +238,7 @@ const Home = () => {
         />
       </div>
 
-      <main className="flex-grow mt-16 xs:mt-16">
+      <main className="flex-grow mt-5 xl:mt-16">
         <section
           ref={heroInViewRef}
           className={`pt-4 pb-8 xs:pb-12 h-auto flex items-center transition-all duration-768 ease-in-out ${
@@ -248,15 +250,15 @@ const Home = () => {
             ref={heroRef}
           >
             <div className="md:w-2/3">
-              <h1 className="text-2xl xs:text-3xl md:text-[40px] font-bold leading-tight mb-4">
+              <h1 className="text-4xl xs:text-3xl md:text-[40px] font-bold leading-tight mb-4">
                 <span className="font-serif text-transparent bg-clip-text bg-gradient-to-r from-black via-white to-slate-500 bg-[length:200%_auto] animate-shine">
-                  Making Production as easy
+                  Making Production as easy 
                 </span>{" "}
                 <span className="font-serif text-transparent bg-clip-text bg-gradient-to-r from-black via-white to-slate-500 bg-[length:200%_auto] animate-shine">
-                  as the flick of fingers
+                 as  the flick of fingers
                 </span>
               </h1>
-              <p className="text-gray-300 mt-4 mb-6 text-base xs:text-lg md:text-xl space-y-3">
+              <p className="text-gray-300 mt-4 mb-6 text-lg xs:text-lg md:text-xl space-y-3">
                 At{" "}
                 <strong className="text-lg xs:text-xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-300">
                   KURO
@@ -264,14 +266,14 @@ const Home = () => {
               , we make sure that intelligent, future-ready automation technology is widely accessible, to power the manufacturing 	industry both at scale and at the grassroots.
                 
               </p>
-              <ul className="list-disc pl-5 text-sm xs:text-base md:text-xl text-gray-300 space-y-2 xs:space-y-1">
+              <ul className="list-disc pl-5 text-lg xs:text-base md:text-xl text-gray-300 space-y-2 xs:space-y-1">
                 <li><strong className="text-gray-400">Real-Time Monitoring </strong> with our Industry 4.0 Solutions</li>
                 <li><strong className="text-gray-400">AI-powered Automation </strong> is here</li>
                 <li><strong className="text-gray-400">Smooth integration</strong> of OT systems, new or old, with IT systems.</li>
               </ul>
               <div className="mt-8 xs:mt-10">
                 <button
-                  className="px-4 xs:px-6 py-2 xs:py-3 text-base xs:text-lg font-semibold bg-blue-600 text-white rounded-xl hover:bg-gray-400 hover:text-black transition shadow-lg explore-button"
+                  className="px-4 xs:px-6 py-2 xs:py-3 text-2xl xs:text-lg font-semibold bg-blue-600 text-white rounded-xl hover:bg-gray-400 hover:text-black transition shadow-lg explore-button"
                   onClick={() => navigate("/offering")}
                   aria-label="Explore KURO's solutions"
                 >
