@@ -483,7 +483,7 @@ const AboutUs = () => {
           </div>
 
           <div className="text-center mb-8 sm:mb-10 md:mb-12 font-bold">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white mb-3 sm:mb-4 text-center section-heading">
+            <h2 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl text-white mb-3 sm:mb-4 text-center section-heading">
               Our{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
                 History
@@ -509,13 +509,13 @@ const AboutUs = () => {
                 >
                   <div className="bg-white/20 backdrop-blur-xl border border-white/30 rounded-2xl p-4 sm:p-5 md:p-6 shadow-lg">
                     <h3
-                      className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-blue-400 mb-3 sm:mb-4"
+                      className="text-2xl sm:text-xl md:text-2xl lg:text-3xl text-blue-400 mb-3 sm:mb-4"
                       ref={(el) => (headingRefs.current[idx + 1] = el)}
                     >
                       {section.title}
                     </h3>
                     <div
-                      className="text-sm sm:text-base md:text-lg text-gray-300 leading-relaxed prose"
+                      className="text-lg sm:text-base md:text-lg text-gray-300 leading-relaxed prose"
                       dangerouslySetInnerHTML={{ __html: section.content }}
                     />
                   </div>
@@ -544,7 +544,7 @@ const AboutUs = () => {
         {/* Inspiration */}
         <div className="max-w-6xl mx-auto text-center">
           <div className="text-center mb-8 sm:mb-10 font-bold">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white mb-3 sm:mb-4 text-center section-heading">
+            <h2 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl text-white mb-3 sm:mb-4 text-center section-heading">
               Our{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
                 Inspiration
@@ -568,10 +568,10 @@ const AboutUs = () => {
                   initial="hidden"
                   animate={inView ? "visible" : "hidden"}
                 >
-                  <h3 className="text-base sm:text-lg md:text-xl text-blue-400 mb-2 font-semibold">
+                  <h3 className="text-xl  font-bold sm:text-lg md:text-xl text-blue-400 mb-2 ">
                     {sec.title}
                   </h3>
-                  <p className="text-xs sm:text-sm md:text-base text-gray-300">
+                  <p className="text-md sm:text-sm md:text-base text-gray-300">
                     {sec.content}
                   </p>
                 </motion.div>
@@ -586,7 +586,7 @@ const AboutUs = () => {
           className="clients-section pt-3 mb-6 sm:mb-8 text-center"
         >
           <div className="text-center mb-8 sm:mb-10 font-bold">
-            <h2 className="text-2xl sm:text-2xl md:text-4xl lg:text-5xl text-white mb-3 sm:mb-4 text-center section-heading">
+            <h2 className="text-3xl sm:text-2xl md:text-4xl lg:text-5xl text-white mb-3 sm:mb-4 text-center section-heading">
               Our{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
                 Core Philosophy
@@ -630,15 +630,15 @@ const AboutUs = () => {
               </motion.div>
             ))}
           </motion.div>
-          <p className="  text-gray-300 mt-6 sm:mt-8 md:mt-10 text-sm sm:text-base md:text-xl max-w-8xl mx-auto mb-6 sm:mb-8 px-4 space-y-3">
+          <p className="  text-gray-300 mt-6 sm:mt-8 md:mt-10 text-lg sm:text-base md:text-xl max-w-8xl mx-auto mb-6 sm:mb-8 px-4 space-y-3">
             With these principles at our core,{" "}
-            <span className="text-base sm:text-xl md:text-3xl font-bold text-orange-800">
+            <span className="text-xl sm:text-xl md:text-3xl font-bold text-orange-800">
               KURO's
             </span>{" "}
             intent is clear: to build accessible, intelligent, and future-ready
             automation solutions that power the manufacturing industry both at
             scale and at the grassroots. We're here to ensure{" "}
-            <span className="text-base sm:text-xl md:text-2xl font-bold text-blue-800">
+            <span className="text-xl sm:text-xl md:text-2xl font-bold text-blue-800">
               Industry 4.0
             </span>{" "}
             isn't exclusive but inclusive, scalable, and transformative for all.
@@ -654,7 +654,7 @@ const AboutUs = () => {
           className="flex justify-center flex-wrap clients-section pt-3"
         >
           <div className="mb-8 sm:mb-10 text-center font-bold w-full">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white text-center mb-2 section-heading">
+            <h2 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl text-white text-center mb-2 section-heading">
               Our{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
                 Clients
