@@ -19,14 +19,13 @@ function App() {
       children: [
         { index: true, element: <Home /> },
         { path: "/aboutus", element: <AboutUs /> },
+        { path: "/successtories", element: <SuccessStories /> },
+
+        { path: "/successtories/project1", element: <Project1 /> },
+        { path: "/successtories/project2", element: <Project2 /> },
         {
-          path: "/successtories",
-          element: <SuccessStories />,
-          children: [
-            { path: "autocamp", element: <Project1 /> },
-            { path: "honey-mamas", element: <Project2 /> },
-            { path: "traditional-medicinals", element: <Project3 /> },
-          ],
+          path: "/successtories/project3",
+          element: <Project3 />,
         },
         { path: "/offering", element: <Offerings /> },
         { path: "/careers", element: <Careers /> },

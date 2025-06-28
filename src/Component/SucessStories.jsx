@@ -1,6 +1,5 @@
 import Contact from "../assets/success-stories-banner.jpg";
 import { useEffect, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const SuccessStories = () => {
@@ -11,64 +10,41 @@ const SuccessStories = () => {
 
   const projects = [
     {
-      id: "autocamp",
-      title: "AutoCamp",
-      category: "CONSUMER PRODUCTS",
+      id: "project1",
+      title:
+        "Driving Efficiency & Traceability for a Leading Vehicle Manufacturer",
+      category: "Client Product",
       services: "Strategy, Media Relations, Influencer Relations",
-      clientSince: "2019",
       description:
-        "A luxury outdoor hospitality experience that redefines camping with Airstream trailers in stunning natural locations.",
+        "A vehicle maker faced messy, error-prone production. KURO brought real-time tracking and smart alerts, cutting downtime and boosting quality so they could grow with confidence.",
       image:
         "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800&h=600&fit=crop",
       color: "from-amber-50 to-orange-100",
     },
     {
-      id: "honey-mamas",
-      title: "Honey Mama's",
-      category: "FOOD & BEVERAGE",
+      id: "project2",
+      title:
+        "Precision Maintenance and Utilization Tracking for a Global Components Manufacturer",
+      category: "Client Product",
       services: "Brand Strategy, Digital Marketing, PR",
       clientSince: "2020",
       description:
-        "Artisanal chocolate treats made with organic ingredients and superfoods for conscious consumers.",
+        "A top auto supplier faced hidden die issues and stoppages. KURO brought real-time die tracking, smart checklists, and error-proof controls, cutting downtime by 40% and making maintenance proactive, not reactive.",
       image:
         "https://images.unsplash.com/photo-1549652756-95b31b6b8040?w=800&h=600&fit=crop",
       color: "from-pink-50 to-red-100",
     },
     {
-      id: "traditional-medicinals",
-      title: "Traditional Medicinals",
-      category: "WELLNESS & HEALTH",
+      id: "project3",
+      title: "AI-Powered Traceability for an FMCG Nano-Factory",
+      category: "Client Product",
       services: "Content Strategy, Social Media, Wellness Campaigns",
       clientSince: "2018",
       description:
-        "Herbal tea and wellness products rooted in traditional medicine and sustainable practices.",
+        "An FMCG firm faced chaos in changeovers. KURO’s AI traceability cut errors, sped changeovers by 45%, and ensured full compliance.",
       image:
         "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=800&h=600&fit=crop",
       color: "from-green-50 to-emerald-100",
-    },
-    {
-      id: "tech-innovations",
-      title: "Tech Innovations",
-      category: "TECHNOLOGY",
-      services: "Product Launch, Tech PR, Developer Relations",
-      clientSince: "2021",
-      description:
-        "Cutting-edge software solutions that transform how businesses operate in the digital age.",
-      image:
-        "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=600&fit=crop",
-      color: "from-blue-50 to-indigo-100",
-    },
-    {
-      id: "sustainable-living",
-      title: "Sustainable Living Co",
-      category: "LIFESTYLE",
-      services: "Sustainability Marketing, Community Building",
-      clientSince: "2019",
-      description:
-        "Eco-friendly home products that make sustainable living accessible and stylish.",
-      image:
-        "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&h=600&fit=crop",
-      color: "from-teal-50 to-cyan-100",
     },
   ];
 
@@ -171,7 +147,7 @@ const SuccessStories = () => {
   }, []);
 
   const navigateToProject = (projectId) => {
-    navigate(`/successstories/${projectId}`);
+    navigate(`/successtories/${projectId}`);
   };
 
   const PortfolioGrid = () => (
@@ -187,7 +163,7 @@ const SuccessStories = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.slice(0, 3).map((project) => (
+          {projects.map((project) => (
             <div
               key={project.id}
               className="group cursor-pointer"
@@ -210,7 +186,7 @@ const SuccessStories = () => {
                   <div className="text-sm text-gray-500 font-medium mb-2 tracking-wide">
                     {project.category}
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">
                     {project.title}
                   </h3>
                   <p className="text-gray-600 text-sm leading-relaxed">

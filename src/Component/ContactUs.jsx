@@ -317,12 +317,7 @@ const ContactUs = () => {
 
   const getInputAnimation = (index, field) => {
     if (!animatedInputs[field]) return "";
-    const animations = [
-      "slide-in-left",
-      "slide-in-right",
-      "slide-in-bottom",
-      "bounce-in",
-    ];
+    const animations = ["slide-in-left", "slide-in-right"];
     return animations[index % animations.length];
   };
 
