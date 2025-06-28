@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import Lenis from "@studio-freight/lenis";
 import mobilerobo from "../assets/mobilerobo.gif";
 
 import {
@@ -29,6 +30,7 @@ const Home = () => {
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
   const [scrollY, setScrollY] = useState(0);
+  const lenisRef = useRef(null);
 
   const heroRef = useRef(null);
   const technologiesRef = useRef(null);
@@ -42,15 +44,39 @@ const Home = () => {
   }, []);
 
   const scrollToTechnologies = () => {
-    if (technologiesRef.current) {
-      technologiesRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
+    if (technologiesRef.current && lenisRef.current) {
+      lenisRef.current.scrollTo(technologiesRef.current, {
+        duration: 1.5,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       });
     }
   };
 
   useEffect(() => {
+    // Initialize Lenis
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      direction: "vertical",
+      gestureDirection: "vertical",
+      smooth: true,
+      mouseMultiplier: 1,
+      smoothTouch: false,
+      touchMultiplier: 2,
+      infinite: false,
+    });
+
+    lenisRef.current = lenis;
+
+    // Connect Lenis with GSAP ScrollTrigger
+    lenis.on("scroll", ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0);
+
     setIsVisible(true);
 
     if (heroRef.current) {
@@ -76,6 +102,26 @@ const Home = () => {
 
     const style = document.createElement("style");
     style.innerHTML = `
+      html.lenis {
+        height: auto;
+      }
+
+      .lenis.lenis-smooth {
+        scroll-behavior: auto;
+      }
+
+      .lenis.lenis-smooth [data-lenis-prevent] {
+        overscroll-behavior: contain;
+      }
+
+      .lenis.lenis-stopped {
+        overflow: hidden;
+      }
+
+      .lenis.lenis-scrolling iframe {
+        pointer-events: none;
+      }
+
       .explore-button {
         background: linear-gradient(to right, #3b82f6, #9333ea);
         padding: 0.75rem 1.5rem;
@@ -153,7 +199,19 @@ const Home = () => {
 
     return () => {
       window.removeEventListener("scroll", onScroll);
+
+      if (lenisRef.current) {
+        lenisRef.current.destroy();
+      }
+
+      gsap.ticker.remove((time) => {
+        if (lenisRef.current) {
+          lenisRef.current.raf(time * 1200);
+        }
+      });
+
       ScrollTrigger.getAll().forEach((t) => t.kill());
+
       if (document.head.contains(style)) {
         document.head.removeChild(style);
       }
@@ -324,6 +382,7 @@ const Home = () => {
               className="slider-container"
               {...handlers}
               ref={sliderRef}
+              data-lenis-prevent
               onMouseEnter={() => sliderRef.current?.classList.add("paused")}
               onMouseLeave={() => sliderRef.current?.classList.remove("paused")}
             >
@@ -404,7 +463,7 @@ const Home = () => {
         >
           <div className="absolute inset-0 bg-black opacity-5"></div>
 
-          <div className="absolute inset-0 bg-gradient-to-br from-black/10 to-black/10"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-black/10 to-black"></div>
 
           <div className="relative z-10 flex flex-col justify-end min-h-[60vh] top-14">
             <div className="text-center mb-8 xs:mb-5 px-4 xs:px-6 relative top-12">
@@ -435,7 +494,7 @@ const Home = () => {
             <div className="relative p-6 xs:p-8 sm:p-12 lg:p-16 bg-gradient-to-r from-gray-900/80 to-gray-800/80 backdrop-blur-sm rounded-3xl border border-gray-700/50 text-center overflow-hidden shadow-2xl">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10" />
               <div className="relative z-10">
-                <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-4 xs:mb-6">
+                <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black text-blue-600/60 mb-4 xs:mb-6">
                   Ready to Transform Your Manufacturing?
                 </h2>
                 <p className="text-gray-300 text-base xs:text-lg sm:text-xl mb-6 xs:mb-8 max-w-xl xs:max-w-2xl mx-auto leading-relaxed">
