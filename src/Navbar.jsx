@@ -19,7 +19,7 @@ const Navbar = () => {
   const handleLogoClick = () => navigate("/");
 
   const commonBtnClasses =
-    "px-5 py-2 rounded-full text-base font-semibold flex items-center justify-center shadow-sm";
+    "px-5 py-2 rounded-full text-base font-bold flex items-center justify-center shadow-sm";
 
   return (
     <nav className="w-full bg-[radial-gradient(#0A2B4D,_#1A1A1A)] shadow-md fixed top-0 left-0 z-50">
@@ -46,7 +46,7 @@ const Navbar = () => {
               className={({ isActive }) =>
                 isActive
                   ? `${commonBtnClasses} bg-[#374151] opacity-80 shadow-[inset_0_0_8px_rgba(200,200,255,1)]  text-white `
-                  : `px-4 py-2 rounded-full text-base font-semibold text-gray-300 hover:text-red-400 hover:font-bold`
+                  : `px-4 py-2 rounded-full text-base font-bold text-gray-300 hover:text-red-400 hover:font-bold`
               }
             >
               {label}

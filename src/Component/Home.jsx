@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import Lenis from "@studio-freight/lenis";
 import mobilerobo from "../assets/mobilerobo.gif";
-
 import {
   FaProjectDiagram,
   FaNetworkWired,
@@ -29,9 +27,6 @@ gsap.registerPlugin(ScrollTrigger);
 const Home = () => {
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
-  const lenisRef = useRef(null);
-
   const heroRef = useRef(null);
   const technologiesRef = useRef(null);
   const { ref: heroInViewRef, inView: heroInView } = useInView({
@@ -39,44 +34,7 @@ const Home = () => {
     triggerOnce: true,
   });
 
-  const handleScroll = useCallback(() => {
-    setScrollY(window.scrollY);
-  }, []);
-
-  const scrollToTechnologies = () => {
-    if (technologiesRef.current && lenisRef.current) {
-      lenisRef.current.scrollTo(technologiesRef.current, {
-        duration: 1.5,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      });
-    }
-  };
-
   useEffect(() => {
-    // Initialize Lenis
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: "vertical",
-      gestureDirection: "vertical",
-      smooth: true,
-      mouseMultiplier: 1,
-      smoothTouch: false,
-      touchMultiplier: 2,
-      infinite: false,
-    });
-
-    lenisRef.current = lenis;
-
-    // Connect Lenis with GSAP ScrollTrigger
-    lenis.on("scroll", ScrollTrigger.update);
-
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
-
-    gsap.ticker.lagSmoothing(0);
-
     setIsVisible(true);
 
     if (heroRef.current) {
@@ -87,41 +45,8 @@ const Home = () => {
       );
     }
 
-    let ticking = false;
-    const onScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          handleScroll();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-
     const style = document.createElement("style");
     style.innerHTML = `
-      html.lenis {
-        height: auto;
-      }
-
-      .lenis.lenis-smooth {
-        scroll-behavior: auto;
-      }
-
-      .lenis.lenis-smooth [data-lenis-prevent] {
-        overscroll-behavior: contain;
-      }
-
-      .lenis.lenis-stopped {
-        overflow: hidden;
-      }
-
-      .lenis.lenis-scrolling iframe {
-        pointer-events: none;
-      }
-
       .explore-button {
         background: linear-gradient(to right, #3b82f6, #9333ea);
         padding: 0.75rem 1.5rem;
@@ -198,25 +123,12 @@ const Home = () => {
     document.head.appendChild(style);
 
     return () => {
-      window.removeEventListener("scroll", onScroll);
-
-      if (lenisRef.current) {
-        lenisRef.current.destroy();
-      }
-
-      gsap.ticker.remove((time) => {
-        if (lenisRef.current) {
-          lenisRef.current.raf(time * 1200);
-        }
-      });
-
       ScrollTrigger.getAll().forEach((t) => t.kill());
-
       if (document.head.contains(style)) {
         document.head.removeChild(style);
       }
     };
-  }, [handleScroll]);
+  }, []);
 
   const techItems = [
     {
@@ -271,31 +183,6 @@ const Home = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-950 text-white">
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div
-          className="absolute -top-40 -right-40 w-64 xs:w-80 h-64 xs:h-80 bg-gradient-to-br from-blue-600/15 to-purple-600/15 rounded-full blur-3xl will-change-transform"
-          style={{ transform: `translate3d(0, ${scrollY * 0.1}px, 0)` }}
-        />
-        <div
-          className="absolute top-1/2 -left-40 w-72 xs:w-96 h-72 xs:h-96 bg-gradient-to-br from-indigo-100/10 to-cyan-200/10 rounded-full blur-3xl will-change-transform"
-          style={{ transform: `translate3d(0, ${scrollY * -0.05}px, 0)` }}
-        />
-        <div
-          className="absolute bottom-40 right-1/3 w-56 xs:w-72 h-56 xs:h-72 bg-gradient-to-br from-rose-50/10 to-blue-100/10 rounded-full blur-3xl will-change-transform"
-          style={{ transform: `translate(0, ${scrollY * 0.08}px)` }}
-        />
-      </div>
-
-      <div className="fixed inset-0 opacity-[0.02] pointer-events-none">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0)`,
-            backgroundSize: "40px 40px",
-          }}
-        />
-      </div>
-
       <main className="flex-grow mt-5 xl:mt-16">
         <section
           ref={heroInViewRef}
@@ -382,7 +269,6 @@ const Home = () => {
               className="slider-container"
               {...handlers}
               ref={sliderRef}
-              data-lenis-prevent
               onMouseEnter={() => sliderRef.current?.classList.add("paused")}
               onMouseLeave={() => sliderRef.current?.classList.remove("paused")}
             >
@@ -495,7 +381,8 @@ const Home = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10" />
               <div className="relative z-10">
                 <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black text-blue-600/60 mb-4 xs:mb-6">
-                  Ready to Transform Your Manufacturing?
+                  Ready to Transform Your Manufacturing
+                
                 </h2>
                 <p className="text-gray-300 text-base xs:text-lg sm:text-xl mb-6 xs:mb-8 max-w-xl xs:max-w-2xl mx-auto leading-relaxed">
                   Join industry leaders who trust KURO to power their digital
