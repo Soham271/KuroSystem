@@ -29,11 +29,9 @@ import UnitedSpirits from "../assets/Client/United Spirits Logo.png";
 const AboutUs = () => {
   const navigate = useNavigate();
 
-  // Localized history progress state
   const [historyProgress, setHistoryProgress] = useState(0);
   const historyRef = useRef(null);
 
-  // Intersection observers
   const { ref: clientsRef, inView: clientsInView } = useInView({
     threshold: 0.2,
     triggerOnce: true,
@@ -42,9 +40,7 @@ const AboutUs = () => {
     threshold: 0.2,
     triggerOnce: true,
   });
-  const headingRefs = useRef([]);
 
-  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
@@ -57,16 +53,7 @@ const AboutUs = () => {
       transition: { duration: 0.6, delay: i * 0.2, ease: "easeOut" },
     }),
   };
-  const timelineVariants = {
-    hidden: (i) => ({ opacity: 0, x: i % 2 === 0 ? -100 : 100 }),
-    visible: (i) => ({
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.6, delay: i * 0.3, ease: "easeOut" },
-    }),
-  };
 
-  // Logo assets
   const clientLogos = [
     Mahindra,
     Siemens,
@@ -78,23 +65,18 @@ const AboutUs = () => {
     IAC,
     Endurance,
     G,
-
     Hindustan,
-
     Parle,
     Regal,
     Gsk,
     TDK,
-
     Supermax,
     ThyssenKrupp,
-
     UnitedSpirits,
     JBM,
     Jindal,
   ];
 
-  // Sections data
   const sections = [
     {
       title: "2021 – KURO Systems Founded",
@@ -115,24 +97,6 @@ const AboutUs = () => {
       title: "Industry 4.0 Solutions for MSMEs",
       content:
         "Since then, KURO has continued to innovate with purpose — building reliable, scalable, and easy-to-implement Industry 4.0 solutions not just for large-scale manufacturers, but for MSMEs as well, ensuring that automation isn't just for the giants, but for every visionary maker out there.",
-    },
-  ];
-
-  const inspirationSections = [
-    {
-      title: "Our Vision",
-      content:
-        "Democratizing Industry 4.0 for all manufacturers across India and beyond.",
-    },
-    {
-      title: "Our Mission",
-      content:
-        "Empowering manufacturers with innovative, cost-effective automation for growth and excellence.",
-    },
-    {
-      title: "Why We Started",
-      content:
-        "Bridging the gap between cutting-edge tech and practical factory-floor solutions.",
     },
   ];
 
@@ -190,35 +154,39 @@ const AboutUs = () => {
       .timeline { position: relative; max-width: 1000px; margin: 0 auto; padding-left: 32px; }
       .history-progress-track { position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; }
       .history-progress-fill { position: absolute; left: 0; top: 0; width: 6px; background: #3b82f6; border-radius: 3px; transition: height 0.1s ease; }
-      .history-progress-handle {
-        position: absolute;
-        left: -3px;
-        width: 12px;
-        height: 12px;
-        background: white;
-        border: 4px solid rgba(0, 100, 200, 0.5);
-        border-radius: 50%;
-        transform: translateY(-50%);
-        transition: top 0.1s ease;
+      @keyframes movedown {
+      0% {
+        opacity: 0;
+        transform: translateY(-30px);
       }
-      .timeline-item {
-        position: relative;
-        margin-bottom: 3rem;
-        width: 100%;
-        max-width: 1000px;
+      100% {
+        opacity: 1;
+        transform: translateY(0px);
       }
-      .timeline-item:nth-child(even) { 
-        margin-left: auto; 
+    }
+
+    @keyframes moveline {
+      0% {
+        height: 0;
       }
-      .timeline-connector { 
-        position: absolute; 
-        z-index: 1; 
-        stroke: rgba(255,255,255,0.3); 
-        stroke-width: 2; 
-        stroke-dasharray: 5; 
-        display: none;
+      100% {
+        height: 100%;
       }
-        
+    }
+
+    .animation-delay-0 {
+      animation-delay: 0s;
+    }
+    .animation-delay-1 {
+      animation-delay: 1s;
+    }
+    .animation-delay-2 {
+      animation-delay: 2s;
+    }
+    .animation-delay-3 {
+      animation-delay: 3s;
+    }
+    
       .flip-card {
         perspective: 1000px;
         height: 220px;
@@ -307,15 +275,7 @@ const AboutUs = () => {
       
       /* Tablet styles */
       @media (min-width: 641px) and (max-width: 768px) {
-        .timeline { 
-          padding-left: 20px; 
-        }
-        .timeline-item { 
-          width: calc(100% - 24px); 
-          margin-left: 0 !important; 
-          margin-bottom: 2.5rem;
        
-        }
         .flip-card {
           height: 180px;
           margin-bottom: 1.5rem;
@@ -336,59 +296,52 @@ const AboutUs = () => {
       
       
       @media (max-width: 640px) {
-        .timeline { 
-          padding-left: 16px; 
-          max-width: 100%;
-        }
-        .timeline-item { 
-          width: calc(100% - 20px); 
-          margin-left: 0 !important; 
-          margin-bottom: 2rem;
-        }
-        .history-progress-track { width: 4px; }
-        .history-progress-fill { width: 4px; }
-        .history-progress-handle { 
-          width: 10px; 
-          height: 10px; 
-          left: -3px; 
-          border-width: 2px; 
-        }
-        .flip-card {
-          height: 180px;
-          margin-bottom: 2rem;
-        }
-        .flip-card-front, .flip-card-back {
-          height: 180px;
-          padding: 12px;
-          min-height: 180px;
-          overflow: hidden;
-        }
-        .flip-card-front h3,
-        .flip-card-back h3 {
-          font-size: 0.9rem;
-          margin-bottom: 8px;
-          line-height: 1.2;
-        }
-        .flip-card-back p {
-          font-size: 0.7rem;
-          line-height: 1.3;
-          overflow-y: auto;
-          max-height: calc(100% - 35px);
-        }
-        .hover-prompt {
-          font-size: 0.6rem;
-          bottom: 8px;
-        }
+       
+       .timeline-mobile {
+      padding-left: 2rem;
+    }
+    
+    .timeline-item-mobile {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      width: 100% !important;
+    }
+    
+    .timeline-dot {
+      position: absolute;
+      left: -1.75rem;
+      top: 1rem;
+      width: 0.75rem;
+      height: 0.75rem;
+      background-color: #60a5fa;
+      border-radius: 50%;
+      border: 2px solid white;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .animate-movedown {
+      animation-duration: 1.5s;
+    }
+    
+    .animation-delay-1 {
+      animation-delay: 0.5s;
+    }
+    .animation-delay-2 {
+      animation-delay: 1s;
+    }
+    .animation-delay-3 {
+      animation-delay: 1.5s;
+    }
       }
       
     
       @media (max-width: 480px) {
-        .timeline { 
-          padding-left: 12px; 
-        }
-        .timeline-item { 
-          width: calc(100% - 16px); 
-        }
+      .timeline-mobile {
+      padding-left: 1.5rem;
+    }
+
+       
         .flip-card { 
           height: 170px;
           margin-bottom: 1.75rem;
@@ -439,7 +392,7 @@ const AboutUs = () => {
 
   return (
     <section className="w-full p-0 m-0 overflow-x-hidden">
-      {/* Hero Banner - Mobile Responsive Heights */}
+     {/* hero */}
       <div
         className="relative bg-cover bg-center 
         min-h-[50vh] sm:min-h-[55vh] md:min-h-[60vh] lg:min-h-[70vh] 
@@ -476,83 +429,71 @@ const AboutUs = () => {
         </div>
       </div>
       <div className="relative py-8 sm:py-12 md:py-16 px-4 sm:px-6 md:px-16 space-y-8 sm:space-y-12 md:space-y-16">
-        <div ref={historyRef} className="timeline relative">
-          <div className="history-progress-track">
-            <div
-              className="history-progress-fill"
-              style={{ height: `${historyProgress}%` }}
-            />
-            <div
-              className="history-progress-handle"
-              style={{ top: `${historyProgress}%` }}
-            />
-          </div>
 
-          <div className="text-center mb-8 sm:mb-10 md:mb-12 font-bold">
-            <h2 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl text-white mb-3 sm:mb-4 text-center section-heading">
-              Our{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-                History
-              </span>
-            </h2>
-            <div className="w-24 sm:w-28 md:w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
-          </div>
-          {sections.map((section, idx) => {
-            const { ref, inView } = useInView({
-              threshold: 0.2,
-              triggerOnce: true,
-            });
-            const isOdd = idx % 2 === 0;
-            return (
-              <React.Fragment key={idx}>
-                <motion.div
-                  className="timeline-item"
-                  ref={ref}
-                  custom={idx}
-                  variants={timelineVariants}
-                  initial="hidden"
-                  animate={inView ? "visible" : "hidden"}
-                >
-                  <div className="bg-white/20 backdrop-blur-xl border border-white/30 rounded-2xl p-4 sm:p-5 md:p-6 shadow-lg">
-                    <h3
-                      className="text-2xl sm:text-xl md:text-2xl lg:text-3xl text-blue-400 mb-3 sm:mb-4"
-                      ref={(el) => (headingRefs.current[idx + 1] = el)}
-                    >
-                      {section.title}
-                    </h3>
-                    <div
-                      className="text-lg sm:text-base md:text-lg text-gray-300 leading-relaxed prose"
-                      dangerouslySetInnerHTML={{ __html: section.content }}
-                    />
-                  </div>
-                </motion.div>
-                {idx < sections.length - 1 && (
-                  <svg
-                    className="timeline-connector"
-                    style={{
-                      top: `${(idx + 1) * 200 + 50}px`,
-                      left: isOdd ? "400px" : "100px",
-                      width: isOdd ? "calc(100% - 500px)" : "500px",
-                      height: "150px",
-                    }}
-                  >
-                    <path
-                      d={isOdd ? "M0,0 L100%,100%" : "M100%,0 L0,100%"}
-                      fill="none"
-                    />
-                  </svg>
-                )}
-              </React.Fragment>
-            );
-          })}
+{/* History Section */}
+<div ref={historyRef} className="relative max-w-6xl mx-auto px-4 sm:px-6">
+  <div className="text-center mb-6 sm:mb-8 md:mb-10 font-bold">
+    <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white mb-2 sm:mb-3">
+      Our{" "}
+      <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+        History
+      </span>
+    </h2>
+    
+    {/* Timeline line */}
+    <div className="mt-4 sm:mt-6 absolute w-1 md:w-1.5 h-full bg-[#00abf0] left-4 lg:left-1/2 transform lg:-translate-x-1/2 animate-[moveline_7s_linear_forwards] z-[-1]"></div>
+    <div className="w-20 sm:w-24 md:w-28 lg:w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
+  </div>
+  
+  {sections.map((section, idx) => (
+    <div
+      key={idx}
+      className={`
+        relative 
+        w-full
+        pl-8 lg:pl-0
+        lg:w-11/12 xl:w-3/4 2xl:w-1/2
+        p-3 sm:p-4 md:p-6 lg:p-8 
+        animate-[movedown_2s_linear_forwards] 
+        opacity-0 
+        ${idx % 2 === 0 ? 'lg:mr-auto lg:pr-3 xl:pr-6 2xl:pr-8' : 'lg:ml-auto lg:pl-3 xl:pl-6 2xl:pl-8'} 
+        ${idx === 0 ? 'animation-delay-0' : idx === 1 ? 'animation-delay-1' : idx === 2 ? 'animation-delay-2' : 'animation-delay-3'}
+        mb-6 sm:mb-8
+      `}
+    >
+      <div className="bg-white/20 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-5 lg:p-6 relative shadow-lg">
+        <div className="mb-2 sm:mb-3 md:mb-4 font-semibold text-base sm:text-lg md:text-xl lg:text-2xl text-center text-blue-400">
+          {section.title}
         </div>
+        <p className="text-white text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed">
+          {section.content}
+        </p>
+        
+        {/* Triangle pointer */}
+        <span
+          className={`
+            absolute top-4 sm:top-6 md:top-8 
+            border-t-[6px] border-b-[6px] sm:border-t-[8px] sm:border-b-[8px] md:border-t-[10px] md:border-b-[10px] lg:border-t-[12px] lg:border-b-[12px]
+            border-t-transparent border-b-transparent 
+            left-[-6px] border-r-[6px] border-r-white/20
+            lg:border-r-0 lg:left-auto lg:right-auto
+            ${idx % 2 === 0 
+              ? 'lg:right-[-8px] xl:right-[-10px] 2xl:right-[-12px] lg:border-l-[8px] xl:border-l-[10px] 2xl:border-l-[12px] lg:border-l-white/20' 
+              : 'lg:left-[-8px] xl:left-[-10px] 2xl:left-[-12px] lg:border-r-[8px] xl:border-r-[10px] 2xl:border-r-[12px] lg:border-r-white/20'
+            }
+          `}
+        ></span>
+      </div>
+    </div>
+  ))}
+</div>
 
         {/* Core Philosophy */}
         <div
           ref={philosophyRef}
-          className="clients-section pt-3 mb-6 sm:mb-8 text-center"
+          className="  clients-section pt-3   sm:mb-8 text-center"
         >
-          <div className="text-center mb-8 sm:mb-10 font-bold">
+          <div className=" mt-10 text-center mb-8 sm:mb-10 font-bold">
             <h2 className="text-3xl sm:text-2xl md:text-4xl lg:text-5xl text-white mb-3 sm:mb-4 text-center section-heading">
               Our{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
