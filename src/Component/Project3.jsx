@@ -56,31 +56,22 @@ const Project3 = () => {
             padding: 1.5rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
           }
-          .content-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.2);
-          }
-          .image-container {
+        
+        .image-container {
             position: relative;
             overflow: hidden;
             border-radius: 1rem;
             transition: transform 0.3s ease;
           }
-          .image-container:hover {
-            transform: scale(1.02);
-          }
+        
           .image-container::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent);
-            z-index: 1;
-            opacity: 0;
+                   
             transition: opacity 0.3s ease;
           }
-          .image-container:hover::before {
-            opacity: 1;
-          }
+     
           @media (max-width: 639px) {
             .back-button {
               padding: 0.4rem 0.8rem;
@@ -112,14 +103,6 @@ const Project3 = () => {
             <h1 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
               {project.title}
             </h1>
-            <div className="content-card">
-              <h3 className="text-lg sm:text-xl font-semibold text-white section-title">Campaign Services</h3>
-              <p className="text-gray-300 leading-relaxed text-sm sm:text-base">{project.services}</p>
-            </div>
-            <div className="content-card">
-              <h3 className="text-lg sm:text-xl font-semibold text-white section-title">Client Since</h3>
-              <p className="text-gray-300 leading-relaxed text-sm sm:text-base">{project.clientSince}</p>
-            </div>
             <div className="content-card">
               <h3 className="text-lg sm:text-xl font-semibold text-white section-title">Client Problem</h3>
               <p className="text-gray-300 leading-relaxed text-sm sm:text-base">{project.problem}</p>
