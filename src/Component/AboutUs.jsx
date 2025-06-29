@@ -72,22 +72,26 @@ const AboutUs = () => {
     Siemens,
     Bajaj,
     ABB,
-    JBM,
-    Atlas,
+    Bridgestone,
     Bosch,
+    Atlas,
+    IAC,
     Endurance,
     G,
+
     Hindustan,
-    IAC,
-    Jindal,
+
     Parle,
     Regal,
     Gsk,
-    Bridgestone,
     TDK,
+
     Supermax,
     ThyssenKrupp,
+
     UnitedSpirits,
+    JBM,
+    Jindal,
   ];
 
   // Sections data
@@ -445,9 +449,9 @@ const AboutUs = () => {
         <div className="absolute inset-0 bg-black/40" />
 
         <div className="relative z-10 max-w-4xl text-white text-center md:text-right space-y-4 md:space-y-6">
-          <h1 className="text-xl sm:text-[24px] md:text-4xl lg:text-5xl font-extrabold whitespace-nowrap">
+          <h1 className="text-xl sm:text-[24px] md:text-4xl lg:text-5xl font-bold whitespace-nowrap">
             Empowering Your Business with{" "}
-            <strong className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-red-200 inline">
+            <strong className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold  text-[#ff2400] inline">
               KURO
             </strong>
           </h1>
@@ -543,45 +547,6 @@ const AboutUs = () => {
           })}
         </div>
 
-        {/* Inspiration */}
-        <div className="max-w-6xl mx-auto text-center">
-          <div className="text-center mb-8 sm:mb-10 font-bold">
-            <h2 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl text-white mb-3 sm:mb-4 text-center section-heading">
-              Our{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-                Inspiration
-              </span>
-            </h2>
-            <div className="w-32 sm:w-36 md:w-44 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
-          </div>
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-4 sm:mb-5">
-            {inspirationSections.map((sec, idx) => {
-              const { ref, inView } = useInView({
-                threshold: 0.2,
-                triggerOnce: true,
-              });
-              return (
-                <motion.div
-                  key={idx}
-                  className="vision-card bg-white/20 backdrop-blur-xl border border-white/30 rounded-xl p-3 sm:p-4 shadow-lg"
-                  ref={ref}
-                  custom={idx}
-                  variants={itemVariants}
-                  initial="hidden"
-                  animate={inView ? "visible" : "hidden"}
-                >
-                  <h3 className="text-xl  font-bold sm:text-lg md:text-xl text-blue-400 mb-2 ">
-                    {sec.title}
-                  </h3>
-                  <p className="text-md sm:text-sm md:text-base text-gray-300">
-                    {sec.content}
-                  </p>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-
         {/* Core Philosophy */}
         <div
           ref={philosophyRef}
@@ -615,16 +580,14 @@ const AboutUs = () => {
                     <h3 className="text-lg sm:text-xl font-semibold text-blue-400 mb-3">
                       {card.title}
                     </h3>
-                    <span className="hover-prompt hidden lg:block">
-                      Hover Me
-                    </span>
-                    <span className="hover-prompt lg:hidden">Tap Me</span>
+
+                    <span className="hover-prompt lg:hidden">Tap Here</span>
                   </div>
                   <div className="flip-card-back">
                     <h3 className="text-lg sm:text-xl font-semibold text-violet-200 mb-3">
                       {card.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-black">
+                    <p className="text-xs sm:text-sm text-white">
                       {card.description}
                     </p>
                   </div>
@@ -634,14 +597,14 @@ const AboutUs = () => {
           </motion.div>
           <p className="  text-gray-300 mt-6 sm:mt-8 md:mt-10 text-lg sm:text-base md:text-xl max-w-8xl mx-auto mb-6 sm:mb-8 px-4 space-y-3">
             With these principles at our core,{" "}
-            <span className="text-xl sm:text-xl md:text-3xl font-bold text-orange-800">
+            <span className="text-xl sm:text-xl md:text-3xl font-bold text-[#ff2400]">
               KURO's
             </span>{" "}
             intent is clear: to build accessible, intelligent, and future-ready
             automation solutions that power the manufacturing industry both at
             scale and at the grassroots. We're here to ensure{" "}
-            <span className="text-xl sm:text-xl md:text-2xl font-bold text-blue-800">
-              Industry 4.0
+            <span className="text-xl sm:text-xl md:text-2xl font-bold text-blue-300">
+              INDUSTRY 4.0
             </span>{" "}
             isn't exclusive but inclusive, scalable, and transformative for all.
           </p>
@@ -666,7 +629,7 @@ const AboutUs = () => {
           </div>
 
           <motion.div
-            className="max-w-7xl mx-auto grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4 items-center"
+            className="max-w-7xl mx-auto grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-3 sm:gap-4 items-center"
             variants={containerVariants}
             initial="hidden"
             animate={clientsInView ? "visible" : "hidden"}

@@ -11,14 +11,18 @@ const Project3 = () => {
     category: "Client Product",
     services: "Content Strategy, Social Media, Wellness Campaigns",
     clientSince: "2018",
-    problem: "A fast-scaling FMCG nano-factory struggled with chaotic changeovers, manual data entry errors, and lacked real-time traceability for regulatory compliance.",
-    solution: "KURO deployed an AI-powered, manless traceability system with edge sensors and vision systems, linking raw materials to finished goods and streamlining SKU changeovers.",
+    problem:
+      "A fast-scaling FMCG nano-factory struggled with chaotic changeovers, manual data entry errors, and lacked real-time traceability for regulatory compliance.",
+    solution:
+      "KURO deployed an AI-powered, manless traceability system with edge sensors and vision systems, linking raw materials to finished goods and streamlining SKU changeovers.",
     image: Picture3,
     color: "from-gray-900 to-gray-800",
   };
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br ${project.color} p-6 xs:p-8 sm:p-10 lg:p-12 text-gray-100`}>
+    <div
+      className={`min-h-screen bg-gradient-to-br ${project.color} p-6 xs:p-8 sm:p-10 lg:p-12 text-gray-100`}
+    >
       <style>
         {`
           .back-button {
@@ -96,7 +100,9 @@ const Project3 = () => {
           aria-label="Back to Success Stories"
         >
           <ArrowLeft className="w-5 h-5" />
-          <span className="font-medium text-sm sm:text-base">Back to Success Stories</span>
+          <span className="font-medium text-sm sm:text-base">
+            Back to Success Stories
+          </span>
         </button>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 mt-8 sm:mt-10">
           <div className="space-y-6 sm:space-y-8">
@@ -104,17 +110,30 @@ const Project3 = () => {
               {project.title}
             </h1>
             <div className="content-card">
-              <h3 className="text-lg sm:text-xl font-semibold text-white section-title">Client Problem</h3>
-              <p className="text-gray-300 leading-relaxed text-sm sm:text-base">{project.problem}</p>
-            </div>
-            <div className="content-card">
-              <h3 className="text-lg sm:text-xl font-semibold text-white section-title">KURO Solution</h3>
-              <p className="text-gray-300 leading-relaxed text-sm sm:text-base">{project.solution}</p>
-            </div>
-            <div className="content-card">
-              <h3 className="text-lg sm:text-xl font-semibold text-white section-title">Conclusion</h3>
+              <h3 className="text-lg sm:text-xl font-semibold text-white section-title">
+                Client Problem
+              </h3>
               <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
-                KURO’s AI-driven traceability achieved 100% regulatory compliance, eliminated manual errors, and boosted changeover speed by 45% and operational efficiency by 30%, enabling scalable, agile production.
+                {project.problem}
+              </p>
+            </div>
+            <div className="content-card">
+              <h3 className="text-lg sm:text-xl font-semibold text-white section-title">
+                KURO Solution
+              </h3>
+              <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
+                {project.solution}
+              </p>
+            </div>
+            <div className="content-card">
+              <h3 className="text-lg sm:text-xl font-semibold text-white section-title">
+                Conclusion
+              </h3>
+              <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
+                KURO’s AI-driven traceability achieved 100% regulatory
+                compliance, eliminated manual errors, and boosted changeover
+                speed by 45% and operational efficiency by 30%, enabling
+                scalable, agile production.
               </p>
             </div>
           </div>

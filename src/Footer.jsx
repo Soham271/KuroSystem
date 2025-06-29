@@ -15,51 +15,51 @@ const Footer = () => {
               src={Logo}
               alt="Kuro Logo"
               className="mx-auto sm:mx-0 mb-1 sm:mb-2"
-              width={90}
-              height={25}
-              style={{ width: "90px", height: "auto" }}
+              style={{ width: "260px", height: "auto" }}
             />
             <p className="text-gray-400 text-xs sm:text-sm">
-              … striving for non‑stopping production
+              . . . striving for non‑stopping production
             </p>
           </div>
 
           <div className="text-center sm:text-left">
-            <h3 className="font-semibold mb-2 sm:mb-3  md:relative left-20  md:mb-4 text-base sm:text-lg">
+            <h3 className="font-semibold mb-2 sm:mb-3  md:mb-4 text-base sm:text-lg">
               Quick Links
             </h3>
             <ul className="grid grid-cols-2 gap-y-1 sm:gap-y-2 text-gray-400 text-xs sm:text-sm md:text-base">
-                    <a href={`/`}
-                    className="hover:text-white transition-colors"
-                  >
-                  Home
-                  </a>
-                        <a href={`/aboutus`}
-                    className="hover:text-white transition-colors"
-                  >
-               About Us
-                  </a>      <a href={`/offering`}
-                    className="hover:text-white transition-colors"
-                  >
+              <a href={`/`} className="hover:text-white transition-colors">
+                Home
+              </a>
+              <a
+                href={`/aboutus`}
+                className="hover:text-white transition-colors"
+              >
+                About Us
+              </a>{" "}
+              <a
+                href={`/offering`}
+                className="hover:text-white transition-colors"
+              >
                 Offering
-                  </a>      <a href={`/successtories`}
-                    className="hover:text-white transition-colors"
-                  >
+              </a>{" "}
+              <a
+                href={`/successtories`}
+                className="hover:text-white transition-colors"
+              >
                 Success Stories
-                  </a>      <a href={`/careers`}
-                    className="hover:text-white transition-colors"
-                  >
-               Careers
-                  </a>      <a href={`/contactus`}
-                    className="hover:text-white transition-colors"
-                  >
-                 Contact Us
-                  </a>
-                  
-                  
-                  
-               
-              
+              </a>{" "}
+              <a
+                href={`/careers`}
+                className="hover:text-white transition-colors"
+              >
+                Careers
+              </a>{" "}
+              <a
+                href={`/contactus`}
+                className="hover:text-white transition-colors"
+              >
+                Contact Us
+              </a>
             </ul>
           </div>
 

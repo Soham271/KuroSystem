@@ -3,6 +3,9 @@ module.exports = {
   darkMode: ["class"],
   content: ["./index.html", "./src/**/*.{ts,tsx,js,jsx}"],
   theme: {
+    fontFamily: {
+      roboto: ["Roboto", "sans-serif"],
+    },
     extend: {
       animation: {
         blob: "blob-bounce 5s infinite ease-in-out",
@@ -37,7 +40,7 @@ module.exports = {
         },
       },
       animation: {
-        shine: "shine 5s linear infinite",
+        shine: "shine 5s fade infinite",
       },
       colors: {
         background: "hsl(var(--background))",

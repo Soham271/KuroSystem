@@ -9,7 +9,7 @@ const Navbar = () => {
   const links = [
     { to: "/", label: "Home" },
     { to: "/aboutus", label: "About Us" },
- 
+
     { to: "/offering", label: "Offering" },
     { to: "/successtories", label: "Success Stories" },
     { to: "/careers", label: "Careers" },
@@ -22,7 +22,7 @@ const Navbar = () => {
     "px-5 py-2 rounded-full text-base font-bold flex items-center justify-center shadow-sm";
 
   return (
-    <nav className="w-full bg-[radial-gradient(#0A2B4D,_#1A1A1A)] shadow-md fixed top-0 left-0 z-50">
+    <nav className="w-full bg-gray-950 shadow-md fixed top-0 left-0 z-50">
       {" "}
       <div className="max-w-[1440px] mx-auto flex items-center justify-between h-20 px-4 md:px-10 relative">
         <div
@@ -38,14 +38,14 @@ const Navbar = () => {
         <div className="w-[90px] md:w-[100px]" />
 
         {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-4 bg-gray-800 px-6 py-2 rounded-full shadow-[inset_0_0_8px_rgba(255,255,255,0.3)] opacity-90 ml-12">
+        <div className="hidden md:flex items-center gap-4 bg-gray-950 px-6 py-2 rounded-full shadow-[inset_0_0_8px_rgba(255,255,255,0.3)] opacity-90 ml-12">
           {links.map(({ to, label }) => (
             <NavLink
               key={to}
               to={to}
               className={({ isActive }) =>
                 isActive
-                  ? `${commonBtnClasses} bg-[#374151] opacity-80 shadow-[inset_0_0_8px_rgba(200,200,255,1)]  text-white `
+                  ? `${commonBtnClasses} bg-[#d5d5d5] opacity-80 shadow-[inset_0_0_8px_rgba(200,200,255,1)]  text-black `
                   : `px-4 py-2 rounded-full text-base font-bold text-gray-300 hover:text-red-400 hover:font-bold`
               }
             >

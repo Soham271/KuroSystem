@@ -15,13 +15,13 @@ import {
 } from "react-icons/fa";
 import { useSwipeable } from "react-swipeable";
 import industry4 from "../assets/Industry4.gif";
-import depoy from "../assets/depoy.jpg";
+
 import Picture1 from "../assets/Picture1.png";
 import Picture2 from "../assets/Picture2.jpg";
 import Picture3 from "../assets/Picture3.png";
 import Picture4 from "../assets/Picture4.png";
 import Card from "./Card";
-
+import homebannergif from "../assets/industrie-4.0-1.gif";
 gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
@@ -71,7 +71,7 @@ const Home = () => {
       .slider-track {
         display: flex;
         width: fit-content;
-        animation: slide 25s linear infinite;
+        animation: slide 30s linear infinite;
       }
       .slider-track.paused {
         animation-play-state: paused;
@@ -84,12 +84,9 @@ const Home = () => {
         flex: 0 0 auto;
         width: 280px;
         margin-right: 20px;
-        transition: transform 0.4s ease, box-shadow 0.4s ease;
+   
       }
-      .slider-card:hover {
-        transform: scale(1.08);
-        box-shadow: 0 8px 24px rgba(59, 130, 246, 0.4);
-      }
+      
       @media (max-width: 639px) {
         .explore-button {
           padding: 0.5rem 1rem;
@@ -134,37 +131,30 @@ const Home = () => {
     {
       title: "Digital Twin",
       icon: <FaProjectDiagram />,
-      gradient: "from-blue-600 to-cyan-600",
     },
     {
       title: "IT-OT Integration",
       icon: <FaNetworkWired />,
-      gradient: "from-purple-600 to-indigo-600",
     },
     {
       title: "End-End Traceability",
       icon: <FaStream />,
-      gradient: "from-green-600 to-emerald-600",
     },
     {
       title: "Cloud & Edge",
       icon: <FaCloud />,
-      gradient: "from-orange-600 to-red-600",
     },
     {
       title: "2D Gantry",
       icon: <FaCogs />,
-      gradient: "from-teal-600 to-cyan-600",
     },
     {
       title: "3D Gantry",
       icon: <FaCubes />,
-      gradient: "from-teal-600 to-cyan-600",
     },
     {
       title: "Vision Inspection",
       icon: <FaEye />,
-      gradient: "from-indigo-600 to-blue-600",
     },
   ];
 
@@ -196,16 +186,16 @@ const Home = () => {
           >
             <div className="md:w-2/3">
               <h1 className="text-4xl xs:text-3xl md:text-[40px] font-bold leading-tight mb-4">
-                <span className="font-serif text-transparent bg-clip-text bg-gradient-to-r from-black via-white to-slate-500 bg-[length:200%_auto] animate-shine">
-                  Making Production as easy
+                <span className="font-serif text-white ">
+                  Making Production as easy as
                 </span>{" "}
-                <span className="font-serif text-transparent bg-clip-text bg-gradient-to-r from-black via-white to-slate-500 bg-[length:200%_auto] animate-shine">
-                  as the flick of fingers
+                <span className="font-serif  text-white ">
+                  the flick of fingers
                 </span>
               </h1>
               <p className="text-gray-300 mt-4 mb-6 text-lg xs:text-lg md:text-xl space-y-3">
                 At{" "}
-                <strong className="text-lg xs:text-xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-300">
+                <strong className="text-lg xs:text-xl md:text-3xl font-black text-[#ff2400] ">
                   KURO
                 </strong>
                 , we make sure that intelligent, future-ready automation
@@ -276,7 +266,7 @@ const Home = () => {
                 {doubledTechItems.map((item, i) => (
                   <div
                     key={`${item.title}-${i}`}
-                    className="slider-card group relative p-5 xs:p-6 sm:p-7 bg-gray-800/60 backdrop-blur-md rounded-2xl border border-gray-700/60 hover:border-blue-500/60 transition-all duration-400 text-center cursor-pointer"
+                    className="slider-card group relative p-5 xs:p-6 sm:p-7 bg-gray-800/60 backdrop-blur-md rounded-2xl border border-gray-700/60 transition-all duration-400 text-center cursor-pointer"
                   >
                     <div
                       className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-400 rounded-2xl`}
@@ -301,9 +291,7 @@ const Home = () => {
             <div className="relative bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500 py-8 xs:py-12 sm:py-16 px-4 xs:px-6 md:px-16 transform -skew-y-1 origin-top-left">
               <div className="transform skew-y-1 text-center">
                 <h2 className="text-3xl xs:text-4xl sm:text-5xl md:text-3xl font-black text-white mb-4 xs:mb-6">
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-white bg-[length:200%_auto] animate-shine">
-                    Transform Your Industry
-                  </span>
+                  <span className=" text-white">Transform Your Industry</span>
                 </h2>
                 <p className="text-gray-900 text-lg xs:text-xl sm:text-2xl max-w-xl xs:max-w-2xl sm:max-w-3xl mx-auto">
                   Join the revolution of smart manufacturing and intelligent
@@ -318,18 +306,18 @@ const Home = () => {
           <div className="flex flex-col md:flex-row items-center max-w-7xl mx-auto gap-10 sm:gap-14 px-4 sm:px-6">
             <div className="w-full md:w-1/2 flex justify-center">
               <img
-                src={depoy}
+                src={homebannergif}
                 alt="Industry 4.0"
                 className="w-full max-w-[600px] sm:max-w-[600px] md:max-w-[700px] rounded-xl"
                 loading="lazy"
               />
             </div>
 
-            <div className="w-full md:w-1/2 flex flex-col items-center md:items-center text-center space-y-5">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">
+            <div className="w-full md:w-1/2 flex flex-col items-center md:items-center text-center space-y-8">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
                 What is <span className="text-blue-500">Industry 4.0?</span>
               </h2>
-              <p className="lg:relative lg:left-5 text-gray-200 text-pretty sm:text-lg md:text-xl leading-relaxed max-w-2xl">
+              <p className="lg:relative lg:left-5 text-gray-200 text-pretty sm:text-lg md:text-2xl leading-relaxed max-w-2xl">
                 Industry 4.0 is the fourth industrial revolution built on cyber
                 physical systems, IoT, big data, AI, and smart automation. It
                 transforms traditional manufacturing into 'smart factories' with
@@ -354,9 +342,9 @@ const Home = () => {
           <div className="relative z-10 flex flex-col justify-end min-h-[60vh] top-14">
             <div className="text-center mb-8 xs:mb-5 px-4 xs:px-6 relative top-12">
               <h2 className="text-3xl xs:text-4xl md:text-5xl font-bold leading-tight text-white">
-                Why choose <span className="text-blue-500">KURO?</span>
+                Why choose <span className="text-[#ff2400]">KURO</span>?
               </h2>
-              <p className="mx-auto text-base xs:text-lg md:text-2xl text-gray-300 max-w-5xl xs:max-w-2xl leading-relaxed mt-8">
+              <p className="text-base xs:text-lg md:text-2xl text-gray-300 mt-4 mb-2">
                 We combine technical expertise with creative vision to deliver
                 solutions that drive real business results.
               </p>
@@ -380,9 +368,8 @@ const Home = () => {
             <div className="relative p-6 xs:p-8 sm:p-12 lg:p-16 bg-gradient-to-r from-gray-900/80 to-gray-800/80 backdrop-blur-sm rounded-3xl border border-gray-700/50 text-center overflow-hidden shadow-2xl">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10" />
               <div className="relative z-10">
-                <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black text-blue-600/60 mb-4 xs:mb-6">
+                <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-4 xs:mb-6">
                   Ready to Transform Your Manufacturing
-                
                 </h2>
                 <p className="text-gray-300 text-base xs:text-lg sm:text-xl mb-6 xs:mb-8 max-w-xl xs:max-w-2xl mx-auto leading-relaxed">
                   Join industry leaders who trust KURO to power their digital

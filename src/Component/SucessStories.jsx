@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Contact from "../assets/success-stories-banner.jpg";
+import Contact from "../assets/sucess stories.avif";
 import Picture1 from "../assets/Picture1.png";
 import honeyMamasImage from "../assets/2d.jpg";
 import traditionalMedicinalsImage from "../assets/3d.jpg";
@@ -12,7 +12,8 @@ const SuccessStories = () => {
   const projects = [
     {
       id: "project1",
-      title: "Driving Efficiency & Traceability for a Leading Vehicle Manufacturer",
+      title:
+        "Driving Efficiency & Traceability for a Leading Vehicle Manufacturer",
       category: "Client Product",
       services: "Strategy, Media Relations, Influencer Relations",
       description:
@@ -22,7 +23,8 @@ const SuccessStories = () => {
     },
     {
       id: "project2",
-      title: "Precision Maintenance and Utilization Tracking for a Global Components Manufacturer",
+      title:
+        "Precision Maintenance and Utilization Tracking for a Global Components Manufacturer",
       category: "Client Product",
       services: "Brand Strategy, Digital Marketing, PR",
       clientSince: "2020",
@@ -135,9 +137,6 @@ const SuccessStories = () => {
           <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight section-title">
             Our Work
           </h1>
-          <p className="text-base sm:text-lg lg:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            Discover our portfolio of successful projects and brand partnerships
-          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
@@ -193,18 +192,15 @@ const SuccessStories = () => {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <div className="text-white max-w-none sm:max-w-2xl lg:max-w-3xl text-center sm:text-left space-y-4 sm:space-y-6">
-            <h1 className="text-2xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-extrabold leading-tight drop-shadow-md">
+          <div className="text-white max-w-none sm:max-w-3xl lg:max-w-4xl  flex flex-col justify-center text-center sm:text-left space-y-4 sm:space-y-6">
+            <h1 className="text-6xl xs:text-2xl sm:text-4xl md:text-6xl lg:text-6xl xl:text-6xl font-bold leading-tight drop-shadow-md">
               <span className="inline text-4xl sm:inline">
-                Your Success Stories
-              </span>{" "}
-              <strong className="inline sm:inline text-3xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-red-400 via-red-500 to-red-200 drop-shadow-lg">
-                KURO
-              </strong>
+                Our Success Stories
+              </span>
             </h1>
-            <p className="text-lg xs:text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed text-white/90 drop-shadow max-w-lg sm:max-w-xl md:max-w-2xl mx-auto sm:mx-0">
-              We are here to help you connect and explore how KURO can support
-              your needs.
+            <p className="text-lg xs:text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed text-white/90 drop-shadow max-w-lg sm:max-w-xl md:max-w-4xl mx-auto sm:mx-0">
+              Witness our solutions in action. Driving customer success through
+              full end solutions.
             </p>
           </div>
         </div>

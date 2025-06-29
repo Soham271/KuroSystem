@@ -35,10 +35,10 @@ const Careers = () => {
     const templateParams = { ...formData, time: new Date().toLocaleString() };
     try {
       await emailjs.send(
-        "service_bt7lvig",
-        "template_yvwfb2k",
+        "service_hgrw6l9",
+        "template_6kjk94a",
         templateParams,
-        "Jj8GC9_w-bFpwuKc1"
+        "2jJ9q21-7VC94TD7c"
       );
       toast.success("Application submitted successfully!");
       setFormData({

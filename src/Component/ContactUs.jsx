@@ -59,10 +59,10 @@ const ContactUs = () => {
     e.preventDefault();
     emailjs
       .sendForm(
-        "service_bt7lvig",
-        "template_c5grkxm",
+        "service_hgrw6l9",
+        "template_gsu55xj",
         formRef.current,
-        "Jj8GC9_w-bFpwuKc1"
+        "2jJ9q21-7VC94TD7c"
       )
       .then(
         () => {
@@ -424,11 +424,8 @@ const ContactUs = () => {
           <div className="text-white max-w-none sm:max-w-2xl lg:max-w-3xl text-center sm:text-left space-y-4 sm:space-y-6">
             <h1 className="text-2xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-extrabold leading-tight drop-shadow-md">
               <span className="inline text-4xl sm:inline">
-                Get in Touch with
+                Get in Touch with Us
               </span>{" "}
-              <strong className="inline sm:inline text-3xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-red-400 via-red-500 to-red-200 drop-shadow-lg">
-                KURO
-              </strong>
             </h1>
             <p className="text-lg xs:text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed text-white/90 drop-shadow max-w-lg sm:max-w-xl md:max-w-2xl mx-auto sm:mx-0">
               We are here to help you connect and explore how KURO can support
@@ -505,7 +502,7 @@ const ContactUs = () => {
               </div>
               <button
                 type="submit"
-                className={`w-full h-12 bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-semibold rounded-lg shadow-md hover:shadow-lg mt-8 ${
+                className={`w-full h-12 bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-semibold border rounded-xl  shadow-md hover:shadow-lg mt-8 ${
                   isFormVisible ? "pulse-button" : ""
                 }`}
               >

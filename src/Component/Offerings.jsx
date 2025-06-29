@@ -15,11 +15,19 @@ import ITOT from "../assets/IT-OT-Integration-2.png";
 import Trace from "../assets/Traceability.jpg";
 import Gantry2D from "../assets/2d.jpg";
 import Gantry3D from "../assets/3d.jpg";
-
+import vision2 from "../assets/visioninspection.jpg";
 const Offerings = () => {
   const [hoveredOffering, setHoveredOffering] = useState(null);
 
   const offerings = [
+    {
+      title: "End-to-End traceability",
+      icon: <FaStream className="inline mr-2 text-blue-600/80 text-2xl" />,
+      shortInfo: "Full supply chain visibility and tracking.",
+      summary:
+        "Achieve complete traceability across your supply chain with our advanced tracking systems, ensuring transparency, compliance, and product quality.",
+      image: Trace,
+    },
     {
       title: "IT-OT Integration",
       icon: (
@@ -30,14 +38,7 @@ const Offerings = () => {
         "Seamlessly bridge the gap between Information Technology and Operational Technology for unified, smart manufacturing processes and efficient data flow.",
       image: ITOT,
     },
-    {
-      title: "End-to-End traceability",
-      icon: <FaStream className="inline mr-2 text-blue-600/80 text-2xl" />,
-      shortInfo: "Full supply chain visibility and tracking.",
-      summary:
-        "Achieve complete traceability across your supply chain with our advanced tracking systems, ensuring transparency, compliance, and product quality.",
-      image: Trace,
-    },
+
     {
       title: "Digital Twin",
       icon: (
@@ -84,7 +85,7 @@ const Offerings = () => {
       shortInfo: "Advanced visual quality control.",
       summary:
         "Our vision inspection systems provide high-precision quality control, detecting defects and ensuring product consistency with advanced imaging technology.",
-      image: Gantry2D,
+      image: vision2,
     },
   ];
 
@@ -155,15 +156,13 @@ const Offerings = () => {
       .line-appear:nth-child(3) { animation-delay: 0.3s; }
       .line-appear:nth-child(4) { animation-delay: 0.4s; }
       .section-heading {
-        backdrop-blur-md;
-        border: 1px solid rgba(255, 255, 255, 0.3);
+      
         padding: 1rem 2rem;
-        border-radius: 1rem;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         display: inline-block;
         background-clip: text;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+   
       }
      
       @font-face {
@@ -264,11 +263,11 @@ const Offerings = () => {
                       )
                   )}
                 </div>
-                <div className="w-full md:w-1/2 h-36 overflow-hidden">
+                <div className="w-full md:w-auto h-48 overflow-hidden">
                   <img
                     src={image}
                     alt={`${title} Illustration`}
-                    className="w-full h-full object-cover rounded-lg shadow-lg"
+                    className="w-full h-full object-cover overflow-hidden  rounded-lg shadow-lg"
                     loading="lazy"
                   />
                 </div>
@@ -283,16 +282,13 @@ const Offerings = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <div
-        className="relative bg-cover bg-center min-h-[50vh] w-full flex items-center justify-start px-6 md:px-16"
+        className="relative bg-cover object-cover bg-center min-h-[70vh] w-full flex items-center justify-start px-6 md:px-16"
         style={{ backgroundImage: `url(${Offer})` }}
       >
         <div className="absolute inset-0 bg-black/50" />
-        <div className="relative z-10 text-white max-w-2xl space-y-4">
-          <h1 className="text-3xl md:text-4xl font-bold drop-shadow-lg mb-6">
-            Our Offerings at{" "}
-            <strong className="text-3xl md:text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-red-200">
-              KURO
-            </strong>
+        <div className=" pt-4 relative z-10 text-white max-w-3xl space-y-4">
+          <h1 className="text-3xl md:text-5xl font-bold drop-shadow-lg mb-6">
+            Our Offerings
           </h1>
           <p className="text-md md:text-lg drop-shadow-md">
             Explore our innovative solutions designed to elevate your business
@@ -308,20 +304,24 @@ const Offerings = () => {
         ))}
         <div className="relative z-10">
           <div className="max-w-7xl mx-auto px-6">
-            <h2 className="font-extrabold text-4xl text-gray-400 mb-8 section-heading">
+            <h2 className="font-bold text-4xl text-white  mb-8 section-heading ">
               Industry 4.0
+              <div className=" ml-0 mt-3 w-20 xs:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
             </h2>
+
             {renderCards(offerings, "industry")}
           </div>
           <div className="max-w-7xl mx-auto px-6 mt-16">
-            <h2 className="font-extrabold text-4xl text-gray-400 mb-8 section-heading">
+            <h2 className="font-bold text-4xl text-white  mb-8 section-heading ">
               Robotics
+              <div className=" ml-0 mt-3 w-20 xs:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
             </h2>
             {renderCards(robotics, "robotics")}
           </div>
           <div className="max-w-7xl mx-auto px-6 mt-16 pb-16">
-            <h2 className="font-extrabold text-4xl text-gray-400  mb-8 section-heading">
+            <h2 className="font-bold text-4xl text-white  mb-8 section-heading">
               Factory Vision
+              <div className=" ml-0 mt-3 w-20 xs:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
             </h2>
             {renderCards(vision, "vision")}
           </div>
