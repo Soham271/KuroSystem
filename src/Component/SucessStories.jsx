@@ -1,37 +1,34 @@
-import Contact from "../assets/success-stories-banner.jpg";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Contact from "../assets/success-stories-banner.jpg";
+import Picture1 from "../assets/Picture1.png";
+import honeyMamasImage from "../assets/2d.jpg";
+import traditionalMedicinalsImage from "../assets/3d.jpg";
 
 const SuccessStories = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [isFormVisible, setIsFormVisible] = useState(false);
-  const [status, setStatus] = useState("");
   const navigate = useNavigate();
 
   const projects = [
     {
       id: "project1",
-      title:
-        "Driving Efficiency & Traceability for a Leading Vehicle Manufacturer",
+      title: "Driving Efficiency & Traceability for a Leading Vehicle Manufacturer",
       category: "Client Product",
       services: "Strategy, Media Relations, Influencer Relations",
       description:
         "A vehicle maker faced messy, error-prone production. KURO brought real-time tracking and smart alerts, cutting downtime and boosting quality so they could grow with confidence.",
-      image:
-        "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800&h=600&fit=crop",
+      image: Picture1,
       color: "from-amber-50 to-orange-100",
     },
     {
       id: "project2",
-      title:
-        "Precision Maintenance and Utilization Tracking for a Global Components Manufacturer",
+      title: "Precision Maintenance and Utilization Tracking for a Global Components Manufacturer",
       category: "Client Product",
       services: "Brand Strategy, Digital Marketing, PR",
       clientSince: "2020",
       description:
         "A top auto supplier faced hidden die issues and stoppages. KURO brought real-time die tracking, smart checklists, and error-proof controls, cutting downtime by 40% and making maintenance proactive, not reactive.",
-      image:
-        "https://images.unsplash.com/photo-1549652756-95b31b6b8040?w=800&h=600&fit=crop",
+      image: honeyMamasImage,
       color: "from-pink-50 to-red-100",
     },
     {
@@ -42,8 +39,7 @@ const SuccessStories = () => {
       clientSince: "2018",
       description:
         "An FMCG firm faced chaos in changeovers. KURO’s AI traceability cut errors, sped changeovers by 45%, and ensured full compliance.",
-      image:
-        "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=800&h=600&fit=crop",
+      image: traditionalMedicinalsImage,
       color: "from-green-50 to-emerald-100",
     },
   ];
@@ -169,27 +165,27 @@ const SuccessStories = () => {
               className="group cursor-pointer"
               onClick={() => navigateToProject(project.id)}
             >
-              <div className="relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-                <div className="aspect-[4/3] relative overflow-hidden">
+              <div className="relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 w-full h-[450px]">
+                <div className="relative w-full h-[200px]">
                   <img
                     src={project.image}
                     alt={project.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-blackbbleslack/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
                     VIEW
                   </div>
                 </div>
 
-                <div className="p-6">
-                  <div className="text-sm text-gray-500 font-medium mb-2 tracking-wide">
+                <div className="p-6 flex flex-col space-y-2">
+                  <div className="text-sm text-gray-500 font-medium tracking-wide">
                     {project.category}
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                  <h3 className="text-xl font-bold text-gray-900">
                     {project.title}
                   </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
+                  <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
                     {project.description}
                   </p>
                 </div>

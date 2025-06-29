@@ -201,6 +201,89 @@ const ContactUs = () => {
         color: #87CEEB;
         transform: scale(1.1);
       }
+
+      /* Remove autocomplete background and yellow highlight */
+      .form-control input:-webkit-autofill,
+      .form-control input:-webkit-autofill:hover,
+      .form-control input:-webkit-autofill:focus,
+      .form-control input:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+        -webkit-text-fill-color: #fff !important;
+        background-color: transparent !important;
+        background-image: none !important;
+        background: transparent !important;
+        transition: background-color 5000s ease-in-out 0s !important;
+      }
+
+      /* Additional autocomplete fixes */
+      .form-control input:-internal-autofill-selected {
+        background-color: transparent !important;
+        background-image: none !important;
+        color: #fff !important;
+      }
+
+      /* Force remove autocomplete styling */
+      .form-control input[autocomplete]::-webkit-contacts-auto-fill-button {
+        visibility: hidden;
+        display: none !important;
+        pointer-events: none;
+        height: 0;
+        width: 0;
+        margin: 0;
+      }
+
+      /* Alternative method to override autocomplete */
+      .form-control input:-webkit-autofill {
+        -webkit-animation-name: autofill;
+        -webkit-animation-fill-mode: both;
+      }
+
+      @-webkit-keyframes autofill {
+        to {
+          color: #fff;
+          background: transparent;
+        }
+      }
+
+      /* Remove autocomplete dropdown background */
+      .form-control input::-webkit-contacts-auto-fill-button,
+      .form-control input::-webkit-credentials-auto-fill-button {
+        visibility: hidden;
+        display: none !important;
+        pointer-events: none;
+        height: 0;
+        width: 0;
+        margin: 0;
+      }
+
+      /* Style the dropdown itself */
+      .form-control input::-webkit-list-button {
+        display: none;
+      }
+
+      /* Remove browser default autocomplete styling */
+      .form-control input {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+      }
+
+      /* Additional fix for some browsers */
+      .form-control input[type="email"]::-webkit-input-placeholder {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .form-control input[type="email"]:-moz-placeholder {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .form-control input[type="email"]::-moz-placeholder {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .form-control input[type="email"]:-ms-input-placeholder {
+        color: rgba(255, 255, 255, 0.7);
+      }
       
       @keyframes slideInFromLeft {
         0% { opacity: 0; transform: translateX(-100px) rotateY(-30deg); }
@@ -390,6 +473,7 @@ const ContactUs = () => {
                       value={form[field]}
                       onChange={handleChange}
                       required
+                      autoComplete={field === "email" ? "email" : "off"}
                     />
                     <label>{createAnimatedLabel(label)}</label>
                     <div className="input-icon">{icon}</div>
@@ -412,6 +496,7 @@ const ContactUs = () => {
                   required
                   rows={4}
                   style={{ resize: "none" }}
+                  autoComplete="off"
                 />
                 <label>{createAnimatedLabel("Enter Message")}</label>
                 <div className="input-icon">
