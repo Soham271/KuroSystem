@@ -143,7 +143,7 @@ const Project3 = () => {
             <img
               src={project.image}
               alt={project.title}
-              className="w-auto h-96 overflow-hidden rounded-xl object-cover"
+              className="w-auto md:h-96 overflow-hidden rounded-xl object-cover"
               loading="lazy"
             />
           </div>
