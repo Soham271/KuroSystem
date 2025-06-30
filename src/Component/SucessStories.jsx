@@ -14,10 +14,9 @@ const SuccessStories = () => {
       id: "project1",
       title:
         "Driving Efficiency & Traceability for a Leading Vehicle Manufacturer",
-      category: "Client Product",
-      services: "Strategy, Media Relations, Influencer Relations",
+
       description:
-        "A vehicle maker faced messy, error-prone production. KURO brought real-time tracking and smart alerts, cutting downtime and boosting quality so they could grow with confidence.",
+        "A major vehicle manufacturer faced growing complexity on its production line.KURO deployed a complete End-to-End Traceability Platform that transformed the plant's operational backbone.",
       image: Picture1,
       color: "from-gray-900 to-gray-800",
     },
@@ -25,22 +24,18 @@ const SuccessStories = () => {
       id: "project2",
       title:
         "Precision Maintenance and Utilization Tracking for a Global Components Manufacturer",
-      category: "Client Product",
-      services: "Brand Strategy, Digital Marketing, PR",
-      clientSince: "2020",
+
       description:
-        "A top auto supplier faced hidden die issues and stoppages. KURO brought real-time die tracking, smart checklists, and error-proof controls, cutting downtime by 40% and making maintenance proactive, not reactive.",
+        "A leading Tier-1 supplier in the automotive sector faced frequent unplanned stoppages and inconsistencies in die-based moulding processes.KURO deployed a smart, edge-enabled maintenance and utilization traceability system, built with robust OPC-UA integration and intelligent user workflows.",
       image: honeyMamasImage,
       color: "from-gray-900 to-gray-800",
     },
     {
       id: "project3",
       title: "AI-Powered Traceability for an FMCG Nano-Factory",
-      category: "Client Product",
-      services: "Content Strategy, Social Media, Wellness Campaigns",
-      clientSince: "2018",
+
       description:
-        "An FMCG firm faced chaos in changeovers. KURO’s AI traceability cut errors, sped changeovers by 45%, and ensured full compliance.",
+        "A fast-scaling FMCG company operating a nano-factory model producing multiple SKUs onthe same line in small lots was struggling with visibility and consistency.KURO deployed a full-stack traceability solution powered by AI and manless data entry,custom-fit for dynamic FMCG manufacturing",
       image: traditionalMedicinalsImage,
       color: "from-gray-900 to-gray-800",
     },
@@ -146,7 +141,7 @@ const SuccessStories = () => {
               className="group cursor-pointer project-card"
               onClick={() => navigateToProject(project.id)}
             >
-              <div className="image-container w-full h-[200px]">
+              <div className="image-container w-full h-[300px]">
                 <img
                   src={project.image}
                   alt={project.title}
@@ -158,9 +153,6 @@ const SuccessStories = () => {
                 </div>
               </div>
               <div className="p-4 sm:p-6 flex flex-col space-y-2 sm:space-y-3">
-                <div className="text-xs sm:text-sm text-gray-400 font-medium tracking-wide">
-                  {project.category}
-                </div>
                 <h3 className="text-lg sm:text-xl font-bold text-white line-clamp-2">
                   {project.title}
                 </h3>

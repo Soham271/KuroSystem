@@ -16,12 +16,14 @@ import Trace from "../assets/Traceability.jpg";
 import Gantry2D from "../assets/2d.jpg";
 import Gantry3D from "../assets/3d.jpg";
 import vision2 from "../assets/visioninspection.jpg";
+
 const Offerings = () => {
   const [hoveredOffering, setHoveredOffering] = useState(null);
 
   const offerings = [
     {
       title: "End-to-End traceability",
+      id: "end-to-end-traceability",
       icon: <FaStream className="inline mr-2 text-blue-600/80 text-2xl" />,
       shortInfo: "Full supply chain visibility and tracking.",
       summary:
@@ -30,6 +32,7 @@ const Offerings = () => {
     },
     {
       title: "IT-OT Integration",
+      id: "it-ot-integration",
       icon: (
         <FaNetworkWired className="inline mr-2 text-blue-600/80 text-2xl" />
       ),
@@ -38,9 +41,9 @@ const Offerings = () => {
         "Seamlessly bridge the gap between Information Technology and Operational Technology for unified, smart manufacturing processes and efficient data flow.",
       image: ITOT,
     },
-
     {
       title: "Digital Twin",
+      id: "digital-twin",
       icon: (
         <FaProjectDiagram className="inline mr-2 text-blue-600/80 text-2xl" />
       ),
@@ -51,6 +54,7 @@ const Offerings = () => {
     },
     {
       title: "Cloud & Edge",
+      id: "cloud-edge",
       icon: <FaCloud className="inline mr-2 text-blue-600/80 text-2xl" />,
       shortInfo: "Power of cloud + speed of edge.",
       summary:
@@ -62,6 +66,7 @@ const Offerings = () => {
   const robotics = [
     {
       title: "2D-Gantry",
+      id: "2d-gantry",
       icon: <FaCogs className="inline mr-2 text-blue-600/80 text-2xl" />,
       shortInfo: "Precision motion in two dimensions.",
       summary:
@@ -70,6 +75,7 @@ const Offerings = () => {
     },
     {
       title: "3D-Gantry",
+      id: "3d-gantry",
       icon: <FaCubes className="inline mr-2 text-blue-600/80 text-2xl" />,
       shortInfo: "Full 3-axis motion for advanced automation.",
       summary:
@@ -81,6 +87,7 @@ const Offerings = () => {
   const vision = [
     {
       title: "Vision Inspection",
+      id: "vision-inspection",
       icon: <FaEye className="inline mr-2 text-blue-600/80 text-2xl" />,
       shortInfo: "Advanced visual quality control.",
       summary:
@@ -88,6 +95,49 @@ const Offerings = () => {
       image: vision2,
     },
   ];
+
+  useEffect(() => {
+    const handleHashNavigation = () => {
+      const hash = window.location.hash.substring(1);
+      if (hash) {
+        setTimeout(() => {
+          const element = document.getElementById(hash);
+          if (element) {
+            document.querySelectorAll(".highlighted-card").forEach((el) => {
+              el.classList.remove("highlighted-card");
+            });
+
+            element.classList.add("highlighted-card");
+
+            const yOffset = -100;
+            const y =
+              element.getBoundingClientRect().top +
+              window.pageYOffset +
+              yOffset;
+
+            window.scrollTo({
+              top: y,
+              behavior: "smooth",
+            });
+
+            setTimeout(() => {
+              element.classList.remove("highlighted-card");
+            }, 3000);
+          }
+        }, 300);
+      }
+    };
+
+    // Handle initial load
+    handleHashNavigation();
+
+    // Handle hash changes (back/forward navigation)
+    window.addEventListener("hashchange", handleHashNavigation);
+
+    return () => {
+      window.removeEventListener("hashchange", handleHashNavigation);
+    };
+  }, []);
 
   useEffect(() => {
     const style = document.createElement("style");
@@ -135,6 +185,33 @@ const Offerings = () => {
       .animate-pulse-once {
         animation: pulseOnce 0.5s ease-in-out;
       }
+      @keyframes highlight {
+        0% { 
+          transform: scale(1);
+          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1);
+        }
+        25% { 
+          transform: scale(1.05);
+          box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.6), 0 25px 50px -12px rgba(59, 130, 246, 0.4);
+        }
+        50% { 
+          transform: scale(1.02);
+          box-shadow: 0 0 0 6px rgba(59, 130, 246, 0.4), 0 25px 50px -12px rgba(59, 130, 246, 0.3);
+        }
+        75% { 
+          transform: scale(1.05);
+          box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.6), 0 25px 50px -12px rgba(59, 130, 246, 0.4);
+        }
+        100% { 
+          transform: scale(1);
+          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1);
+        }
+      }
+      .highlighted-card {
+        animation: highlight 3s ease-in-out;
+        z-index: 50 !important;
+        position: relative;
+      }
       @keyframes smoothExpand {
         0% { transform: scale(1); opacity: 0; }
         100% { transform: scale(1); opacity: 1; }
@@ -156,15 +233,11 @@ const Offerings = () => {
       .line-appear:nth-child(3) { animation-delay: 0.3s; }
       .line-appear:nth-child(4) { animation-delay: 0.4s; }
       .section-heading {
-      
         padding: 1rem 2rem;
-      
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         display: inline-block;
         background-clip: text;
-   
       }
-     
       @font-face {
         font-family: 'Cursive';
         src: url('https://fonts.cdnfonts.com/s/17863/GreatVibes-Regular.woff') format('woff');
@@ -215,67 +288,70 @@ const Offerings = () => {
 
   const renderCards = (dataArray, sectionName) => (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {dataArray.map(({ title, icon, summary, image, shortInfo }, index) => {
-        const uniqueId = `${sectionName}-${title}`;
-        return (
-          <div
-            key={index}
-            onMouseEnter={() => setHoveredOffering(uniqueId)}
-            onMouseLeave={() => setHoveredOffering(null)}
-            className={`transition-all duration-500 overflow-hidden cursor-default 
+      {dataArray.map(
+        ({ title, id, icon, summary, image, shortInfo }, index) => {
+          const uniqueId = `${sectionName}-${title}`;
+          return (
+            <div
+              key={index}
+              id={id} // Add the id attribute for navigation
+              onMouseEnter={() => setHoveredOffering(uniqueId)}
+              onMouseLeave={() => setHoveredOffering(null)}
+              className={`transition-all duration-500 overflow-hidden cursor-pointer 
               bg-white/20 backdrop-blur-xl border border-white/30
               p-6 rounded-xl shadow-2xl hover:shadow-2xl hover:bg-white/25
               ${
                 hoveredOffering === uniqueId ? "min-h-[250px]" : "min-h-[100px]"
               } mb-6
-              transform hover:scale-[1.02] hover:-translate-y-1`}
-            style={{
-              transitionProperty:
-                "min-height, transform, opacity, background-color, box-shadow",
-              transitionDuration: "0.5s",
-              transitionTimingFunction: "ease-in-out",
-              boxShadow:
-                "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1)",
-            }}
-          >
-            <h2 className="text-xl font-semibold text-white flex items-center mb-3 drop-shadow-lg">
-              {icon}
-              {title}
-            </h2>
-            {hoveredOffering !== uniqueId && (
-              <p className="text-gray-300 text-lg transition-transform ease-linear font-medium drop-shadow-sm">
-                {shortInfo}
-              </p>
-            )}
-            {hoveredOffering === uniqueId && (
-              <div className="mt-4 flex flex-col md:flex-row gap-6">
-                <div className="w-full md:w-1/2">
-                  {summary.split(". ").map(
-                    (sentence, idx) =>
-                      sentence && (
-                        <p
-                          key={idx}
-                          className="text-gray-300 text-base leading-relaxed line-appear font-medium drop-shadow-sm mb-2"
-                        >
-                          {sentence}
-                          {sentence.endsWith(".") ? "" : "."}
-                        </p>
-                      )
-                  )}
+              transform hover:scale-[1.02] hover:-translate-y-1 scroll-mt-24 relative`}
+              style={{
+                transitionProperty:
+                  "min-height, transform, opacity, background-color, box-shadow",
+                transitionDuration: "0.5s",
+                transitionTimingFunction: "ease-in-out",
+                boxShadow:
+                  "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1)",
+              }}
+            >
+              <h2 className="text-xl font-semibold text-white flex items-center mb-3 drop-shadow-lg">
+                {icon}
+                {title}
+              </h2>
+              {hoveredOffering !== uniqueId && (
+                <p className="text-gray-300 text-lg transition-transform ease-linear font-medium drop-shadow-sm">
+                  {shortInfo}
+                </p>
+              )}
+              {hoveredOffering === uniqueId && (
+                <div className="mt-4 flex flex-col md:flex-row gap-6">
+                  <div className="w-full md:w-1/2">
+                    {summary.split(". ").map(
+                      (sentence, idx) =>
+                        sentence && (
+                          <p
+                            key={idx}
+                            className="text-gray-300 text-base leading-relaxed line-appear font-medium drop-shadow-sm mb-2"
+                          >
+                            {sentence}
+                            {sentence.endsWith(".") ? "" : "."}
+                          </p>
+                        )
+                    )}
+                  </div>
+                  <div className="w-full md:w-auto h-48 overflow-hidden">
+                    <img
+                      src={image}
+                      alt={`${title} Illustration`}
+                      className="w-full h-full object-cover overflow-hidden rounded-lg shadow-lg"
+                      loading="lazy"
+                    />
+                  </div>
                 </div>
-                <div className="w-full md:w-auto h-48 overflow-hidden">
-                  <img
-                    src={image}
-                    alt={`${title} Illustration`}
-                    className="w-full h-full object-cover overflow-hidden  rounded-lg shadow-lg"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-            )}
-          </div>
-        );
-      })}
+              )}
+            </div>
+          );
+        }
+      )}
     </div>
   );
 
@@ -286,7 +362,7 @@ const Offerings = () => {
         style={{ backgroundImage: `url(${Offer})` }}
       >
         <div className="absolute inset-0 bg-black/50" />
-        <div className=" pt-4 relative z-10 text-white max-w-3xl space-y-4">
+        <div className="pt-4 relative z-10 text-white max-w-3xl space-y-4">
           <h1 className="text-3xl md:text-5xl font-bold drop-shadow-lg mb-6">
             Our Offerings
           </h1>
@@ -304,24 +380,23 @@ const Offerings = () => {
         ))}
         <div className="relative z-10">
           <div className="max-w-7xl mx-auto px-6">
-            <h2 className="font-bold text-4xl text-white  mb-8 section-heading ">
+            <h2 className="font-bold text-4xl text-white mb-8 section-heading">
               Industry 4.0
-              <div className=" ml-0 mt-3 w-20 xs:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
+              <div className="ml-0 mt-3 w-20 xs:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
             </h2>
-
             {renderCards(offerings, "industry")}
           </div>
           <div className="max-w-7xl mx-auto px-6 mt-16">
-            <h2 className="font-bold text-4xl text-white  mb-8 section-heading ">
+            <h2 className="font-bold text-4xl text-white mb-8 section-heading">
               Robotics
-              <div className=" ml-0 mt-3 w-20 xs:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
+              <div className="ml-0 mt-3 w-20 xs:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
             </h2>
             {renderCards(robotics, "robotics")}
           </div>
           <div className="max-w-7xl mx-auto px-6 mt-16 pb-16">
-            <h2 className="font-bold text-4xl text-white  mb-8 section-heading">
+            <h2 className="font-bold text-4xl text-white mb-8 section-heading">
               Factory Vision
-              <div className=" ml-0 mt-3 w-20 xs:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
+              <div className="ml-0 mt-3 w-20 xs:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
             </h2>
             {renderCards(vision, "vision")}
           </div>

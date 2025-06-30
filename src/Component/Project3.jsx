@@ -1,23 +1,41 @@
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-import Picture3 from "../assets/pic3.png";
+import Picture3 from "../assets/pic3.png"; // Update with actual image path
 
 const Project3 = () => {
   const navigate = useNavigate();
 
   const project = {
     id: "project3",
-    title: "AI-Powered Traceability for an FMCG Nano-Factory",
-    category: "Client Product",
-    services: "Content Strategy, Social Media, Wellness Campaigns",
-    clientSince: "2018",
-    problem:
-      "A fast-scaling FMCG nano-factory struggled with chaotic changeovers, manual data entry errors, and lacked real-time traceability for regulatory compliance.",
-    solution:
-      "KURO deployed an AI-powered, manless traceability system with edge sensors and vision systems, linking raw materials to finished goods and streamlining SKU changeovers.",
+    title: "AI-Powered Traceability for Fast-Scaling FMCG Nano-Factory",
+    problem: `A fast-scaling FMCG company operating a nano-factory model — producing multiple SKUs on the same line in small lots — was struggling with visibility and consistency. The key issues: Frequent changeovers made manual traceability chaotic. Operators had to log production data manually, leading to errors. Regulatory and recall compliance required airtight batch-level traceability. There was no integrated system linking raw material usage to finished goods in real-time.`,
+    solution: `KURO deployed a full-stack traceability solution powered by AI and manless data entry, custom-fit for dynamic FMCG manufacturing.`,
     image: Picture3,
     color: "from-gray-900 to-gray-800",
   };
+
+  const solutionPoints = [
+    {
+      title: "Raw Material to End-of-Line Traceability:",
+      description:
+        "Each raw material batch was digitally linked to the production lot from the moment it entered the line. The system tracked every transformation stage — blending, filling, sealing, packing — without human input.",
+    },
+    {
+      title: "Designed for Nano-Factory Complexity:",
+      description:
+        "With the ability to switch SKUs frequently, KURO's platform seamlessly adapted to production changeovers. No reconfiguration or intervention needed, ensuring continuous operations across diverse product types.",
+    },
+    {
+      title: "Purely Manless Data Entry via AI:",
+      description:
+        "Leveraging AI vision systems and edge sensors, KURO automated the capture of operational data like line speed, product counts, material usage, and inspection flags. This eliminated human dependency, reduced workload, and ensured consistency.",
+    },
+    {
+      title: "Operator-Friendly Interactions:",
+      description:
+        "Supervisors could quickly add product notes, production instructions, or corrective actions through a simplified interface — without disrupting the flow or requiring technical knowledge.",
+    },
+  ];
 
   return (
     <div
@@ -30,6 +48,9 @@ const Project3 = () => {
             padding: 0.5rem 1rem;
             border-radius: 0.5rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
           }
           .back-button:hover {
             transform: translateY(-2px);
@@ -38,6 +59,8 @@ const Project3 = () => {
           .section-title {
             position: relative;
             padding-bottom: 0.5rem;
+            font-weight: 600;
+            color: #d1d5db;
           }
           .section-title::after {
             content: '';
@@ -55,27 +78,35 @@ const Project3 = () => {
           .content-card {
             background: rgba(31, 41, 55, 0.7);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(55, 65, 81, 0.5);
             border-radius: 1rem;
             padding: 1.5rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            color: #e5e7eb;
           }
-        
-        .image-container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 1rem;
-            transition: transform 0.3s ease;
+       
+          .solution-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            margin-top: 1rem;
           }
-        
-          .image-container::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-                   
-            transition: opacity 0.3s ease;
+          .solution-item {
+            margin-bottom: 1rem;
+            padding: 0;
           }
-     
+          .solution-title {
+            font-weight: bold;
+            color: #60a5fa;
+            margin-bottom: 0.25rem;
+          }
+          .solution-description {
+            color: #d1d5db;
+            line-height: 1.6;
+            margin: 0;
+          }
+      
+    
           @media (max-width: 639px) {
             .back-button {
               padding: 0.4rem 0.8rem;
@@ -84,9 +115,12 @@ const Project3 = () => {
             .section-title {
               font-size: 1.25rem;
             }
+            .solution-item {
+              font-size: 0.875rem;
+            }
           }
           @media (prefers-reduced-motion: reduce) {
-            .back-button, .content-card, .image-container, .section-title::after {
+            .back-button, .content-card, .image-container, .solution-item, .section-title::after {
               transition: none !important;
               transform: none !important;
             }
@@ -104,46 +138,60 @@ const Project3 = () => {
             Back to Success Stories
           </span>
         </button>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 mt-8 sm:mt-10">
+        <div className="grid grid-cols-1 gap-8 sm:gap-12 mt-8 sm:mt-10">
+          <div className="image-container flex justify-center items-center">
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-auto h-96 overflow-hidden rounded-xl object-cover"
+              loading="lazy"
+            />
+          </div>
+
+          {/* Text content below the image */}
           <div className="space-y-6 sm:space-y-8">
             <h1 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
               {project.title}
             </h1>
             <div className="content-card">
-              <h3 className="text-lg sm:text-xl font-semibold text-white section-title">
-                Client Problem
+              <h3 className="text-lg sm:text-3xl font-bold text-white section-title">
+                Client Challenge
               </h3>
-              <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
+              <p className="text-gray-300 leading-relaxed text-sm sm:text-lg">
                 {project.problem}
               </p>
             </div>
             <div className="content-card">
-              <h3 className="text-lg sm:text-xl font-semibold text-white section-title">
+              <h3 className="text-lg sm:text-3xl font-bold text-white section-title">
                 KURO Solution
               </h3>
-              <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
+              <p className="text-gray-300 leading-relaxed text-sm sm:text-lg">
                 {project.solution}
               </p>
+              <div className="solution-list">
+                {solutionPoints.map((point, index) => (
+                  <div key={index} className="solution-item">
+                    <div className="solution-title text-sm sm:text-xl">
+                      {point.title}
+                    </div>
+                    <p className="solution-description text-sm sm:text-lg">
+                      {point.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
             <div className="content-card">
-              <h3 className="text-lg sm:text-xl font-semibold text-white section-title">
+              <h3 className="text-lg sm:text-3xl font-bold text-white section-title">
                 Conclusion
               </h3>
-              <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
-                KURO’s AI-driven traceability achieved 100% regulatory
-                compliance, eliminated manual errors, and boosted changeover
-                speed by 45% and operational efficiency by 30%, enabling
-                scalable, agile production.
+              <p className="text-gray-300 leading-relaxed text-sm sm:text-lg">
+                KURO enabled the FMCG client to scale with confidence, ensuring
+                SKU-level traceability, error-free production, and regulatory
+                readiness — all in a plug-and-play system optimized for modern,
+                agile factories.
               </p>
             </div>
-          </div>
-          <div className="image-container">
-            <img
-              src={project.image}
-              alt={project.title}
-              className="w-full h-auto rounded-xl object-cover"
-              loading="lazy"
-            />
           </div>
         </div>
       </div>

@@ -84,7 +84,6 @@ const Home = () => {
         flex: 0 0 auto;
         width: 280px;
         margin-right: 20px;
-   
       }
       
       @media (max-width: 639px) {
@@ -131,34 +130,45 @@ const Home = () => {
     {
       title: "Digital Twin",
       icon: <FaProjectDiagram />,
+      id: "digital-twin",
     },
     {
       title: "IT-OT Integration",
       icon: <FaNetworkWired />,
+      id: "it-ot-integration",
     },
     {
       title: "End-End Traceability",
       icon: <FaStream />,
+      id: "end-to-end-traceability",
     },
     {
       title: "Cloud & Edge",
       icon: <FaCloud />,
+      id: "cloud-edge",
     },
     {
       title: "2D Gantry",
       icon: <FaCogs />,
+      id: "2d-gantry",
     },
     {
       title: "3D Gantry",
       icon: <FaCubes />,
+      id: "3d-gantry",
     },
     {
       title: "Vision Inspection",
       icon: <FaEye />,
+      id: "vision-inspection",
     },
   ];
 
   const doubledTechItems = [...techItems, ...techItems];
+
+  const handleTechItemClick = (id) => {
+    navigate(`/offering#${id}`);
+  };
 
   const sliderRef = useRef(null);
   const handlers = useSwipeable({
@@ -267,6 +277,7 @@ const Home = () => {
                   <div
                     key={`${item.title}-${i}`}
                     className="slider-card group relative p-5 xs:p-6 sm:p-7 bg-gray-800/60 backdrop-blur-md rounded-2xl border border-gray-700/60 transition-all duration-400 text-center cursor-pointer"
+                    onClick={() => handleTechItemClick(item.id)}
                   >
                     <div
                       className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-400 rounded-2xl`}
