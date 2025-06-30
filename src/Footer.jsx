@@ -15,7 +15,11 @@ const Footer = () => {
               src={Logo}
               alt="Kuro Logo"
               className="mx-auto sm:mx-0 mb-1 sm:mb-2"
-              style={{ width: "260px", height: "auto" }}
+              style={{
+    width: "100%",
+    maxWidth: "260px",
+    height: "auto"
+  }}
             />
             <p className="text-gray-400 text-xs sm:text-sm">
               . . . striving for non‑stopping production

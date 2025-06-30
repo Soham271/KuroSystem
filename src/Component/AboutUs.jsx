@@ -433,7 +433,7 @@ const AboutUs = () => {
 {/* History Section */}
 <div ref={historyRef} className="relative max-w-6xl mx-auto px-4 sm:px-6">
   <div className="text-center mb-6 sm:mb-8 md:mb-10 font-bold">
-    <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white mb-2 sm:mb-3">
+    <h2 className="text-4xl sm:text-4xl md:text-4xl lg:text-5xl text-white mb-2 sm:mb-3">
       Our{" "}
       <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
         History
@@ -462,10 +462,10 @@ const AboutUs = () => {
       `}
     >
       <div className="bg-white/20 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-5 lg:p-6 relative shadow-lg">
-        <div className="mb-2 sm:mb-3 md:mb-4 font-semibold text-base sm:text-lg md:text-xl lg:text-2xl text-center text-blue-400">
+        <div className="mb-2 sm:mb-3 md:mb-4 font-semibold text-xl sm:text-xl md:text-xl lg:text-2xl text-center text-blue-400">
           {section.title}
         </div>
-        <p className="text-white text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed">
+        <p className="text-white text-md sm:text-sm md:text-base lg:text-lg leading-relaxed">
           {section.content}
         </p>
         
@@ -494,7 +494,7 @@ const AboutUs = () => {
           className="  clients-section pt-3   sm:mb-8 text-center"
         >
           <div className=" mt-10 text-center mb-8 sm:mb-10 font-bold">
-            <h2 className="text-3xl sm:text-2xl md:text-4xl lg:text-5xl text-white mb-3 sm:mb-4 text-center section-heading">
+            <h2 className="text-4xl sm:text-4xl md:text-4xl lg:text-5xl text-white mb-3 sm:mb-4 text-center section-heading">
               Our{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
                 Core Philosophy
@@ -525,10 +525,10 @@ const AboutUs = () => {
                     <span className="hover-prompt lg:hidden">Tap Here</span>
                   </div>
                   <div className="flip-card-back">
-                    <h3 className="text-lg sm:text-xl font-semibold text-violet-200 mb-3">
+                    <h3 className="text-2xl sm:text-xl font-semibold text-violet-200 mb-3">
                       {card.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-white">
+                    <p className="text-md sm:text-sm text-white">
                       {card.description}
                     </p>
                   </div>
@@ -560,7 +560,7 @@ const AboutUs = () => {
           className="flex justify-center flex-wrap clients-section pt-3"
         >
           <div className="mb-8 sm:mb-10 text-center font-bold w-full">
-            <h2 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl text-white text-center mb-2 section-heading">
+            <h2 className="text-4xl sm:text-4xl md:text-4xl lg:text-5xl text-white text-center mb-2 section-heading">
               Our{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
                 Clients

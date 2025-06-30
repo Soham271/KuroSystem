@@ -142,7 +142,7 @@ operational backbone.`,
           aria-label="Back to Success Stories"
         >
           <ArrowLeft className="w-5 h-5" />
-          <span className="font-medium text-sm sm:text-base">
+          <span className="font-medium text-md sm:text-base">
             Back to Success Stories
           </span>
         </button>
@@ -158,31 +158,33 @@ operational backbone.`,
 
           {/* Text content below the image */}
           <div className="space-y-6 sm:space-y-8">
-            <h1 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
+            <h1 className="text-3xl xs:text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
               {project.title}
             </h1>
             <div className="content-card">
-              <h3 className="text-lg sm:text-3xl font-bold text-white section-title">
+              <h3 className="text-2xl sm:text-3xl font-semibold text-white mb-2">
                 Client Problem
+                 <div className="ml-0 mt-1 w-20 xs:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
               </h3>
-              <p className="text-gray-300 leading-relaxed text-sm sm:text-lg">
+              <p className="text-gray-300 leading-relaxed text-md sm:text-lg">
                 {project.problem}
               </p>
             </div>
             <div className="content-card">
-              <h3 className="text-lg sm:text-3xl font-bold text-white section-title">
+              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2 ">
                 KURO Solution
+                 <div className="ml-0 mt-1 w-20 xs:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
               </h3>
-              <p className="text-gray-300 leading-relaxed text-sm sm:text-lg">
+              <p className="text-gray-300 leading-relaxed text-md sm:text-lg">
                 {project.solution}
               </p>
               <div className="solution-list">
                 {solutionPoints.map((point, index) => (
                   <div key={index} className="solution-item">
-                    <div className="solution-title text-sm sm:text-xl">
+                    <div className=" text-lg sm:text-xl font-semibold text-blue-400">
                       {point.title}
                     </div>
-                    <p className="solution-description text-sm sm:text-lg">
+                    <p className="text-gray-300 leading-relaxed text-base sm:text-lg">
                       {point.description}
                     </p>
                   </div>
@@ -190,10 +192,11 @@ operational backbone.`,
               </div>
             </div>
             <div className="content-card">
-              <h3 className="text-lg sm:text-3xl font-bold text-white section-title">
+              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
                 Conclusion
+                 <div className="ml-0 mt-1 w-20 xs:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
               </h3>
-              <p className="text-gray-300 leading-relaxed text-sm sm:text-lg">
+              <p className="text-gray-300 leading-relaxed text-md sm:text-lg">
                 This transformation positioned KURO not just as a technology
                 provider, but as a true manufacturing intelligence partner. By
                 bridging ERP data, shopfloor automation, and user-centric

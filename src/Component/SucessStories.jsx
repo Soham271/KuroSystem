@@ -127,10 +127,13 @@ const SuccessStories = () => {
 
   const PortfolioGrid = () => (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 py-12 sm:py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-10xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 sm:mb-16">
-          <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight section-title">
-            Our Work
+          <h1 className="text-4xl xs:text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 ">
+            Our  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+       Work
+      </span>
+             <div className=" mt-2 w-24 xs:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
           </h1>
         </div>
 

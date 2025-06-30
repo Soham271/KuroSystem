@@ -59,7 +59,7 @@ const Project2 = () => {
           }
           .section-title {
             position: relative;
-            padding-bottom: 0.5rem;
+            padding-bottom: 0.2rem;
             font-weight: 600;
             color: #d1d5db;
           }
@@ -135,7 +135,7 @@ const Project2 = () => {
           aria-label="Back to Success Stories"
         >
           <ArrowLeft className="w-5 h-5" />
-          <span className="font-medium text-sm sm:text-base">
+          <span className="font-medium text-md sm:text-base">
             Back to Success Stories
           </span>
         </button>
@@ -151,32 +151,34 @@ const Project2 = () => {
 
           {/* Text content below the image */}
           <div className="space-y-6 sm:space-y-8">
-            <h1 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
+            <h1 className="text-3xl xs:text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
               {project.title}
             </h1>
 
             <div className="content-card">
-              <h3 className="text-lg sm:text-3xl font-bold text-white section-title">
+              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
                 Client Challenge
+                  <div className="ml-0 mt-1 w-20 xs:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
               </h3>
-              <p className="text-gray-300 leading-relaxed text-sm sm:text-lg">
+                    <p className="text-gray-300 leading-relaxed text-base sm:text-lg">
                 {project.problem}
               </p>
             </div>
             <div className="content-card">
-              <h3 className="text-lg sm:text-3xl font-bold text-white section-title">
+              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
                 KURO Solution
+                  <div className="ml-0 mt-1 w-20 xs:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
               </h3>
-              <p className="text-gray-300 leading-relaxed text-sm sm:text-lg">
+              <p className="text-gray-300 leading-relaxed text-md sm:text-lg">
                 {project.solution}
               </p>
               <div className="solution-list">
                 {solutionPoints.map((point, index) => (
                   <div key={index} className="solution-item">
-                    <div className="solution-title text-sm sm:text-xl">
+                    <div className=" text-lg sm:text-xl font-semibold text-blue-400">
                       {point.title}
                     </div>
-                    <p className="solution-description text-sm sm:text-lg">
+                    <p className="text-gray-300 leading-relaxed text-base sm:text-lg">
                       {point.description}
                     </p>
                   </div>
@@ -184,10 +186,11 @@ const Project2 = () => {
               </div>
             </div>
             <div className="content-card">
-              <h3 className="text-lg sm:text-3xl font-bold text-white section-title">
+              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
                 Conclusion
+                  <div className="ml-0 mt-1 w-20 xs:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
               </h3>
-              <p className="text-gray-300 leading-relaxed text-sm sm:text-lg">
+              <p className="text-gray-300 leading-relaxed text-md sm:text-lg">
                 By integrating die-level intelligence into the moulding process,
                 KURO empowered the client to shift from reactive to predictive
                 maintenance, enforce discipline on the shop floor, and bring
