@@ -101,7 +101,7 @@ const Careers = () => {
           0% { transform: translateY(-100px); opacity: 0; }
           100% { transform: translateY(0); opacity: 1; }
         }
-        .animate-slide-in { animation: slideInFromTop 0.8s ease-out forwards; }
+        .animate-slide-in { animation: slideInFromTop 1.5s ease-out forwards; }
       `}</style>
 
       <div
