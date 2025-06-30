@@ -1,9 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   FaUser,
   FaEnvelope,
-  FaPhone,
   FaBriefcase,
   FaLink,
 } from "react-icons/fa";
@@ -11,6 +10,8 @@ import emailjs from "@emailjs/browser";
 import a from "../assets/Careers2.avif";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 
 const Careers = () => {
   const navigate = useNavigate();
@@ -22,12 +23,67 @@ const Careers = () => {
     phone: "",
     position: "",
     resume_link: "",
+    country: "US",
   });
   const [focusedInput, setFocusedInput] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [countries, setCountries] = useState([]);
+
+  useEffect(() => {
+    const fetchCountries = async () => {
+      try {
+        const response = await fetch(
+          "https://restcountries.com/v3.1/all?fields=name,cca2,idd"
+        );
+        const data = await response.json();
+        const countryList = data
+          .map((country) => ({
+            code:
+              country.idd.root +
+              (country.idd.suffixes ? country.idd.suffixes[0] : ""),
+            country: country.cca2,
+            flag: `https://flagcdn.com/w20/${country.cca2.toLowerCase()}.png`,
+            name: country.name.common,
+          }))
+          .filter((c) => c.code);
+        setCountries(countryList);
+      } catch (error) {
+        console.error("Error fetching countries:", error);
+        setCountries([
+          {
+            code: "+1",
+            country: "US",
+            flag: "https://flagcdn.com/w20/us.png",
+            name: "United States",
+          },
+          {
+            code: "+91",
+            country: "IN",
+            flag: "https://flagcdn.com/w20/in.png",
+            name: "India",
+          },
+          {
+            code: "+44",
+            country: "GB",
+            flag: "https://flagcdn.com/w20/gb.png",
+            name: "United Kingdom",
+          },
+        ]);
+      }
+    };
+    fetchCountries();
+  }, []);
 
   const handleInputChange = (field, value) =>
     setFormData((prev) => ({ ...prev, [field]: value }));
+
+  const handlePhoneChange = (value, country) => {
+    setFormData({
+      ...formData,
+      phone: value,
+      country: country.countryCode.toUpperCase(),
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,6 +103,7 @@ const Careers = () => {
         phone: "",
         position: "",
         resume_link: "",
+        country: "US",
       });
     } catch (error) {
       console.error("Submission error:", error);
@@ -75,8 +132,7 @@ const Careers = () => {
       name: "phone",
       label: "Phone Number",
       type: "tel",
-      icon: FaPhone,
-      placeholder: "+1 555‑123‑4567",
+      placeholder: "+1 555-123-4567",
     },
     {
       name: "position",
@@ -102,6 +158,60 @@ const Careers = () => {
           100% { transform: translateY(0); opacity: 1; }
         }
         .animate-slide-in { animation: slideInFromTop 1.5s ease-out forwards; }
+        .phone-input-field {
+          background-color: transparent !important;
+          padding: 0.75rem 1rem 0.75rem 3.5rem !important;
+          font-size: 1rem !important;
+          color: #fff !important;
+          width: 100% !important;
+          height: 2.75rem !important;
+        }
+        .phone-input-field:focus {
+          outline: none !important;
+          border-color: #87CEEB !important;
+          background-color: rgba(255, 255, 255, 0.15) !important;
+        }
+        .react-tel-input .flag-dropdown {
+          background-color: transparent !important;
+          border: none !important;
+          border-radius: 0.5rem 0 0 0.5rem !important;
+          padding-left: 0.5rem !important;
+        }
+        .react-tel-input .selected-flag {
+          background-color: transparent !important;
+          padding: 0 !important;
+        }
+        .react-tel-input .selected-flag::after {
+          content: '';
+          position: absolute;
+          right: 0.5rem;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 0;
+          height: 0;
+          border-left: 5px solid transparent;
+          border-right: 5px solid transparent;
+          border-top: 6px solid #fff;
+          transition: transform 0.3s ease;
+        }
+        .react-tel-input .selected-flag.open::after {
+          transform: translateY(-50%) rotate(180deg);
+        }
+        .react-tel-input .country-list .country:hover,
+        .react-tel-input .country-list .country.highlight {
+          background-color: #87CEEB !important;
+          color: #000 !important;
+        }
+        @media (max-width: 767px) {
+          .phone-input-field {
+            padding: 0.6rem 1rem 0.6rem 3rem !important;
+            font-size: 0.9rem !important;
+            height: 2.5rem !important;
+          }
+          .react-tel-input .selected-flag::after {
+            border-top-width: 5px;
+          }
+        }
       `}</style>
 
       <div
@@ -139,13 +249,45 @@ const Careers = () => {
                 const Icon = field.icon;
                 const isActive =
                   focusedInput === field.name || formData[field.name];
+                if (field.name === "phone") {
+                  return (
+                    <div key={field.name}>
+                      <label className="block text-sm font-semibold text-white mb-1">
+                        {field.label}
+                      </label>
+                      <div
+                        className={`flex items-center rounded-lg   border transition duration-200 ${
+                          isActive
+                            ? "border-blue-500 scale-[1.01]"
+                            : "border-white/30"
+                        }`}
+                      >
+                        <PhoneInput
+                          country={"in"}
+                          value={formData.phone}
+                          onChange={handlePhoneChange}
+                          placeholder={field.placeholder}
+                          inputProps={{
+                            name: field.name,
+                            required: true,
+                            autoComplete: "off",
+                            className: "phone-input-field",
+                          }}
+                          inputClass="!bg-transparent !border-none !text-white !w-full"
+                          buttonClass="!bg-transparent !border-none"
+                          dropdownClass="!bg-[#1a2a44] !border !border-white/30 !text-white"
+                        />
+                      </div>
+                    </div>
+                  );
+                }
                 return (
                   <div key={field.name}>
                     <label className="block text-sm font-semibold text-white mb-1">
                       {field.label}
                     </label>
                     <div
-                      className={`flex items-center bg-white/20 rounded-lg px-3 py-2 border transition duration-200 ${
+                      className={`flex items-center  rounded-lg px-3 py-2 border transition duration-200 ${
                         isActive
                           ? "border-blue-500 scale-[1.01]"
                           : "border-white/30"

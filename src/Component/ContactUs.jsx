@@ -1,59 +1,89 @@
 import React, { useRef, useState, useEffect } from "react";
 import {
-  FaPhoneAlt,
-  FaEnvelope,
   FaUser,
+  FaEnvelope,
   FaMapMarkerAlt,
+  FaPhoneAlt,
   FaComment,
 } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 import Contact from "../assets/Contact.avif";
 
 const ContactUs = () => {
   const formRef = useRef();
-  const sectionRef = useRef();
   const [form, setForm] = useState({
     name: "",
     email: "",
     phone: "",
+    country: "US",
     location: "",
     message: "",
   });
   const [status, setStatus] = useState("");
-  const [isVisible, setIsVisible] = useState(false);
-  const [isFormVisible, setIsFormVisible] = useState(false);
-  const [animatedInputs, setAnimatedInputs] = useState({
-    name: false,
-    email: false,
-    phone: false,
-    location: false,
-    message: false,
-  });
+  const [countries, setCountries] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const formFields = [
-    { field: "name", icon: <FaUser />, label: "Enter Name", type: "text" },
-    {
-      field: "email",
-      icon: <FaEnvelope />,
-      label: "Enter Email",
-      type: "email",
-    },
-    {
-      field: "phone",
-      icon: <FaPhoneAlt />,
-      label: "Enter Phone",
-      type: "text",
-    },
-    {
-      field: "location",
-      icon: <FaMapMarkerAlt />,
-      label: "Enter Location",
-      type: "text",
-    },
-  ];
+  useEffect(() => {
+    const fetchCountries = async () => {
+      try {
+        const response = await fetch(
+          "https://restcountries.com/v3.1/all?fields=name,cca2,idd"
+        );
+        const data = await response.json();
+        const countryList = data
+          .map((country) => ({
+            code:
+              country.idd.root +
+              (country.idd.suffixes ? country.idd.suffixes[0] : ""),
+            country: country.cca2,
+            flag: `https://flagcdn.com/w20/${country.cca2.toLowerCase()}.png`,
+            name: country.name.common,
+          }))
+          .filter((c) => c.code);
+        setCountries(countryList);
+      } catch (error) {
+        console.error("Error fetching countries:", error);
+        setCountries([
+          {
+            code: "+1",
+            country: "US",
+            flag: "https://flagcdn.com/w20/us.png",
+            name: "United States",
+          },
+          {
+            code: "+91",
+            country: "IN",
+            flag: "https://flagcdn.com/w20/in.png",
+            name: "India",
+          },
+          {
+            code: "+44",
+            country: "GB",
+            flag: "https://flagcdn.com/w20/gb.png",
+            name: "United Kingdom",
+          },
+        ]);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchCountries();
+  }, []);
 
-  const handleChange = (e) =>
-    setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+  };
+
+  const handlePhoneChange = (value, country) => {
+    setForm({
+      ...form,
+      phone: value,
+      country: country.countryCode.toUpperCase(),
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -71,6 +101,7 @@ const ContactUs = () => {
             name: "",
             email: "",
             phone: "",
+            country: "US",
             location: "",
             message: "",
           });
@@ -81,258 +112,139 @@ const ContactUs = () => {
       );
   };
 
-  const createAnimatedLabel = (text) => {
-    return text.split("").map((char, index) => (
-      <span
-        key={index}
-        style={{ transitionDelay: `${index * 50}ms` }}
-        className="label-char"
-      >
-        {char === " " ? "\u00A0" : char}
-      </span>
-    ));
-  };
-
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsFormVisible(true);
-            formFields.forEach((field, index) => {
-              setTimeout(() => {
-                setAnimatedInputs((prev) => ({
-                  ...prev,
-                  [field.field]: true,
-                }));
-              }, index * 200);
-            });
-            setTimeout(() => {
-              setAnimatedInputs((prev) => ({
-                ...prev,
-                message: true,
-              }));
-            }, formFields.length * 200);
-          }
-        });
-      },
-      { threshold: 0.3 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    setIsVisible(true);
-
     const style = document.createElement("style");
     style.innerHTML = `
-      body {
-        background: linear-gradient(135deg, #0a192f 0%, #000000 100%);
-        min-height: 100vh;
-      }
-      
       .form-control {
         position: relative;
-        margin: 20px 0 40px;
+        margin: 1rem 0;
         width: 100%;
+      }
+      
+      .form-control label {
+        display: block;
+        font-size: 0.875rem;
+        color: #fff;
+        margin-bottom: 0.25rem;
+        font-weight: 500;
       }
       
       .form-control input,
       .form-control textarea {
-        background-color: transparent;
-        border: 0;
-        border-bottom: 2px #fff solid;
-        display: block;
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 0.5rem;
         width: 100%;
-        padding: 15px 0 15px 35px;
-        font-size: 18px;
+        padding: 0.75rem 1rem 0.75rem 2.5rem;
+        font-size: 1rem;
         color: #fff;
-        transition: border-bottom-color 0.3s ease;
+        transition: border-color 0.3s ease, background-color 0.3s ease;
       }
       
       .form-control input:focus,
-      .form-control input:valid,
-      .form-control textarea:focus,
-      .form-control textarea:valid {
-        outline: 0;
-        border-bottom-color: #87CEEB;
-      }
-      
-      .form-control label {
-        position: absolute;
-        top: 15px;
-        left: 35px;
-        pointer-events: none;
-      }
-      
-      .form-control .label-char {
-        display: inline-block;
-        font-size: 18px;
-        min-width: 5px;
-        color: #fff;
-        transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-      }
-      
-      .form-control input:focus + label .label-char,
-      .form-control input:valid + label .label-char,
-      .form-control textarea:focus + label .label-char,
-      .form-control textarea:valid + label .label-char {
-        color: #87CEEB;
-        transform: translateY(-30px);
+      .form-control textarea:focus {
+        outline: none;
+        border-color: #87CEEB;
+        background-color: rgba(255, 255, 255, 0.15);
       }
       
       .form-control .input-icon {
         position: absolute;
-        left: 8px;
-        top: 15px;
+        left: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
         color: #87CEEB;
-        font-size: 18px;
+        font-size: 1.25rem;
         z-index: 1;
-        transition: all 0.3s ease;
       }
       
-      .form-control input:focus ~ .input-icon,
-      .form-control textarea:focus ~ .input-icon {
-        color: #87CEEB;
-        transform: scale(1.1);
-      }
-
-      /* Remove autocomplete background and yellow highlight */
-      .form-control input:-webkit-autofill,
-      .form-control input:-webkit-autofill:hover,
-      .form-control input:-webkit-autofill:focus,
-      .form-control input:-webkit-autofill:active {
-        -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
-        -webkit-text-fill-color: #fff !important;
-        background-color: transparent !important;
-        background-image: none !important;
-        background: transparent !important;
-        transition: background-color 5000s ease-in-out 0s !important;
-      }
-
-      /* Additional autocomplete fixes */
-      .form-control input:-internal-autofill-selected {
-        background-color: transparent !important;
-        background-image: none !important;
+      .phone-input-field {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        border-radius: 0.5rem !important;
+        padding: 0.75rem 1rem 0.75rem 3.5rem !important;
+        font-size: 1rem !important;
         color: #fff !important;
+        width: 100% !important;
+        height: 2.75rem !important;
       }
-
-      /* Force remove autocomplete styling */
-      .form-control input[autocomplete]::-webkit-contacts-auto-fill-button {
-        visibility: hidden;
-        display: none !important;
-        pointer-events: none;
-        height: 0;
+      
+      .phone-input-field:focus {
+        outline: none !important;
+        border-color: #87CEEB !important;
+        background-color: rgba(255, 255, 255, 0.15) !important;
+      }
+      
+      .react-tel-input .flag-dropdown {
+        background-color: transparent !important;
+        border: none !important;
+        border-radius: 0.5rem 0 0 0.5rem !important;
+        padding-left: 0.5rem !important;
+      }
+      
+      .react-tel-input .selected-flag {
+        background-color: transparent !important;
+        padding: 0 !important;
+      }
+      
+      .react-tel-input .selected-flag::after {
+        content: '';
+        position: absolute;
+        right: 0.5rem;
+        top: 50%;
+        transform: translateY(-50%);
         width: 0;
-        margin: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 6px solid #fff;
+        transition: transform 0.3s ease;
       }
-
-      /* Alternative method to override autocomplete */
-      .form-control input:-webkit-autofill {
-        -webkit-animation-name: autofill;
-        -webkit-animation-fill-mode: both;
+      
+      .react-tel-input .selected-flag.open::after {
+        transform: translateY(-50%) rotate(180deg);
       }
-
-      @-webkit-keyframes autofill {
-        to {
-          color: #fff;
-          background: transparent;
+      
+      .react-tel-input .country-list .country:hover,
+      .react-tel-input .country-list .country.highlight {
+        background-color: #87CEEB !important;
+        color: #000 !important;
+      }
+      
+      button {
+        width: 100%;
+        height: 2.5rem;
+        background: linear-gradient(90deg, #4B5EAA, #8A4AF3);
+        border: none;
+        border-radius: 0.5rem;
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+      
+      button:hover {
+        background: linear-gradient(90deg, #3A4E9A, #7A3AE3);
+      }
+      
+      @media (max-width: 767px) {
+        .form-control input,
+        .form-control textarea {
+          font-size: 0.9rem;
+          padding: 0.6rem 1rem 0.6rem 2.25rem;
         }
-      }
-
-      /* Remove autocomplete dropdown background */
-      .form-control input::-webkit-contacts-auto-fill-button,
-      .form-control input::-webkit-credentials-auto-fill-button {
-        visibility: hidden;
-        display: none !important;
-        pointer-events: none;
-        height: 0;
-        width: 0;
-        margin: 0;
-      }
-
-      /* Style the dropdown itself */
-      .form-control input::-webkit-list-button {
-        display: none;
-      }
-
-      /* Remove browser default autocomplete styling */
-      .form-control input {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-      }
-
-      /* Additional fix for some browsers */
-      .form-control input[type="email"]::-webkit-input-placeholder {
-        color: rgba(255, 255, 255, 0.7);
-      }
-
-      .form-control input[type="email"]:-moz-placeholder {
-        color: rgba(255, 255, 255, 0.7);
-      }
-
-      .form-control input[type="email"]::-moz-placeholder {
-        color: rgba(255, 255, 255, 0.7);
-      }
-
-      .form-control input[type="email"]:-ms-input-placeholder {
-        color: rgba(255, 255, 255, 0.7);
-      }
-      
-      @keyframes slideInFromLeft {
-        0% { opacity: 0; transform: translateX(-100px) rotateY(-30deg); }
-        100% { opacity: 1; transform: translateX(0) rotateY(0deg); }
-      }
-      
-      @keyframes slideInFromRight {
-        0% { opacity: 0; transform: translateX(100px) rotateY(30deg); }
-        100% { opacity: 1; transform: translateX(0) rotateY(0deg); }
-      }
-      
-      @keyframes slideInFromBottom {
-        0% { opacity: 0; transform: translateY(50px) scale(0.9); }
-        100% { opacity: 1; transform: translateY(0) scale(1); }
-      }
-      
-      @keyframes bounceIn {
-        0% { opacity: 0; transform: scale(0.3) rotateZ(-10deg); }
-        50% { opacity: 0.7; transform: scale(1.1) rotateZ(5deg); }
-        100% { opacity: 1; transform: scale(1) rotateZ(0deg); }
-      }
-      
-      @keyframes pulse {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.05); }
-      }
-      
-      .animated-input {
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      }
-      
-      .animated-input.slide-in-left {
-        animation: slideInFromLeft 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-      }
-      
-      .animated-input.slide-in-right {
-        animation: slideInFromRight 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-      }
-      
-      .animated-input.slide-in-bottom {
-        animation: slideInFromBottom 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-      }
-      
-      .animated-input.bounce-in {
-        animation: bounceIn 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-      }
-      
-      .pulse-button {
-        animation: pulse 2s ease-in-out infinite;
+        .form-control .input-icon {
+          top: 50%;
+          font-size: 1.1rem;
+        }
+        .phone-input-field {
+          padding: 0.6rem 1rem 0.6rem 3rem !important;
+          font-size: 0.9rem !important;
+          height: 2.5rem !important;
+        }
+        .react-tel-input .selected-flag::after {
+          border-top-width: 5px;
+        }
       }
       
       .contact-section {
@@ -350,47 +262,8 @@ const ContactUs = () => {
         pointer-events: none;
         z-index: -1;
       }
-      
-      .form-card, .info-card {
-        transition: transform 0.4s ease, box-shadow 0.4s ease;
-      }
-      
-      .form-card:hover, .info-card:hover {
-        transform: translateY(-5px) scale(1.02);
-        box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
-      }
-      
-      @media (max-width: 767px) {
-        .contact-section { padding-top: 60px; }
-        .form-control {
-          margin: 15px 0 35px;
-        }
-        .form-control input,
-        .form-control textarea {
-          font-size: 16px;
-          padding: 12px 0 12px 30px;
-        }
-        .form-control label {
-          top: 12px;
-          left: 30px;
-        }
-        .form-control .label-char {
-          font-size: 16px;
-        }
-        .form-control .input-icon {
-          left: 6px;
-          top: 12px;
-          font-size: 16px;
-        }
-      }
-      
-      @media (prefers-reduced-motion: reduce) {
-        .form-card:hover, .info-card:hover { transform: none; }
-        .animated-input { animation: none; }
-        .pulse-button { animation: none; }
-        .label-char { transition: none; }
-      }
     `;
+
     document.head.appendChild(style);
 
     return () => {
@@ -398,14 +271,19 @@ const ContactUs = () => {
     };
   }, []);
 
-  const getInputAnimation = (index, field) => {
-    if (!animatedInputs[field]) return "";
-    const animations = ["slide-in-left", "slide-in-right"];
-    return animations[index % animations.length];
-  };
+  const formFields = [
+    { field: "name", icon: <FaUser />, label: "Name" },
+    { field: "email", icon: <FaEnvelope />, label: "Email" },
+    { field: "location", icon: <FaMapMarkerAlt />, label: "Location" },
+  ];
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div
+      className="flex flex-col min-h-screen"
+      style={{
+        background: "linear-gradient(135deg, #0a192f 0%, #000000 100%)",
+      }}
+    >
       <div className="relative w-full min-h-[50vh] sm:min-h-[55vh] md:min-h-[60vh] lg:min-h-[65vh] xl:min-h-[70vh] flex items-center justify-center sm:justify-start overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -416,16 +294,10 @@ const ContactUs = () => {
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30 sm:bg-gradient-to-r sm:from-black/70 sm:via-black/40 sm:to-transparent" />
-        <div
-          className={`relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 transition-all duration-1000 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-        >
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
           <div className="text-white max-w-none sm:max-w-2xl lg:max-w-3xl text-center sm:text-left space-y-4 sm:space-y-6">
             <h1 className="text-2xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-extrabold leading-tight drop-shadow-md">
-              <span className="inline text-4xl sm:inline">
-                Get in Touch with Us
-              </span>{" "}
+              Get in Touch with Us
             </h1>
             <p className="text-lg xs:text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed text-white/90 drop-shadow max-w-lg sm:max-w-xl md:max-w-2xl mx-auto sm:mx-0">
               We are here to help you connect and explore how KURO can support
@@ -434,101 +306,85 @@ const ContactUs = () => {
           </div>
         </div>
       </div>
-      <main
-        ref={sectionRef}
-        className="relative flex-grow contact-section pt-16 px-4 md:px-0"
-      >
+      <main className="relative flex-grow contact-section pt-16 px-4 md:px-0">
         <div className="relative z-10 max-w-6xl mx-auto flex flex-col md:flex-row gap-8 md:gap-12 items-stretch px-3 mb-10">
-          <div
-            className={`md:w-1/2 form-card bg-white/20 backdrop-blur-xl border border-white/30 rounded-2xl p-6 md:p-8 shadow-lg mb-4 flex justify-center flex-col transition-all duration-1000 ${
-              isFormVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-10"
-            }`}
-          >
+          <div className="md:w-1/2 form-card bg-white/20 backdrop-blur-xl border border-white/30 rounded-2xl p-6 md:p-8 shadow-lg mb-4 flex justify-center flex-col">
             <h2 className="text-2xl md:text-3xl text-center text-white mb-6 font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent drop-shadow-md">
               Get in Touch
             </h2>
-            <form ref={formRef} onSubmit={handleSubmit} className="space-y-8">
-              {formFields.map((fieldData, index) => {
-                const { field, icon, label, type } = fieldData;
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
+              {formFields.map((fieldData) => {
+                const { field, icon, label } = fieldData;
                 return (
-                  <div
-                    key={field}
-                    className={`form-control animated-input ${getInputAnimation(
-                      index,
-                      field
-                    )} ${!animatedInputs[field] ? "opacity-0" : ""}`}
-                    style={{
-                      animationDelay: `${index * 0.2}s`,
-                      animationFillMode: "forwards",
-                    }}
-                  >
-                    <input
-                      name={field}
-                      type={type}
-                      value={form[field]}
-                      onChange={handleChange}
-                      required
-                      autoComplete={field === "email" ? "email" : "off"}
-                    />
-                    <label>{createAnimatedLabel(label)}</label>
-                    <div className="input-icon">{icon}</div>
+                  <div key={field} className="form-control">
+                    <label>{label}</label>
+                    <div className="relative">
+                      <input
+                        name={field}
+                        type={field === "email" ? "email" : "text"}
+                        value={form[field]}
+                        onChange={handleChange}
+                        required
+                        autoComplete="off"
+                      />
+                      <span className="input-icon">{icon}</span>
+                    </div>
                   </div>
                 );
               })}
-              <div
-                className={`form-control animated-input slide-in-right ${
-                  !animatedInputs.message ? "opacity-0" : ""
-                }`}
-                style={{
-                  animationDelay: `${formFields.length * 0.2}s`,
-                  animationFillMode: "forwards",
-                }}
-              >
-                <textarea
-                  name="message"
-                  value={form.message}
-                  onChange={handleChange}
-                  required
-                  rows={4}
-                  style={{ resize: "none" }}
-                  autoComplete="off"
-                />
-                <label>{createAnimatedLabel("Enter Message")}</label>
-                <div className="input-icon">
-                  <FaComment />
+              <div className="form-control">
+                <label>Phone</label>
+                <div className="relative">
+                  <PhoneInput
+                    country={"in"}
+                    value={form.phone}
+                    onChange={handlePhoneChange}
+                    placeholder=""
+                    inputProps={{
+                      name: "phone",
+                      required: true,
+                      autoComplete: "off",
+                      className: "phone-input-field",
+                    }}
+                    inputClass="!bg-transparent !border !border-white/30 !text-white !rounded-lg"
+                    buttonClass="!bg-transparent !border-none"
+                    dropdownClass="!bg-[#1a2a44] !border !border-white/30 !text-white"
+                  />
                 </div>
               </div>
-              <button
-                type="submit"
-                className={`w-full h-12 bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-semibold border rounded-xl  shadow-md hover:shadow-lg mt-8 ${
-                  isFormVisible ? "pulse-button" : ""
-                }`}
-              >
-                Send Message
-              </button>
+              <div className="form-control">
+                <label>Message</label>
+                <div className="relative">
+                  <textarea
+                    name="message"
+                    value={form.message}
+                    onChange={handleChange}
+                    required
+                    rows={4}
+                    style={{ resize: "none" }}
+                    autoComplete="off"
+                  />
+                  <span className="input-icon">
+                    <FaComment />
+                  </span>
+                </div>
+              </div>
+              <button type="submit">Send Message</button>
               {status && (
-                <p
-                  className={`text-center font-medium mt-3 transition-all duration-500 ${
+                <div
+                  className={`text-center font-medium mt-3 ${
                     status === "success" ? "text-green-400" : "text-red-400"
-                  } drop-shadow animate-bounce`}
+                  } drop-shadow`}
                 >
                   {status === "success"
                     ? "Thank you! We'll be in touch soon."
                     : "Something went wrong. Please try again later."}
-                </p>
+                </div>
               )}
             </form>
           </div>
           <div className="md:w-1/2 flex flex-col gap-12">
-            <div
-              className={`info-card rounded-2xl overflow-hidden shadow-lg h-64 md:h-80 border border-white/30 bg-white/20 backdrop-blur-xl transition-all duration-1000 ${
-                isFormVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-10"
-              }`}
-            >
+            <div className="info-card rounded-2xl overflow-hidden shadow-lg h-64 md:h-80 border border-white/30 bg-white/20 backdrop-blur-xl">
               <iframe
                 title="Kuro Systems Location"
                 src="https://www.google.com/maps?q=19.992583,73.739444&z=15&output=embed"
@@ -544,14 +400,7 @@ const ContactUs = () => {
                 Kuro Systems
               </div>
             </div>
-            <div
-              className={`info-card bg-white/20 backdrop-blur-xl border border-white/30 rounded-2xl p-6 md:p-8 shadow-lg space-y-4 transition-all duration-1000 ${
-                isFormVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-10"
-              }`}
-              style={{ animationDelay: "0.7s" }}
-            >
+            <div className="info-card bg-white/20 backdrop-blur-xl border border-white/30 rounded-2xl p-6 md:p-8 shadow-lg space-y-4">
               <div className="flex items-center space-x-3 text-blue-400">
                 <FaPhoneAlt className="text-xl" />
                 <a
@@ -561,9 +410,9 @@ const ContactUs = () => {
                   +91 8956014041
                 </a>
               </div>
-              <p className="text-white drop-shadow">
+              <div className="text-white drop-shadow">
                 We are here to make your ideas a reality.
-              </p>
+              </div>
               <div className="flex items-center space-x-3 text-blue-400">
                 <FaEnvelope className="text-xl" />
                 <a
