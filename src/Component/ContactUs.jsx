@@ -322,7 +322,7 @@ const ContactUs = () => {
                 <label>Phone</label>
                 <div className="relative">
                   <PhoneInput
-                    country={"in"}
+                    country={"us"}
                     value={form.phone}
                     onChange={handlePhoneChange}
                     placeholder=""
